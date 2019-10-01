@@ -10,6 +10,8 @@ import { LoginComponent } from './login/login.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FormlyModule } from '@ngx-formly/core';
 import { FormlyMaterialModule } from '@ngx-formly/material';
+import { UserState } from './state/user.state';
+import { HttpClientModule } from '@angular/common/http';
 
 const routes : Routes = [
   {
@@ -27,8 +29,9 @@ const routes : Routes = [
   imports: [
     CommonModule,
     RouterModule.forRoot(routes),
-    NgxsModule.forRoot([MovieState]),
+    NgxsModule.forRoot([MovieState,UserState]),
     MatTableModule,
+    HttpClientModule,
     MatPaginatorModule,
     FormsModule,
     ReactiveFormsModule,
