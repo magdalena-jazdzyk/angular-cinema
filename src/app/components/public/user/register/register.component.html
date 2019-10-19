@@ -1,0 +1,9 @@
+<mat-card class="example-card">
+    <form [formGroup]="registerForm" (ngSubmit)="register()">
+        <formly-form [fields]="registerFields" [form]="registerForm">
+            <button [disabled]="!registerForm.valid" mat-raised-button color="primary" type="submit">
+                Zarejestruj
+            </button>
+        </formly-form>
+    </form>
+</mat-card>

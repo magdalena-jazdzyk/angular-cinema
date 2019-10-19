@@ -3,31 +3,37 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { PublicModule } from './public/public.module';
-import { MenuComponent } from './public/menu/menu.component';
-import { MatSidenavModule, MatListModule, MatIcon, MatIconModule, MatToolbarModule } from '@angular/material';
+import { MenuComponent } from './components/public/menu/menu.component';
+import {
+  MatToolbarModule,
+  MatSidenavModule,
+  MatIconModule,
+  MatListModule
+} from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { HttpClientModule } from '@angular/common/http';
-import { ReservationComponent } from './private/reservation/reservation.component';
-import { PrivateModule } from './private/private.module';
+import { PublicModule } from './components/public/public.module';
+import { PrivateModule } from './components/private/private.module';
+import { NgxsReduxDevtoolsPluginModule } from '@ngxs/devtools-plugin';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [
     AppComponent,
-    MenuComponent
-    
+    MenuComponent    
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
     PublicModule,
-    PrivateModule,
-    MatSidenavModule,
-    MatListModule,
-    MatIconModule,
-    MatToolbarModule,
+    AppRoutingModule,
     BrowserAnimationsModule,
-    HttpClientModule
+    MatSidenavModule,
+    MatToolbarModule,
+    MatIconModule,
+    MatListModule,
+    PrivateModule,
+    NgxsReduxDevtoolsPluginModule.forRoot(),
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,0 +1,9 @@
+<mat-card class="example-card">
+    <form [formGroup]="loginForm" (ngSubmit)="login()">
+        <formly-form [fields]="loginFields" [form]="loginForm">
+            <button [disabled]="!loginForm.valid" mat-raised-button color="primary" type="submit">
+                Zaloguj
+            </button>
+        </formly-form>
+    </form>
+</mat-card>
