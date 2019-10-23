@@ -15,6 +15,9 @@ import {HttpLinkModule} from 'apollo-angular-link-http';
 import {MovieState} from './movie.state';
 import {MovieListComponent} from './movie-list/movie-list.component';
 import {ReservationState} from './reservation.state';
+import {ReservationComponent} from './reservation/reservation.component';
+import {RepertoireState} from './state/repertoire.state';
+import {SeatsState} from './state/seats.state';
 
 const routes: Routes = [
   {
@@ -32,7 +35,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  declarations: [LoginComponent, RegisterComponent, MovieListComponent],
+  declarations: [LoginComponent, RegisterComponent, MovieListComponent, ReservationComponent],
   imports: [
     CommonModule,
     RouterModule.forRoot(routes),
@@ -42,13 +45,16 @@ const routes: Routes = [
     ReactiveFormsModule,
     FormlyMaterialModule,
     MatButtonModule,
-    NgxsModule.forFeature([UserState, MovieState, ReservationState]),
+    NgxsModule.forFeature([UserState, MovieState, ReservationState, RepertoireState, SeatsState]),
     HttpClientModule,
     ApolloModule,
     HttpLinkModule,
     MatTableModule,
     MatPaginatorModule,
     MatIconModule
+  ],
+  entryComponents: [
+    ReservationComponent // naszkomponent bedzie wywołany z poziomu kodu annie z linku
   ]
 })
 export class PublicModule {

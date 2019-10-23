@@ -17,8 +17,8 @@ import { PageReservationDto } from '../models/page-reservation-dto';
   providedIn: 'root',
 })
 class ReservationControllerService extends __BaseService {
-  static readonly addUsingPOST1Path = '/reservations';
-  static readonly findAllUsingGET1Path = '/reservations/{page}/{size}';
+  static readonly addReservationUsingPOSTPath = '/reservations';
+  static readonly findAllReservationUsingGETPath = '/reservations/{page}/{size}';
 
   constructor(
     config: __Configuration,
@@ -31,7 +31,7 @@ class ReservationControllerService extends __BaseService {
    * @param reservationDto reservationDto
    * @return OK
    */
-  addUsingPOST1Response(reservationDto: ReservationDto): __Observable<__StrictHttpResponse<ReservationDto>> {
+  addReservationUsingPOSTResponse(reservationDto: ReservationDto): __Observable<__StrictHttpResponse<ReservationDto>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
@@ -57,14 +57,14 @@ class ReservationControllerService extends __BaseService {
    * @param reservationDto reservationDto
    * @return OK
    */
-  addUsingPOST1(reservationDto: ReservationDto): __Observable<ReservationDto> {
-    return this.addUsingPOST1Response(reservationDto).pipe(
+  addReservationUsingPOST(reservationDto: ReservationDto): __Observable<ReservationDto> {
+    return this.addReservationUsingPOSTResponse(reservationDto).pipe(
       __map(_r => _r.body as ReservationDto)
     );
   }
 
   /**
-   * @param params The `ReservationControllerService.FindAllUsingGET1Params` containing the following parameters:
+   * @param params The `ReservationControllerService.FindAllReservationUsingGETParams` containing the following parameters:
    *
    * - `size`: size
    *
@@ -72,7 +72,7 @@ class ReservationControllerService extends __BaseService {
    *
    * @return OK
    */
-  findAllUsingGET1Response(params: ReservationControllerService.FindAllUsingGET1Params): __Observable<__StrictHttpResponse<PageReservationDto>> {
+  findAllReservationUsingGETResponse(params: ReservationControllerService.FindAllReservationUsingGETParams): __Observable<__StrictHttpResponse<PageReservationDto>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
@@ -96,7 +96,7 @@ class ReservationControllerService extends __BaseService {
     );
   }
   /**
-   * @param params The `ReservationControllerService.FindAllUsingGET1Params` containing the following parameters:
+   * @param params The `ReservationControllerService.FindAllReservationUsingGETParams` containing the following parameters:
    *
    * - `size`: size
    *
@@ -104,8 +104,8 @@ class ReservationControllerService extends __BaseService {
    *
    * @return OK
    */
-  findAllUsingGET1(params: ReservationControllerService.FindAllUsingGET1Params): __Observable<PageReservationDto> {
-    return this.findAllUsingGET1Response(params).pipe(
+  findAllReservationUsingGET(params: ReservationControllerService.FindAllReservationUsingGETParams): __Observable<PageReservationDto> {
+    return this.findAllReservationUsingGETResponse(params).pipe(
       __map(_r => _r.body as PageReservationDto)
     );
   }
@@ -114,9 +114,9 @@ class ReservationControllerService extends __BaseService {
 module ReservationControllerService {
 
   /**
-   * Parameters for findAllUsingGET1
+   * Parameters for findAllReservationUsingGET
    */
-  export interface FindAllUsingGET1Params {
+  export interface FindAllReservationUsingGETParams {
 
     /**
      * size

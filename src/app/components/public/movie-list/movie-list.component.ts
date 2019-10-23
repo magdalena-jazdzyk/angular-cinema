@@ -3,9 +3,8 @@ import {Store, Select} from '@ngxs/store';
 import {Observable} from 'rxjs';
 import {PageMovieDto} from 'src/api/models';
 import {LoadMovieAction} from '../movie.state';
-import {first, take} from 'rxjs/operators';
-import {subscribe} from 'graphql';
-import {CreateReservationAction} from '../reservation.state';
+import {MatDialog} from '@angular/material';
+import {ReservationComponent} from '../reservation/reservation.component';
 
 @Component({
   selector: 'app-movie-list',
@@ -21,14 +20,11 @@ export class MovieListComponent implements OnInit {
   @Select(state => state.movie.moviePageDto)
   moviesPage$: Observable<PageMovieDto>;
 
-  constructor(public store: Store) {
+  constructor(public store: Store, public matDialog: MatDialog) {
   }
 
   ngOnInit() {
     this.store.dispatch(new LoadMovieAction(0, 5));
-    let snapshotToken = null;
-    this.token$.pipe(first()).subscribe(s => snapshotToken = s).unsubscribe();
-    console.log(snapshotToken);
     this.token$.subscribe(r => {
       console.log(r);
 
@@ -44,11 +40,13 @@ export class MovieListComponent implements OnInit {
   }
 
   reserve(element) {
-    this.store.dispatch(new CreateReservationAction({
-      movieId : element.id
-    }));
-
-    console.log(element);
+    this.matDialog.open(ReservationComponent, {
+      width: '80%', data: element
+    });
+    //   this.store.dispatch(new CreateReservationAction({
+    //   movieId: element.id
   }
+
+
 
 }

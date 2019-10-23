@@ -34,7 +34,7 @@ export class MovieState {
 
   @Action(LoadMovieAction)
   loadMovie(ctx: StateContext<MovieStateModel>, {page, size}: LoadMovieAction) {
-    return this.movieService.findAllUsingGET({page, size}).pipe(
+    return this.movieService.findAllMovieUsingGET({page, size}).pipe(
       tap(value => {
         ctx.patchState({ // pagestate - zmiana state wartosc moviepagedto
           moviePageDto: value

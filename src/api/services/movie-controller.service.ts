@@ -17,11 +17,11 @@ import { PageMovieDto } from '../models/page-movie-dto';
   providedIn: 'root',
 })
 class MovieControllerService extends __BaseService {
-  static readonly addUsingPOSTPath = '/movies';
+  static readonly addMovieUsingPOSTPath = '/movies';
   static readonly updateUsingPUTPath = '/movies';
   static readonly deleteUsingDELETEPath = '/movies';
   static readonly findOneUsingGETPath = '/movies/{id}';
-  static readonly findAllUsingGETPath = '/movies/{page}/{size}';
+  static readonly findAllMovieUsingGETPath = '/movies/{page}/{size}';
 
   constructor(
     config: __Configuration,
@@ -34,7 +34,7 @@ class MovieControllerService extends __BaseService {
    * @param movieDto movieDto
    * @return OK
    */
-  addUsingPOSTResponse(movieDto: MovieDto): __Observable<__StrictHttpResponse<MovieDto>> {
+  addMovieUsingPOSTResponse(movieDto: MovieDto): __Observable<__StrictHttpResponse<MovieDto>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
@@ -60,8 +60,8 @@ class MovieControllerService extends __BaseService {
    * @param movieDto movieDto
    * @return OK
    */
-  addUsingPOST(movieDto: MovieDto): __Observable<MovieDto> {
-    return this.addUsingPOSTResponse(movieDto).pipe(
+  addMovieUsingPOST(movieDto: MovieDto): __Observable<MovieDto> {
+    return this.addMovieUsingPOSTResponse(movieDto).pipe(
       __map(_r => _r.body as MovieDto)
     );
   }
@@ -209,7 +209,7 @@ class MovieControllerService extends __BaseService {
   }
 
   /**
-   * @param params The `MovieControllerService.FindAllUsingGETParams` containing the following parameters:
+   * @param params The `MovieControllerService.FindAllMovieUsingGETParams` containing the following parameters:
    *
    * - `size`: size
    *
@@ -217,7 +217,7 @@ class MovieControllerService extends __BaseService {
    *
    * @return OK
    */
-  findAllUsingGETResponse(params: MovieControllerService.FindAllUsingGETParams): __Observable<__StrictHttpResponse<PageMovieDto>> {
+  findAllMovieUsingGETResponse(params: MovieControllerService.FindAllMovieUsingGETParams): __Observable<__StrictHttpResponse<PageMovieDto>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
@@ -241,7 +241,7 @@ class MovieControllerService extends __BaseService {
     );
   }
   /**
-   * @param params The `MovieControllerService.FindAllUsingGETParams` containing the following parameters:
+   * @param params The `MovieControllerService.FindAllMovieUsingGETParams` containing the following parameters:
    *
    * - `size`: size
    *
@@ -249,8 +249,8 @@ class MovieControllerService extends __BaseService {
    *
    * @return OK
    */
-  findAllUsingGET(params: MovieControllerService.FindAllUsingGETParams): __Observable<PageMovieDto> {
-    return this.findAllUsingGETResponse(params).pipe(
+  findAllMovieUsingGET(params: MovieControllerService.FindAllMovieUsingGETParams): __Observable<PageMovieDto> {
+    return this.findAllMovieUsingGETResponse(params).pipe(
       __map(_r => _r.body as PageMovieDto)
     );
   }
@@ -272,9 +272,9 @@ module MovieControllerService {
   }
 
   /**
-   * Parameters for findAllUsingGET
+   * Parameters for findAllMovieUsingGET
    */
-  export interface FindAllUsingGETParams {
+  export interface FindAllMovieUsingGETParams {
 
     /**
      * size

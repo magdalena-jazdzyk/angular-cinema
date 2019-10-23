@@ -24,7 +24,7 @@ export class ReservationState {
 
   @Action(CreateReservationAction)
   addReservation(ctx: StateContext<ReservationStateModel>, {reservationDto}: CreateReservationAction) {
-    return this.reservationControllerService.addUsingPOST1(reservationDto).pipe(
+    return this.reservationControllerService.addReservationUsingPOST(reservationDto).pipe(
       tap(value => {
         console.log(value);
       })

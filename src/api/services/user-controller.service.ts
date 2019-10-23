@@ -16,7 +16,7 @@ import { UserDto } from '../models/user-dto';
   providedIn: 'root',
 })
 class UserControllerService extends __BaseService {
-  static readonly addUsingPOST2Path = '/users';
+  static readonly addUsingPOSTPath = '/users';
 
   constructor(
     config: __Configuration,
@@ -26,7 +26,7 @@ class UserControllerService extends __BaseService {
   }
 
   /**
-   * @param params The `UserControllerService.AddUsingPOST2Params` containing the following parameters:
+   * @param params The `UserControllerService.AddUsingPOSTParams` containing the following parameters:
    *
    * - `username`:
    *
@@ -42,43 +42,13 @@ class UserControllerService extends __BaseService {
    *
    * - `roles`:
    *
-   * - `reviewDto.userDto.username`:
+   * - `reviewDto.userId`:
    *
-   * - `reviewDto.userDto.surname`:
-   *
-   * - `reviewDto.userDto.seansDto.seatCount`:
-   *
-   * - `reviewDto.userDto.seansDto.rowNumber`:
-   *
-   * - `reviewDto.userDto.seansDto.roomNumber`:
-   *
-   * - `reviewDto.userDto.seansDto.id`:
-   *
-   * - `reviewDto.userDto.roles`:
-   *
-   * - `reviewDto.userDto.passwordConfirmation`:
-   *
-   * - `reviewDto.userDto.password`:
-   *
-   * - `reviewDto.userDto.name`:
-   *
-   * - `reviewDto.userDto.loyaltyCardDto.price`:
-   *
-   * - `reviewDto.userDto.loyaltyCardDto.maxTicket`:
-   *
-   * - `reviewDto.userDto.loyaltyCardDto.id`:
-   *
-   * - `reviewDto.userDto.loyaltyCardDto.expirationDate`:
-   *
-   * - `reviewDto.userDto.loyaltyCardDto.discount`:
-   *
-   * - `reviewDto.userDto.id`:
-   *
-   * - `reviewDto.userDto.email`:
-   *
-   * - `reviewDto.userDto.age`:
+   * - `reviewDto.movieId`:
    *
    * - `reviewDto.id`:
+   *
+   * - `reviewDto.description`:
    *
    * - `passwordConfirmation`:
    *
@@ -104,7 +74,7 @@ class UserControllerService extends __BaseService {
    *
    * @return OK
    */
-  addUsingPOST2Response(params: UserControllerService.AddUsingPOST2Params): __Observable<__StrictHttpResponse<UserDto>> {
+  addUsingPOSTResponse(params: UserControllerService.AddUsingPOSTParams): __Observable<__StrictHttpResponse<UserDto>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
@@ -115,25 +85,10 @@ class UserControllerService extends __BaseService {
     if (params.seansDtoRoomNumber != null) __params = __params.set('seansDto.roomNumber', params.seansDtoRoomNumber.toString());
     if (params.seansDtoId != null) __params = __params.set('seansDto.id', params.seansDtoId.toString());
     (params.roles || []).forEach(val => {if (val != null) __params = __params.append('roles', val.toString())});
-    if (params.reviewDtoUserDtoUsername != null) __params = __params.set('reviewDto.userDto.username', params.reviewDtoUserDtoUsername.toString());
-    if (params.reviewDtoUserDtoSurname != null) __params = __params.set('reviewDto.userDto.surname', params.reviewDtoUserDtoSurname.toString());
-    if (params.reviewDtoUserDtoSeansDtoSeatCount != null) __params = __params.set('reviewDto.userDto.seansDto.seatCount', params.reviewDtoUserDtoSeansDtoSeatCount.toString());
-    if (params.reviewDtoUserDtoSeansDtoRowNumber != null) __params = __params.set('reviewDto.userDto.seansDto.rowNumber', params.reviewDtoUserDtoSeansDtoRowNumber.toString());
-    if (params.reviewDtoUserDtoSeansDtoRoomNumber != null) __params = __params.set('reviewDto.userDto.seansDto.roomNumber', params.reviewDtoUserDtoSeansDtoRoomNumber.toString());
-    if (params.reviewDtoUserDtoSeansDtoId != null) __params = __params.set('reviewDto.userDto.seansDto.id', params.reviewDtoUserDtoSeansDtoId.toString());
-    (params.reviewDtoUserDtoRoles || []).forEach(val => {if (val != null) __params = __params.append('reviewDto.userDto.roles', val.toString())});
-    if (params.reviewDtoUserDtoPasswordConfirmation != null) __params = __params.set('reviewDto.userDto.passwordConfirmation', params.reviewDtoUserDtoPasswordConfirmation.toString());
-    if (params.reviewDtoUserDtoPassword != null) __params = __params.set('reviewDto.userDto.password', params.reviewDtoUserDtoPassword.toString());
-    if (params.reviewDtoUserDtoName != null) __params = __params.set('reviewDto.userDto.name', params.reviewDtoUserDtoName.toString());
-    if (params.reviewDtoUserDtoLoyaltyCardDtoPrice != null) __params = __params.set('reviewDto.userDto.loyaltyCardDto.price', params.reviewDtoUserDtoLoyaltyCardDtoPrice.toString());
-    if (params.reviewDtoUserDtoLoyaltyCardDtoMaxTicket != null) __params = __params.set('reviewDto.userDto.loyaltyCardDto.maxTicket', params.reviewDtoUserDtoLoyaltyCardDtoMaxTicket.toString());
-    if (params.reviewDtoUserDtoLoyaltyCardDtoId != null) __params = __params.set('reviewDto.userDto.loyaltyCardDto.id', params.reviewDtoUserDtoLoyaltyCardDtoId.toString());
-    if (params.reviewDtoUserDtoLoyaltyCardDtoExpirationDate != null) __params = __params.set('reviewDto.userDto.loyaltyCardDto.expirationDate', params.reviewDtoUserDtoLoyaltyCardDtoExpirationDate.toString());
-    if (params.reviewDtoUserDtoLoyaltyCardDtoDiscount != null) __params = __params.set('reviewDto.userDto.loyaltyCardDto.discount', params.reviewDtoUserDtoLoyaltyCardDtoDiscount.toString());
-    if (params.reviewDtoUserDtoId != null) __params = __params.set('reviewDto.userDto.id', params.reviewDtoUserDtoId.toString());
-    if (params.reviewDtoUserDtoEmail != null) __params = __params.set('reviewDto.userDto.email', params.reviewDtoUserDtoEmail.toString());
-    if (params.reviewDtoUserDtoAge != null) __params = __params.set('reviewDto.userDto.age', params.reviewDtoUserDtoAge.toString());
+    if (params.reviewDtoUserId != null) __params = __params.set('reviewDto.userId', params.reviewDtoUserId.toString());
+    if (params.reviewDtoMovieId != null) __params = __params.set('reviewDto.movieId', params.reviewDtoMovieId.toString());
     if (params.reviewDtoId != null) __params = __params.set('reviewDto.id', params.reviewDtoId.toString());
+    if (params.reviewDtoDescription != null) __params = __params.set('reviewDto.description', params.reviewDtoDescription.toString());
     if (params.passwordConfirmation != null) __params = __params.set('passwordConfirmation', params.passwordConfirmation.toString());
     if (params.password != null) __params = __params.set('password', params.password.toString());
     if (params.name != null) __params = __params.set('name', params.name.toString());
@@ -163,7 +118,7 @@ class UserControllerService extends __BaseService {
     );
   }
   /**
-   * @param params The `UserControllerService.AddUsingPOST2Params` containing the following parameters:
+   * @param params The `UserControllerService.AddUsingPOSTParams` containing the following parameters:
    *
    * - `username`:
    *
@@ -179,43 +134,13 @@ class UserControllerService extends __BaseService {
    *
    * - `roles`:
    *
-   * - `reviewDto.userDto.username`:
+   * - `reviewDto.userId`:
    *
-   * - `reviewDto.userDto.surname`:
-   *
-   * - `reviewDto.userDto.seansDto.seatCount`:
-   *
-   * - `reviewDto.userDto.seansDto.rowNumber`:
-   *
-   * - `reviewDto.userDto.seansDto.roomNumber`:
-   *
-   * - `reviewDto.userDto.seansDto.id`:
-   *
-   * - `reviewDto.userDto.roles`:
-   *
-   * - `reviewDto.userDto.passwordConfirmation`:
-   *
-   * - `reviewDto.userDto.password`:
-   *
-   * - `reviewDto.userDto.name`:
-   *
-   * - `reviewDto.userDto.loyaltyCardDto.price`:
-   *
-   * - `reviewDto.userDto.loyaltyCardDto.maxTicket`:
-   *
-   * - `reviewDto.userDto.loyaltyCardDto.id`:
-   *
-   * - `reviewDto.userDto.loyaltyCardDto.expirationDate`:
-   *
-   * - `reviewDto.userDto.loyaltyCardDto.discount`:
-   *
-   * - `reviewDto.userDto.id`:
-   *
-   * - `reviewDto.userDto.email`:
-   *
-   * - `reviewDto.userDto.age`:
+   * - `reviewDto.movieId`:
    *
    * - `reviewDto.id`:
+   *
+   * - `reviewDto.description`:
    *
    * - `passwordConfirmation`:
    *
@@ -241,8 +166,8 @@ class UserControllerService extends __BaseService {
    *
    * @return OK
    */
-  addUsingPOST2(params: UserControllerService.AddUsingPOST2Params): __Observable<UserDto> {
-    return this.addUsingPOST2Response(params).pipe(
+  addUsingPOST(params: UserControllerService.AddUsingPOSTParams): __Observable<UserDto> {
+    return this.addUsingPOSTResponse(params).pipe(
       __map(_r => _r.body as UserDto)
     );
   }
@@ -251,9 +176,9 @@ class UserControllerService extends __BaseService {
 module UserControllerService {
 
   /**
-   * Parameters for addUsingPOST2
+   * Parameters for addUsingPOST
    */
-  export interface AddUsingPOST2Params {
+  export interface AddUsingPOSTParams {
     username?: string;
     surname?: string;
     seansDtoSeatCount?: number;
@@ -261,25 +186,10 @@ module UserControllerService {
     seansDtoRoomNumber?: number;
     seansDtoId?: number;
     roles?: Array<string>;
-    reviewDtoUserDtoUsername?: string;
-    reviewDtoUserDtoSurname?: string;
-    reviewDtoUserDtoSeansDtoSeatCount?: number;
-    reviewDtoUserDtoSeansDtoRowNumber?: number;
-    reviewDtoUserDtoSeansDtoRoomNumber?: number;
-    reviewDtoUserDtoSeansDtoId?: number;
-    reviewDtoUserDtoRoles?: Array<string>;
-    reviewDtoUserDtoPasswordConfirmation?: string;
-    reviewDtoUserDtoPassword?: string;
-    reviewDtoUserDtoName?: string;
-    reviewDtoUserDtoLoyaltyCardDtoPrice?: number;
-    reviewDtoUserDtoLoyaltyCardDtoMaxTicket?: number;
-    reviewDtoUserDtoLoyaltyCardDtoId?: number;
-    reviewDtoUserDtoLoyaltyCardDtoExpirationDate?: string;
-    reviewDtoUserDtoLoyaltyCardDtoDiscount?: number;
-    reviewDtoUserDtoId?: number;
-    reviewDtoUserDtoEmail?: string;
-    reviewDtoUserDtoAge?: number;
+    reviewDtoUserId?: number;
+    reviewDtoMovieId?: number;
     reviewDtoId?: number;
+    reviewDtoDescription?: string;
     passwordConfirmation?: string;
     password?: string;
     name?: string;
