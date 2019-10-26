@@ -18,6 +18,9 @@ import {ReservationState} from './reservation.state';
 import {ReservationComponent} from './reservation/reservation.component';
 import {RepertoireState} from './state/repertoire.state';
 import {SeatsState} from './state/seats.state';
+import {MovieDetailsComponent} from './movie-details/movie-details.component';
+import {MovieVideoState} from './state/movie-video.state';
+import {ImageState} from './state/image.state';
 
 const routes: Routes = [
   {
@@ -31,11 +34,15 @@ const routes: Routes = [
   {
     path: 'movies',
     component: MovieListComponent
+  },
+  {
+    path: 'movie/:id',
+    component: MovieDetailsComponent
   }
 ];
 
 @NgModule({
-  declarations: [LoginComponent, RegisterComponent, MovieListComponent, ReservationComponent],
+  declarations: [LoginComponent, RegisterComponent, MovieListComponent, ReservationComponent, MovieDetailsComponent],
   imports: [
     CommonModule,
     RouterModule.forRoot(routes),
@@ -45,13 +52,14 @@ const routes: Routes = [
     ReactiveFormsModule,
     FormlyMaterialModule,
     MatButtonModule,
-    NgxsModule.forFeature([UserState, MovieState, ReservationState, RepertoireState, SeatsState]),
+    NgxsModule.forFeature([UserState, MovieState, ReservationState, RepertoireState, SeatsState, MovieVideoState, ImageState]),
     HttpClientModule,
     ApolloModule,
     HttpLinkModule,
     MatTableModule,
     MatPaginatorModule,
-    MatIconModule
+    MatIconModule,
+    MatButtonModule
   ],
   entryComponents: [
     ReservationComponent // naszkomponent bedzie wywołany z poziomu kodu annie z linku

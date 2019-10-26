@@ -2,7 +2,6 @@ export { BasicErrorControllerService } from './services/basic-error-controller.s
 export { ImageControllerService } from './services/image-controller.service';
 export { MovieControllerService } from './services/movie-controller.service';
 export { RepertoireControllerService } from './services/repertoire-controller.service';
-export { ReservationControllerService } from './services/reservation-controller.service';
 export { ReviewControllerService } from './services/review-controller.service';
 export { SeatControllerService } from './services/seat-controller.service';
 export { SecurityControllerService } from './services/security-controller.service';

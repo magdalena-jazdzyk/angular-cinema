@@ -1,12 +1,8 @@
 /* tslint:disable */
-import { ReservationDto } from './reservation-dto';
-import { LocalTime } from './local-time';
+import { RepertoireDto } from './repertoire-dto';
 export interface SeatDto {
   columnNumber?: number;
-  date?: string;
   id?: number;
-  movieId?: number;
-  reservation?: ReservationDto;
+  repertoireDto?: RepertoireDto;
   rowNumber?: number;
-  time?: LocalTime;
 }

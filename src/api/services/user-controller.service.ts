@@ -16,6 +16,7 @@ import { UserDto } from '../models/user-dto';
   providedIn: 'root',
 })
 class UserControllerService extends __BaseService {
+  static readonly getUserDataUsingGETPath = '/users';
   static readonly addUsingPOSTPath = '/users';
 
   constructor(
@@ -23,6 +24,39 @@ class UserControllerService extends __BaseService {
     http: HttpClient
   ) {
     super(config, http);
+  }
+
+  /**
+   * @return OK
+   */
+  getUserDataUsingGETResponse(): __Observable<__StrictHttpResponse<UserDto>> {
+    let __params = this.newParams();
+    let __headers = new HttpHeaders();
+    let __body: any = null;
+    let req = new HttpRequest<any>(
+      'GET',
+      this.rootUrl + `/users`,
+      __body,
+      {
+        headers: __headers,
+        params: __params,
+        responseType: 'json'
+      });
+
+    return this.http.request<any>(req).pipe(
+      __filter(_r => _r instanceof HttpResponse),
+      __map((_r) => {
+        return _r as __StrictHttpResponse<UserDto>;
+      })
+    );
+  }
+  /**
+   * @return OK
+   */
+  getUserDataUsingGET(): __Observable<UserDto> {
+    return this.getUserDataUsingGETResponse().pipe(
+      __map(_r => _r.body as UserDto)
+    );
   }
 
   /**

@@ -1,7 +1,7 @@
 import {State, Action, StateContext} from '@ngxs/store';
 
 import {tap} from 'rxjs/operators';
-import {PageMovieDto} from 'src/api/models';
+import {MovieDto, PageMovieDto} from 'src/api/models';
 import {MovieControllerService} from 'src/api/services';
 
 export class LoadMovieAction {
@@ -14,15 +14,27 @@ export class LoadMovieAction {
 
 }
 
+export class LoadMovieByIdAction {
+  static readonly type = '[movie] movieId';
+
+  constructor(public movieId: number) {
+
+  }
+
+
+}
+
 export class MovieStateModel {
   public moviePageDto: PageMovieDto;
+  public movie: MovieDto;  // w steie che przetrzymac cały opis obiketu
 }
 
 
 @State<MovieStateModel>({
   name: 'movie',
   defaults: {
-    moviePageDto: {}
+    moviePageDto: {},
+    movie: {}
   }
 })
 export class MovieState {
@@ -38,6 +50,17 @@ export class MovieState {
       tap(value => {
         ctx.patchState({ // pagestate - zmiana state wartosc moviepagedto
           moviePageDto: value
+        });
+      })
+    );
+  }
+
+  @Action(LoadMovieByIdAction)
+  loadMovieById(ctx: StateContext<MovieStateModel>, {movieId}: LoadMovieByIdAction) {
+    return this.movieService.findOneUsingGET(movieId).pipe(
+      tap(value => {
+        ctx.patchState({ // pagestate - zmiana state wartosc moviepagedto
+          movie: value
         });
       })
     );

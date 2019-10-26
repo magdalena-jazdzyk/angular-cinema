@@ -1,0 +1,17 @@
+<div *ngIf="videos$ | async as videoDtos">
+  <div *ngFor="let element of videoDtos">
+
+    <iframe allowfullscreen [src]="element"></iframe>
+
+  </div>
+</div>
+
+<div *ngIf="images$ | async as imageDtos">
+  <div *ngFor="let element of imageDtos">
+    <img src="{{element.poster}}">
+  </div>
+</div>
+
+<div *ngIf="movie$ | async as movieDto">
+    {{movieDto.description}}
+</div>

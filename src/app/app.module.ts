@@ -16,11 +16,13 @@ import {PrivateModule} from './components/private/private.module';
 import {NgxsReduxDevtoolsPluginModule} from '@ngxs/devtools-plugin';
 import {ServiceWorkerModule} from '@angular/service-worker';
 import {environment} from '../environments/environment';
+import { IndexComponent } from './index/index.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    MenuComponent
+    MenuComponent,
+    IndexComponent
   ],
   imports: [
     BrowserModule,

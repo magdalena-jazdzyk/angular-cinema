@@ -13,7 +13,7 @@ import {ReservationComponent} from '../reservation/reservation.component';
 })
 export class MovieListComponent implements OnInit {
 
-  displayedColumns: string[] = ['id', 'title', 'genre', 'price'];
+  displayedColumns: string[] = ['id', 'title', 'genre', 'price', 'films'];
   @Select(state => state.user.jwtToken)
   token$: Observable<string>;
 
@@ -41,12 +41,11 @@ export class MovieListComponent implements OnInit {
 
   reserve(element) {
     this.matDialog.open(ReservationComponent, {
-      width: '80%', data: element
+      width: '80%', data: element, height: '100%'
     });
     //   this.store.dispatch(new CreateReservationAction({
     //   movieId: element.id
   }
-
 
 
 }

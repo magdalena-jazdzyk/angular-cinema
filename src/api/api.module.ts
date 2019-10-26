@@ -7,7 +7,6 @@ import { BasicErrorControllerService } from './services/basic-error-controller.s
 import { ImageControllerService } from './services/image-controller.service';
 import { MovieControllerService } from './services/movie-controller.service';
 import { RepertoireControllerService } from './services/repertoire-controller.service';
-import { ReservationControllerService } from './services/reservation-controller.service';
 import { ReviewControllerService } from './services/review-controller.service';
 import { SeatControllerService } from './services/seat-controller.service';
 import { SecurityControllerService } from './services/security-controller.service';
@@ -31,7 +30,6 @@ import { VideoControllerService } from './services/video-controller.service';
     ImageControllerService,
     MovieControllerService,
     RepertoireControllerService,
-    ReservationControllerService,
     ReviewControllerService,
     SeatControllerService,
     SecurityControllerService,

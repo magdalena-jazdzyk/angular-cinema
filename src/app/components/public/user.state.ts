@@ -84,6 +84,7 @@ export class UserState {
         ctx.patchState({
           jwtToken: accessToken
         });
+        ctx.dispatch(new GetCurrentUserAction());
         //   ctx.dispatch(new GetCurrentUserAction())
         this.router.navigate(['/movies']);
       })
@@ -92,11 +93,11 @@ export class UserState {
 
   @Action(GetCurrentUserAction)
   getCurrentUser(ctx: StateContext<UserStateModel>, GetCurrentUserAction) {
-    // return this.userService.getUserInfoUsingGET().pipe(tap(value =>
-    //   ctx.patchState({
-    //     currentUser: value
-    //   })
-    // ))
+    return this.userService.getUserDataUsingGET().pipe(tap(value =>
+      ctx.patchState({
+        currentUser: value
+      })
+    ));
   }
 
   @Action(RegisterAction)

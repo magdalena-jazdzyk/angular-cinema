@@ -16,8 +16,8 @@ import { SeatDto } from '../models/seat-dto';
   providedIn: 'root',
 })
 class SeatControllerService extends __BaseService {
-  static readonly addSeatUsingPOSTPath = '/seats';
-  static readonly findAllMovieUsingGET1Path = '/seats/{movieId}/{date}/{time}';
+  static readonly reserveSeatUsingPOSTPath = '/seats';
+  static readonly findAllSeatsUsingGETPath = '/seats/{movieId}/{date}/{time}';
 
   constructor(
     config: __Configuration,
@@ -30,7 +30,7 @@ class SeatControllerService extends __BaseService {
    * @param seatDto seatDto
    * @return OK
    */
-  addSeatUsingPOSTResponse(seatDto: SeatDto): __Observable<__StrictHttpResponse<SeatDto>> {
+  reserveSeatUsingPOSTResponse(seatDto: SeatDto): __Observable<__StrictHttpResponse<SeatDto>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
@@ -56,14 +56,14 @@ class SeatControllerService extends __BaseService {
    * @param seatDto seatDto
    * @return OK
    */
-  addSeatUsingPOST(seatDto: SeatDto): __Observable<SeatDto> {
-    return this.addSeatUsingPOSTResponse(seatDto).pipe(
+  reserveSeatUsingPOST(seatDto: SeatDto): __Observable<SeatDto> {
+    return this.reserveSeatUsingPOSTResponse(seatDto).pipe(
       __map(_r => _r.body as SeatDto)
     );
   }
 
   /**
-   * @param params The `SeatControllerService.FindAllMovieUsingGET1Params` containing the following parameters:
+   * @param params The `SeatControllerService.FindAllSeatsUsingGETParams` containing the following parameters:
    *
    * - `time`: time
    *
@@ -73,7 +73,7 @@ class SeatControllerService extends __BaseService {
    *
    * @return OK
    */
-  findAllMovieUsingGET1Response(params: SeatControllerService.FindAllMovieUsingGET1Params): __Observable<__StrictHttpResponse<Array<SeatDto>>> {
+  findAllSeatsUsingGETResponse(params: SeatControllerService.FindAllSeatsUsingGETParams): __Observable<__StrictHttpResponse<Array<SeatDto>>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
@@ -98,7 +98,7 @@ class SeatControllerService extends __BaseService {
     );
   }
   /**
-   * @param params The `SeatControllerService.FindAllMovieUsingGET1Params` containing the following parameters:
+   * @param params The `SeatControllerService.FindAllSeatsUsingGETParams` containing the following parameters:
    *
    * - `time`: time
    *
@@ -108,8 +108,8 @@ class SeatControllerService extends __BaseService {
    *
    * @return OK
    */
-  findAllMovieUsingGET1(params: SeatControllerService.FindAllMovieUsingGET1Params): __Observable<Array<SeatDto>> {
-    return this.findAllMovieUsingGET1Response(params).pipe(
+  findAllSeatsUsingGET(params: SeatControllerService.FindAllSeatsUsingGETParams): __Observable<Array<SeatDto>> {
+    return this.findAllSeatsUsingGETResponse(params).pipe(
       __map(_r => _r.body as Array<SeatDto>)
     );
   }
@@ -118,9 +118,9 @@ class SeatControllerService extends __BaseService {
 module SeatControllerService {
 
   /**
-   * Parameters for findAllMovieUsingGET1
+   * Parameters for findAllSeatsUsingGET
    */
-  export interface FindAllMovieUsingGET1Params {
+  export interface FindAllSeatsUsingGETParams {
 
     /**
      * time
