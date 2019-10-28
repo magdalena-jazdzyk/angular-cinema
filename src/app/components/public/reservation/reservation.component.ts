@@ -27,15 +27,6 @@ export class ReservationComponent implements OnInit {
   repertoireId: number = null;
 
 
-  // dodane
-  rows: string[] = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'];
-  cols: number[] = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-
-  reserved: string[] = ['A2', 'A3', 'F5', 'F1', 'F2', 'F6', 'F7', 'F8', 'H1', 'H2', 'H3', 'H4'];
-  selected: string[] = [];
-
-  // dodane
-
   constructor(public  matDialogRef: MatDialogRef<ReservationComponent>, @Inject(MAT_DIALOG_DATA) public data: any, public store: Store) {
   }
 

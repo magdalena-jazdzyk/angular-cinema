@@ -15,14 +15,20 @@
   <div class="container">
     <div class="collapse navbar-collapse" id="navbarCollapse">
       <ul class="navbar-nav ml-auto">
-        <li class="nav-item">
-          <a routerLink="/register" class="navbar-brand" class="nav-link" *ngIf="!(jwt$ | async)">Zarejestruj</a>
+        <li class="nav-item" *ngIf="!(jwt$ | async)">
+          <a routerLink="/register" class="navbar-brand" class="nav-link">Zarejestruj</a>
         </li>
-        <li class="nav-item">
-          <a routerLink="/login" class="navbar-brand" class="nav-link" *ngIf="!(jwt$ | async)">Zaloguj</a>
+        <li class="nav-item" *ngIf="!(jwt$ | async)">
+          <a routerLink="/login" class="navbar-brand" class="nav-link">Zaloguj</a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item" *ngIf="showAdminPanel" >
           <a routerLink="/admin" class="navbar-brand">Admin Panel</a>
+        </li>
+        <li class="nav-item">
+          <a routerLink="/movies" class="navbar-brand">Movies</a>
+        </li>
+        <li class="nav-item" *ngIf="jwt$ | async">
+          <a (click)="logout()">Wyloguj</a>
         </li>
       </ul>
     </div>

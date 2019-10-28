@@ -1,30 +1,56 @@
-import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
-import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
-import { map } from 'rxjs/operators';
-import { Store, Select } from '@ngxs/store';
-import { LogoutAction } from '../user.state';
-import { Router } from '@angular/router';
+import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Observable} from 'rxjs';
+import {BreakpointObserver, Breakpoints} from '@angular/cdk/layout';
+import {map} from 'rxjs/operators';
+import {Store, Select} from '@ngxs/store';
+import {LogoutAction} from '../user.state';
+import {Router} from '@angular/router';
+import {UserDto} from '../../../../api/models/user-dto';
 
 @Component({
   selector: 'app-menu',
   templateUrl: './menu.component.html',
   styleUrls: ['./menu.component.sass']
 })
-export class MenuComponent implements OnInit {
+export class MenuComponent implements OnInit, OnDestroy {
 
-  @Select(state => state.user.jwtToken) jwt$: Observable<string>
+  subscription;
+  showAdminPanel = false;
+
+  @Select(state => state.user.jwtToken) jwt$: Observable<string>;
+
+  @Select(state => state.user.currentUser) currentUser$: Observable<UserDto>;
+
 
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
     .pipe(map(result => result.matches));
 
-  constructor(private breakpointObserver: BreakpointObserver, public store: Store, public router: Router) { }
+  constructor(private breakpointObserver: BreakpointObserver, public store: Store, public router: Router) {
+  }
 
   ngOnInit() {
+    this.subscription = this.currentUser$.subscribe(u => {
+      console.log(u);
+      // this.showAdminPanel = u === null ? false : u.roles.includes('ROLE_ADMIN');
+      if (u.roles) {
+        console.log('ala');
+        this.showAdminPanel = u.roles.includes('ROLE_ADMIN');
+      }
+      else{
+        this.showAdminPanel = false;
+      }
+      console.log(this.showAdminPanel);
+    });
+  }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
   }
 
   logout() {
-    this.store.dispatch(new LogoutAction())
-    this.router.navigate(['/login'])
+    this.store.dispatch(new LogoutAction());
+    this.router.navigate(['/login']);
   }
+
+
 }

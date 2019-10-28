@@ -74,6 +74,11 @@ export class UserState {
     return state.jwtToken;
   }
 
+  @Selector()
+  static currentUser(state: UserStateModel) {
+    return state.currentUser;
+  }
+
   @Action(LoginAction)
   login(ctx: StateContext<UserStateModel>, {userName, password}: LoginAction) {
     return this.httpClient.post<{ accessToken, refreshToken }>('http://localhost:8080/login', {
@@ -86,18 +91,22 @@ export class UserState {
         });
         ctx.dispatch(new GetCurrentUserAction());
         //   ctx.dispatch(new GetCurrentUserAction())
-        this.router.navigate(['/movies']);
       })
     );
   }
 
   @Action(GetCurrentUserAction)
   getCurrentUser(ctx: StateContext<UserStateModel>, GetCurrentUserAction) {
-    return this.userService.getUserDataUsingGET().pipe(tap(value =>
-      ctx.patchState({
-        currentUser: value
-      })
-    ));
+    return this.userService.getUserDataUsingGET().pipe(tap(value => {
+        ctx.patchState({
+          currentUser: value
+        });
+        this.router.navigate(['/movies']);
+      }
+      )
+    )
+      ;
+
   }
 
   @Action(RegisterAction)
@@ -111,7 +120,7 @@ export class UserState {
 
   @Action(LogoutAction)
   logout(ctx: StateContext<UserStateModel>, LogoutAction) {
-    ctx.patchState({jwtToken: null});
+    ctx.patchState({jwtToken: null, currentUser: {}});
   }
 
 }

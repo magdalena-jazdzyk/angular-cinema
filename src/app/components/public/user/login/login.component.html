@@ -14,16 +14,15 @@
       <div class="col-md-6 mx-auto">
         <div class="card">
           <div class="card-header">
-            <h4>Account Login</h4>
+            <h4>Login</h4>
           </div>
           <div class="card-body">
             <form [formGroup]="loginForm" (ngSubmit)="login()">
               <formly-form [fields]="loginFields" [form]="loginForm">
-              <button [disabled]="!loginForm.valid" mat-raised-button color="primary" type="submit">
-                Zaloguj
-              </button>
+                <button [disabled]="!loginForm.valid" mat-raised-button color="primary" type="submit">
+                  Zaloguj
+                </button>
               </formly-form>
-
             </form>
           </div>
         </div>
