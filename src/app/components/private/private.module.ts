@@ -10,7 +10,7 @@ import {
   MatInputModule,
   MatListModule,
   MatPaginatorModule,
-  MatProgressSpinnerModule
+  MatProgressSpinnerModule, MatNativeDateModule, MatDatepickerModule
 } from '@angular/material';
 import {NgxsModule} from '@ngxs/store';
 import {DeviceState} from './device.state';
@@ -21,6 +21,9 @@ import {HTTP_INTERCEPTORS} from '@angular/common/http';
 import {TokenInterceptor} from './interceptor/token.interceptor';
 import {AuthGuardService} from './service/auth-guard.service';
 import {AdminPanelComponent} from './admin-panel/admin-panel.component';
+import {RepertoireCreateComponent} from './repertoire-create/repertoire-create.component';
+import {FormlyMatDatepickerModule} from '@ngx-formly/material/datepicker';
+import {NgxMaterialTimepickerModule} from 'ngx-material-timepicker';
 
 const routes: Routes = [
   {
@@ -29,10 +32,16 @@ const routes: Routes = [
     canActivate: [AuthGuardService],
     data: {role: 'ROLE_ADMIN'}
   },
+  {
+    path: 'repertoire/:movieId',
+    component: RepertoireCreateComponent,
+    canActivate: [AuthGuardService],
+    data: {role: 'ROLE_ADMIN'}
+  },
 ];
 
 @NgModule({
-  declarations: [AdminPanelComponent],
+  declarations: [AdminPanelComponent, RepertoireCreateComponent],
   imports: [
     CommonModule,
     RouterModule.forRoot(routes),
@@ -49,7 +58,11 @@ const routes: Routes = [
     MatInputModule,
     MatListModule,
     MatPaginatorModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    FormlyMatDatepickerModule,
+    MatNativeDateModule,
+    NgxMaterialTimepickerModule,
+    MatDatepickerModule
   ],
   providers: [
     {

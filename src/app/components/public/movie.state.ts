@@ -24,9 +24,21 @@ export class LoadMovieByIdAction {
 
 }
 
+export class RemoveMovieAction {
+  static readonly type = '[movie] removeMovieAction';
+
+  constructor(public movieId: number) {
+
+  }
+
+
+}
+
 export class MovieStateModel {
   public moviePageDto: PageMovieDto;
   public movie: MovieDto;  // w steie che przetrzymac cały opis obiketu
+  public page: number;
+  public size: number;
 }
 
 
@@ -34,7 +46,9 @@ export class MovieStateModel {
   name: 'movie',
   defaults: {
     moviePageDto: {},
-    movie: {}
+    movie: {},
+    page: 0,
+    size: 5
   }
 })
 export class MovieState {
@@ -49,7 +63,9 @@ export class MovieState {
     return this.movieService.findAllMovieUsingGET({page, size}).pipe(
       tap(value => {
         ctx.patchState({ // pagestate - zmiana state wartosc moviepagedto
-          moviePageDto: value
+          moviePageDto: value,
+          page,
+          size
         });
       })
     );
@@ -66,5 +82,13 @@ export class MovieState {
     );
   }
 
+  @Action(RemoveMovieAction)
+  removeMovieAction(ctx: StateContext<MovieStateModel>, {movieId}: RemoveMovieAction) {
+    return this.movieService.deleteUsingDELETE(movieId).pipe(
+      tap(value => {
+        ctx.dispatch(new LoadMovieAction(ctx.getState().page, ctx.getState().size));
+      })
+    );
+  }
 
 }

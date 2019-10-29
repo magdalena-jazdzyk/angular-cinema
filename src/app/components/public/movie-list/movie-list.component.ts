@@ -1,10 +1,11 @@
 import {Component, OnInit} from '@angular/core';
 import {Store, Select} from '@ngxs/store';
 import {Observable} from 'rxjs';
-import {PageMovieDto} from 'src/api/models';
-import {LoadMovieAction} from '../movie.state';
+import {PageMovieDto, UserDto} from 'src/api/models';
+import {LoadMovieAction, RemoveMovieAction} from '../movie.state';
 import {MatDialog} from '@angular/material';
 import {ReservationComponent} from '../reservation/reservation.component';
+import {RepertoireCreateComponent} from '../../private/repertoire-create/repertoire-create.component';
 
 @Component({
   selector: 'app-movie-list',
@@ -20,6 +21,9 @@ export class MovieListComponent implements OnInit {
   @Select(state => state.movie.moviePageDto)
   moviesPage$: Observable<PageMovieDto>;
 
+  @Select(state => state.user.currentUser)
+  currentUser$: Observable<UserDto>;
+
   constructor(public store: Store, public matDialog: MatDialog) {
   }
 
@@ -30,6 +34,16 @@ export class MovieListComponent implements OnInit {
 
       if (r) {
         this.displayedColumns.push('reservation');
+      }
+    }).unsubscribe();
+
+    this.currentUser$.subscribe(r => {
+      console.log(r);
+
+      if (r && r.roles.includes('ROLE_ADMIN')) {
+        this.displayedColumns.push('remove');
+        this.displayedColumns.push('dodaj');
+
       }
     }).unsubscribe();
   }
@@ -48,4 +62,13 @@ export class MovieListComponent implements OnInit {
   }
 
 
+  remove(element: any) {
+    this.store.dispatch(new RemoveMovieAction(element.id));
+  }
+
+  addRepertoire(element: any) {
+    this.matDialog.open(RepertoireCreateComponent, {  // do otwierania modalu
+      width: '80%', data: element, height: '100%'
+    });
+  }
 }

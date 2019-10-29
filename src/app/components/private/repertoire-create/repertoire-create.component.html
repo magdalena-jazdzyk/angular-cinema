@@ -1,0 +1,20 @@
+<mat-card class="example-card">
+  <form [formGroup]="repertoireForm" (ngSubmit)="add()">
+
+    <mat-form-field>
+      <input matInput formControlName="dateValue" [matDatepicker]="picker" placeholder="Choose a date">
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+
+    <div class="24hr-example">
+      <input formControlName="time" placeholder="24hr format" aria-label="24hr format" [ngxTimepicker]="fullTime"
+             [format]="24" readonly>
+      <ngx-material-timepicker #fullTime></ngx-material-timepicker>
+    </div>
+
+    <button [disabled]="!repertoireForm.valid" mat-raised-button color="primary" type="submit">
+      Zapisz
+    </button>
+  </form>
+</mat-card>

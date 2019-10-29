@@ -3,7 +3,7 @@ import {CommonModule} from '@angular/common';
 import {LoginComponent} from './user/login/login.component';
 import {RegisterComponent} from './user/register/register.component';
 import {Routes, RouterModule} from '@angular/router';
-import {MatCardModule, MatButtonModule, MatTableModule, MatPaginatorModule, MatIconModule} from '@angular/material';
+import {MatCardModule, MatButtonModule, MatTableModule, MatPaginatorModule, MatIconModule, MatNativeDateModule} from '@angular/material';
 import {FormlyModule} from '@ngx-formly/core';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {FormlyMaterialModule} from '@ngx-formly/material';
@@ -21,6 +21,9 @@ import {SeatsState} from './state/seats.state';
 import {MovieDetailsComponent} from './movie-details/movie-details.component';
 import {MovieVideoState} from './state/movie-video.state';
 import {ImageState} from './state/image.state';
+import {RepertoireCreateComponent} from '../private/repertoire-create/repertoire-create.component';
+import {FormlyMatDatepickerModule} from '@ngx-formly/material/datepicker';
+import {NgxMaterialTimepickerModule} from 'ngx-material-timepicker';
 
 const routes: Routes = [
   {
@@ -59,10 +62,11 @@ const routes: Routes = [
     MatTableModule,
     MatPaginatorModule,
     MatIconModule,
-    MatButtonModule
+    MatButtonModule,
+
   ],
   entryComponents: [
-    ReservationComponent // naszkomponent bedzie wywołany z poziomu kodu annie z linku
+    ReservationComponent, // naszkomponent bedzie wywołany z poziomu kodu annie z linku
   ]
 })
 export class PublicModule {

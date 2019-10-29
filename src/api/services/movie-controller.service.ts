@@ -19,8 +19,8 @@ import { PageMovieDto } from '../models/page-movie-dto';
 class MovieControllerService extends __BaseService {
   static readonly addMovieUsingPOSTPath = '/movies';
   static readonly updateUsingPUTPath = '/movies';
-  static readonly deleteUsingDELETEPath = '/movies';
   static readonly findOneUsingGETPath = '/movies/{id}';
+  static readonly deleteUsingDELETEPath = '/movies/{id}';
   static readonly findAllMovieUsingGETPath = '/movies/{page}/{size}';
 
   constructor(
@@ -140,40 +140,6 @@ class MovieControllerService extends __BaseService {
 
   /**
    * @param id id
-   */
-  deleteUsingDELETEResponse(id: number): __Observable<__StrictHttpResponse<null>> {
-    let __params = this.newParams();
-    let __headers = new HttpHeaders();
-    let __body: any = null;
-
-    let req = new HttpRequest<any>(
-      'DELETE',
-      this.rootUrl + `/movies`,
-      __body,
-      {
-        headers: __headers,
-        params: __params,
-        responseType: 'json'
-      });
-
-    return this.http.request<any>(req).pipe(
-      __filter(_r => _r instanceof HttpResponse),
-      __map((_r) => {
-        return _r as __StrictHttpResponse<null>;
-      })
-    );
-  }
-  /**
-   * @param id id
-   */
-  deleteUsingDELETE(id: number): __Observable<null> {
-    return this.deleteUsingDELETEResponse(id).pipe(
-      __map(_r => _r.body as null)
-    );
-  }
-
-  /**
-   * @param id id
    * @return OK
    */
   findOneUsingGETResponse(id: number): __Observable<__StrictHttpResponse<MovieDto>> {
@@ -205,6 +171,40 @@ class MovieControllerService extends __BaseService {
   findOneUsingGET(id: number): __Observable<MovieDto> {
     return this.findOneUsingGETResponse(id).pipe(
       __map(_r => _r.body as MovieDto)
+    );
+  }
+
+  /**
+   * @param id id
+   */
+  deleteUsingDELETEResponse(id: number): __Observable<__StrictHttpResponse<null>> {
+    let __params = this.newParams();
+    let __headers = new HttpHeaders();
+    let __body: any = null;
+
+    let req = new HttpRequest<any>(
+      'DELETE',
+      this.rootUrl + `/movies/${id}`,
+      __body,
+      {
+        headers: __headers,
+        params: __params,
+        responseType: 'json'
+      });
+
+    return this.http.request<any>(req).pipe(
+      __filter(_r => _r instanceof HttpResponse),
+      __map((_r) => {
+        return _r as __StrictHttpResponse<null>;
+      })
+    );
+  }
+  /**
+   * @param id id
+   */
+  deleteUsingDELETE(id: number): __Observable<null> {
+    return this.deleteUsingDELETEResponse(id).pipe(
+      __map(_r => _r.body as null)
     );
   }
 

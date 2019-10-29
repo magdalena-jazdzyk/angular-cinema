@@ -35,12 +35,10 @@ export class MovieDetailsComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.activatedRoute.params.subscribe(p => this.movieId = p.id).unsubscribe();
+    this.activatedRoute.params.subscribe(p => this.movieId = p.id).unsubscribe(); // pobireania filmu z linku
     this.store.dispatch(new LoadVideoAction(this.movieId));
     this.store.dispatch(new LoadImageAction(this.movieId));
     this.store.dispatch(new LoadMovieByIdAction(this.movieId));
-
-
   }
 
 }
