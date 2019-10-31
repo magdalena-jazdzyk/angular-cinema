@@ -17,6 +17,7 @@ import { RepertoireDto } from '../models/repertoire-dto';
 })
 class RepertoireControllerService extends __BaseService {
   static readonly addRepertoireUsingPOSTPath = '/repertoire';
+  static readonly updateUsingPUT1Path = '/repertoire/{id}';
   static readonly findByMovieIdUsingGETPath = '/repertoire/{movieId}';
   static readonly findByMovieIdAndDateUsingGETPath = '/repertoire/{movieId}/{date}';
 
@@ -59,6 +60,53 @@ class RepertoireControllerService extends __BaseService {
    */
   addRepertoireUsingPOST(repertoireDto: RepertoireDto): __Observable<RepertoireDto> {
     return this.addRepertoireUsingPOSTResponse(repertoireDto).pipe(
+      __map(_r => _r.body as RepertoireDto)
+    );
+  }
+
+  /**
+   * @param params The `RepertoireControllerService.UpdateUsingPUT1Params` containing the following parameters:
+   *
+   * - `repertoireDto`: repertoireDto
+   *
+   * - `id`: id
+   *
+   * @return OK
+   */
+  updateUsingPUT1Response(params: RepertoireControllerService.UpdateUsingPUT1Params): __Observable<__StrictHttpResponse<RepertoireDto>> {
+    let __params = this.newParams();
+    let __headers = new HttpHeaders();
+    let __body: any = null;
+    __body = params.repertoireDto;
+
+    let req = new HttpRequest<any>(
+      'PUT',
+      this.rootUrl + `/repertoire/${params.id}`,
+      __body,
+      {
+        headers: __headers,
+        params: __params,
+        responseType: 'json'
+      });
+
+    return this.http.request<any>(req).pipe(
+      __filter(_r => _r instanceof HttpResponse),
+      __map((_r) => {
+        return _r as __StrictHttpResponse<RepertoireDto>;
+      })
+    );
+  }
+  /**
+   * @param params The `RepertoireControllerService.UpdateUsingPUT1Params` containing the following parameters:
+   *
+   * - `repertoireDto`: repertoireDto
+   *
+   * - `id`: id
+   *
+   * @return OK
+   */
+  updateUsingPUT1(params: RepertoireControllerService.UpdateUsingPUT1Params): __Observable<RepertoireDto> {
+    return this.updateUsingPUT1Response(params).pipe(
       __map(_r => _r.body as RepertoireDto)
     );
   }
@@ -148,6 +196,22 @@ class RepertoireControllerService extends __BaseService {
 }
 
 module RepertoireControllerService {
+
+  /**
+   * Parameters for updateUsingPUT1
+   */
+  export interface UpdateUsingPUT1Params {
+
+    /**
+     * repertoireDto
+     */
+    repertoireDto: RepertoireDto;
+
+    /**
+     * id
+     */
+    id: number;
+  }
 
   /**
    * Parameters for findByMovieIdAndDateUsingGET

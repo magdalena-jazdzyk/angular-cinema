@@ -1,0 +1,22 @@
+<section id="movie">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 mx-auto">
+        <div class="card">
+          <div class="card-header">
+            <h4>Login</h4>
+          </div>
+          <div class="card-body">
+            <form [formGroup]="movieForm" (ngSubmit)="editMovie()">
+              <formly-form [fields]="movieFields" [form]="movieForm">
+                <button [disabled]="!formIsValid()" mat-raised-button color="primary" type="submit">
+                  Dodaj
+                </button>
+              </formly-form>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

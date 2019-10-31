@@ -6,6 +6,7 @@ import {LoadMovieAction, RemoveMovieAction} from '../movie.state';
 import {MatDialog} from '@angular/material';
 import {ReservationComponent} from '../reservation/reservation.component';
 import {RepertoireCreateComponent} from '../../private/repertoire-create/repertoire-create.component';
+import {EditMovieComponent} from '../edit-movie/edit-movie.component';
 
 @Component({
   selector: 'app-movie-list',
@@ -40,10 +41,12 @@ export class MovieListComponent implements OnInit {
     this.currentUser$.subscribe(r => {
       console.log(r);
 
-      if (r && r.roles.includes('ROLE_ADMIN')) {
-        this.displayedColumns.push('remove');
-        this.displayedColumns.push('dodaj');
-
+      if (r.roles) {
+        if (r.roles.includes('ROLE_ADMIN')) {
+          this.displayedColumns.push('remove');
+          this.displayedColumns.push('dodaj');
+          this.displayedColumns.push('edytuj');
+        }
       }
     }).unsubscribe();
   }
@@ -68,6 +71,12 @@ export class MovieListComponent implements OnInit {
 
   addRepertoire(element: any) {
     this.matDialog.open(RepertoireCreateComponent, {  // do otwierania modalu
+      width: '80%', data: element, height: '100%'
+    });
+  }
+
+  edit(element: any) {
+    this.matDialog.open(EditMovieComponent, {
       width: '80%', data: element, height: '100%'
     });
   }

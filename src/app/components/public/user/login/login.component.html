@@ -11,15 +11,15 @@
 <section id="login">
   <div class="container">
     <div class="row">
-      <div class="col-md-6 mx-auto">
-        <div class="card">
+      <div class="col-8 mx-auto">
+        <div class="card layout-color">
           <div class="card-header">
             <h4>Login</h4>
           </div>
           <div class="card-body">
             <form [formGroup]="loginForm" (ngSubmit)="login()">
               <formly-form [fields]="loginFields" [form]="loginForm">
-                <button [disabled]="!loginForm.valid" mat-raised-button color="primary" type="submit">
+                <button [disabled]="!loginForm.valid" mat-raised-button class="btn-text" type="submit">
                   Zaloguj
                 </button>
               </formly-form>

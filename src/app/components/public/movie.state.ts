@@ -11,7 +11,6 @@ export class LoadMovieAction {
 
   }
 
-
 }
 
 export class LoadMovieByIdAction {
@@ -30,7 +29,23 @@ export class RemoveMovieAction {
   constructor(public movieId: number) {
 
   }
+}
 
+export class AddMovieAction {
+  static readonly type = '[movie] addMovieAction';
+
+  constructor(public movieDto: MovieDto) {
+
+  }
+
+}
+
+export class EditMovieAction {
+  static readonly type = '[movie] editMovieAction';
+
+  constructor(public id: number, public movieDto: MovieDto) {
+
+  }
 
 }
 
@@ -91,4 +106,21 @@ export class MovieState {
     );
   }
 
+  @Action(AddMovieAction)
+  addMovie(ctx: StateContext<MovieStateModel>, {movieDto}: AddMovieAction) {
+    return this.movieService.addMovieUsingPOST(movieDto).pipe(
+      tap(value => {
+        console.log(value);
+      })
+    );
+  }
+
+  @Action(EditMovieAction)
+  editMovie(ctx: StateContext<MovieStateModel>, {id, movieDto}: EditMovieAction) {
+    return this.movieService.updateUsingPUT({id, movieDto}).pipe(
+      tap(value => {
+        console.log(value);
+      })
+    );
+  }
 }

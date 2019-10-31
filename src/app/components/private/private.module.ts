@@ -24,6 +24,8 @@ import {AdminPanelComponent} from './admin-panel/admin-panel.component';
 import {RepertoireCreateComponent} from './repertoire-create/repertoire-create.component';
 import {FormlyMatDatepickerModule} from '@ngx-formly/material/datepicker';
 import {NgxMaterialTimepickerModule} from 'ngx-material-timepicker';
+import {AddMovieComponent} from './add-movie/add-movie.component';
+import {MovieState} from '../public/movie.state';
 
 const routes: Routes = [
   {
@@ -38,10 +40,16 @@ const routes: Routes = [
     canActivate: [AuthGuardService],
     data: {role: 'ROLE_ADMIN'}
   },
+  {
+    path: 'add/movie',
+    component: AddMovieComponent,
+    canActivate: [AuthGuardService],
+    data: {role: 'ROLE_ADMIN'}
+  },
 ];
 
 @NgModule({
-  declarations: [AdminPanelComponent, RepertoireCreateComponent],
+  declarations: [AdminPanelComponent, RepertoireCreateComponent, AddMovieComponent, AddMovieComponent],
   imports: [
     CommonModule,
     RouterModule.forRoot(routes),
@@ -53,7 +61,7 @@ const routes: Routes = [
     FormsModule,
     ReactiveFormsModule,
     FormlyMaterialModule,
-    NgxsModule.forRoot([DeviceState]),
+    NgxsModule.forRoot([MovieState]),
     MatFormFieldModule,
     MatInputModule,
     MatListModule,

@@ -35,8 +35,7 @@ export class MenuComponent implements OnInit, OnDestroy {
       if (u.roles) {
         console.log('ala');
         this.showAdminPanel = u.roles.includes('ROLE_ADMIN');
-      }
-      else{
+      } else {
         this.showAdminPanel = false;
       }
       console.log(this.showAdminPanel);

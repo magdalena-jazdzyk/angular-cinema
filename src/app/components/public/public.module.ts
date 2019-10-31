@@ -24,6 +24,7 @@ import {ImageState} from './state/image.state';
 import {RepertoireCreateComponent} from '../private/repertoire-create/repertoire-create.component';
 import {FormlyMatDatepickerModule} from '@ngx-formly/material/datepicker';
 import {NgxMaterialTimepickerModule} from 'ngx-material-timepicker';
+import { EditMovieComponent } from './edit-movie/edit-movie.component';
 
 const routes: Routes = [
   {
@@ -45,7 +46,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  declarations: [LoginComponent, RegisterComponent, MovieListComponent, ReservationComponent, MovieDetailsComponent],
+  declarations: [LoginComponent, RegisterComponent, MovieListComponent, ReservationComponent, MovieDetailsComponent, EditMovieComponent],
   imports: [
     CommonModule,
     RouterModule.forRoot(routes),
@@ -67,6 +68,7 @@ const routes: Routes = [
   ],
   entryComponents: [
     ReservationComponent, // naszkomponent bedzie wywołany z poziomu kodu annie z linku
+    EditMovieComponent
   ]
 })
 export class PublicModule {
