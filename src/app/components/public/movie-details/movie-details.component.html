@@ -1,17 +1,67 @@
-<div *ngIf="videos$ | async as videoDtos">
-  <div *ngFor="let element of videoDtos">
-
-    <iframe allowfullscreen [src]="element"></iframe>
-
+<div class="6 mx-auto video rounded float-left">
+  <div *ngIf="videos$ | async as videoDtos">
+    <div *ngFor="let element of videoDtos">
+      <iframe allowfullscreen class="ytp-cued-thumbnail-overlay-image" [src]="element"></iframe>
+    </div>
   </div>
 </div>
 
-<div *ngIf="images$ | async as imageDtos">
-  <div *ngFor="let element of imageDtos">
-    <img src="{{element.poster}}">
+
+<div class="col-6 movie-details rounded float-right ">
+  <div *ngIf="images$ | async as imageDtos">
+    <div *ngFor="let element of imageDtos">
+      <img class="image rounded float-left" src="{{element.poster}}">
+    </div>
+    <div class=movie-margin>
+      <div *ngIf="movie$ | async as movieDto">
+        <h1>{{movieDto.title}}</h1>
+        <p class="details">
+          <span>{{movieDto.releaseDate}}</span>
+          <span> {{movieDto.duration}} minut</span>
+          <span>{{movieDto.genre}}</span>
+        </p>
+        <p class="description-movie">
+          {{movieDto.description}}
+        </p>
+      </div>
+    </div>
   </div>
 </div>
 
-<div *ngIf="movie$ | async as movieDto">
-    {{movieDto.description}}
-</div>
+<!--ladoanie godzin  z pliku reservation,ts-->
+
+
+
+
+
+<!--  <div class="col-7  rounded float-right description ">-->
+<!--    <div *ngIf="movie$ | async as movieDto">-->
+<!--      <h1>{{movieDto.title}}</h1>-->
+<!--      <p class="details">-->
+<!--        <span>{{movieDto.releaseDate}}</span>-->
+<!--        <span> {{movieDto.duration}} minut</span>-->
+<!--        <span>{{movieDto.genre}}</span>-->
+<!--      </p>-->
+
+<!--      <p class="description-movie">-->
+<!--        {{movieDto.description}}-->
+<!--      </p>-->
+<!--    </div>-->
+<!--  </div>-->
+
+<!--</div>-->
+
+<!--<div class="col-9  rounded float-right ">-->
+
+<!--  <div *ngIf="movie$ | async as movieDto">-->
+<!--    {{movieDto.description}}-->
+<!--  </div>-->
+<!--</div>-->
+
+
+<!--<div class="rounded float-right">-->
+<!--  <div *ngIf="movie$ | async as movieDto">-->
+<!--    {{movieDto.description}}-->
+<!--  </div>-->
+<!--</div>-->
+

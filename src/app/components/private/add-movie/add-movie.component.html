@@ -1,15 +1,15 @@
 <section id="movie">
   <div class="container">
     <div class="row">
-      <div class="col-md-6 mx-auto">
+      <div class="col-md-9 mx-auto">
         <div class="card">
           <div class="card-header">
-            <h4>Login</h4>
+            <h4>Dodaj film</h4>
           </div>
           <div class="card-body">
             <form [formGroup]="movieForm" (ngSubmit)="addMovie()">
               <formly-form [fields]="movieFields" [form]="movieForm">
-                <button [disabled]="!movieForm.valid" mat-raised-button color="primary" type="submit">
+                <button [disabled]="!movieForm.valid" mat-raised-button type="submit">
                   Dodaj
                 </button>
               </formly-form>

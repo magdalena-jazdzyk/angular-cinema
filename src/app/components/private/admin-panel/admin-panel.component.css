@@ -1,0 +1,39 @@
+#admin {
+  margin-top: 150px;
+}
+
+.card {
+  margin-left: 150px;
+}
+
+.block {
+  margin-left: 5px;
+  margin-right: 10px;
+}
+
+td {
+  padding: 10px 10px 10px 10px;
+}
+
+th {
+  padding: 10px 10px;
+}
+
+.mat-header-cell {
+  color: white;
+  letter-spacing: .15em;
+  background: linear-gradient(#bb005d, #7f0045);
+  padding-bottom: 19px;
+  font-family: isonormregular;
+  text-transform: uppercase;
+}
+
+button {
+  text-transform: uppercase;
+  background-color: #333333;
+  color: white;
+}
+
+.table {
+  height: 125%;
+}

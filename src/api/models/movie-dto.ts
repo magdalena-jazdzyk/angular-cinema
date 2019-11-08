@@ -1,6 +1,8 @@
 /* tslint:disable */
+import { DiscoverDto } from './discover-dto';
 export interface MovieDto {
   description?: string;
+  discoverDto?: DiscoverDto;
   duration?: number;
   genre?: string;
   id?: number;
