@@ -18,7 +18,7 @@
         <p class="details">
           <span>{{movieDto.releaseDate}}</span>
           <span> {{movieDto.duration}} minut</span>
-<!--          <span>{{movieDto.genre}}</span>-->
+          <!--          <span>{{movieDto.genre}}</span>-->
         </p>
         <p class="description-movie">
           {{movieDto.description}}
@@ -30,17 +30,20 @@
     <app-movie-details-reservation [movieId]="movieId"></app-movie-details-reservation>
   </div>
 </div>
-
-<section class="container another-movie">
-  <h2>Zobacz także:</h2>
-
-    <div *ngIf="imagesByMovieIds$ | async as imageDtos">
-    <div *ngFor="let element of imageDtos">
-      <img src="{{element.poster}}">
-      {{element.movieDto.title}}
+<section class="  another-movie">
+  <h2 class="movie-header">Zobacz także:</h2>
+  <div *ngIf="imagesByMovieIds$ | async as imageDtos">
+    <div class="row col-10 pp">
+      <div *ngFor="let element of imageDtos">
+        <img class="poster" src="{{element.poster}}">
+              <div class ="container col-12">
+        <h6 class="movie-title">{{element.movieDto.title}}</h6>
+              </div>
+        <!--      <span class="type ng-binding">Obyczajowy</span>-->
+        <!--      <span class="duration ng-binding">103 min.</span>-->
+      </div>
     </div>
   </div>
-
 </section>
 
 <!--<div class="col-6 movie-details rounded float-left space">-->
@@ -49,8 +52,6 @@
 <!--</div>-->
 
 <!--ladoanie godzin  z pliku reservation,ts-->
-
-
 <!--  <div class="col-7  rounded float-right description ">-->
 <!--    <div *ngIf="movie$ | async as movieDto">-->
 <!--      <h1>{{movieDto.title}}</h1>-->
@@ -81,4 +82,3 @@
 <!--    {{movieDto.description}}-->
 <!--  </div>-->
 <!--</div>-->
-

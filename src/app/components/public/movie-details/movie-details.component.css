@@ -45,10 +45,15 @@ frame{
   position: relative;
 }
 
-.movie-margin{
-  /*padding-left: 50px;*/
-}
 
+
+.movie-title{
+  /*padding-left: 100%;*/
+  margin-left: 15%;
+  text-align: center;
+  font-family: isonormregular;
+  font-size: 19px;
+}
 /*element.style {*/
 /*  background-image: url(https://i.ytimg.com/vi/62nEPMSb8aM/maxresdefault.jpg);*/
 /*}*/
@@ -81,5 +86,35 @@ frame{
 }
 
 .another-movie{
-  margin-top: 1000px;
+  /*margin-top: 500px;*/
+  clear: both;
 }
+
+.poster{
+  margin-bottom: 50px;
+  /*padding-right: 15px;*/
+  /*padding-left: 15px;*/
+  padding-right: 55px;
+  padding-left: 55px;
+  width: 120%;
+  padding-top: 25px;
+  /*margin-left: 57%;*/
+}
+.pp{
+  margin-left: 10%;
+
+}
+.movie-header{
+
+  text-align: center;
+  margin-bottom: 100px;
+  font-family: "Arial Black";
+}
+
+.movie-item h5 {
+  font-size: 18px;
+  font-weight: 700;
+  margin-top: 15px;
+  margin-bottom: 5px;
+}
+
