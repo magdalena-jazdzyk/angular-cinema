@@ -11,16 +11,27 @@ export class LoadImageAction {
   }
 }
 
+export class LoadImageInMovieIdsAction {
+  static readonly type = '[image] loadImageInMovieIds';
+
+  constructor(public movieIds: number[]) {
+
+  }
+}
+
 export class ImageStateModel {
   public images: ImageDto[];
+  public imagesByMovieIds: ImageDto[];
 }
 
 @State<ImageStateModel>({
   name: 'image', // nzazwa state
   defaults: {
-    images: []
+    images: [],
+    imagesByMovieIds: [],
   }
 })
+
 export class ImageState {
 
   public constructor(public imageControllerService: ImageControllerService) {
@@ -33,6 +44,18 @@ export class ImageState {
       tap(value => {
         ctx.patchState({
           images: value
+        });
+      })
+    );
+  }
+
+  @Action(LoadImageInMovieIdsAction)
+  LoadImageInMovieIdsAction(ctx: StateContext<ImageStateModel>, {movieIds}: LoadImageInMovieIdsAction) {
+    console.log('MovieIds' + movieIds);
+    return this.imageControllerService.findImagesByMovieIdInUsingGET(movieIds).pipe(
+      tap(value => {
+        ctx.patchState({
+          imagesByMovieIds: value
         });
       })
     );

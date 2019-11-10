@@ -4,7 +4,7 @@ export interface MovieDto {
   description?: string;
   discoverDto?: DiscoverDto;
   duration?: number;
-  genre?: string;
+  genres?: Array<string>;
   id?: number;
   price?: number;
   releaseDate?: string;

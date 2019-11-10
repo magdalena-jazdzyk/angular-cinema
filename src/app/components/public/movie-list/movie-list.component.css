@@ -1,3 +1,13 @@
 table{
-   width: 100%
+   width: 100%;
+  margin-top: 5%;
+}
+
+.title{
+  /*color: white;*/
+  letter-spacing: .15em;
+  padding-bottom: 20px;
+  padding-top: 20px;
+  font-family: Source Sans Pro,Helvetica,Arial;
+  text-transform: uppercase;
 }

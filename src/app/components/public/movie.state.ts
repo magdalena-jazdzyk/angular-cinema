@@ -19,8 +19,6 @@ export class LoadMovieByIdAction {
   constructor(public movieId: number) {
 
   }
-
-
 }
 
 export class RemoveMovieAction {
@@ -46,8 +44,15 @@ export class EditMovieAction {
   constructor(public id: number, public movieDto: MovieDto) {
 
   }
-
 }
+
+export class FindTheFirstPageAction {
+  static readonly type = '[movie] findTheFirstPage';
+
+  constructor() {
+  }
+}
+
 
 export class MovieStateModel {
   public moviePageDto: PageMovieDto;
@@ -120,6 +125,17 @@ export class MovieState {
     return this.movieService.updateUsingPUT({id, movieDto}).pipe(
       tap(value => {
         console.log(value);
+      })
+    );
+  }
+
+  @Action(FindTheFirstPageAction)
+  findTheFirstPage(ctx: StateContext<MovieStateModel>, {}: FindTheFirstPageAction) {
+    return this.movieService.findAllMovieUsingGET({page: 0, size: 8}).pipe(
+      tap(value => {
+        ctx.patchState({
+          moviePageDto: value,
+        });
       })
     );
   }

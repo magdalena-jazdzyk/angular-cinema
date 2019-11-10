@@ -1,12 +1,13 @@
 import {Component, OnInit} from '@angular/core';
 import {Store, Select} from '@ngxs/store';
 import {Observable} from 'rxjs';
-import {PageMovieDto, UserDto} from 'src/api/models';
+import {ImageDto, PageMovieDto, UserDto} from 'src/api/models';
 import {LoadMovieAction, RemoveMovieAction} from '../movie.state';
 import {MatDialog} from '@angular/material';
 import {ReservationComponent} from '../reservation/reservation.component';
 import {RepertoireCreateComponent} from '../../private/repertoire-create/repertoire-create.component';
 import {EditMovieComponent} from '../edit-movie/edit-movie.component';
+import {LoadImageAction} from '../state/image.state';
 
 @Component({
   selector: 'app-movie-list',
@@ -15,7 +16,9 @@ import {EditMovieComponent} from '../edit-movie/edit-movie.component';
 })
 export class MovieListComponent implements OnInit {
 
-  displayedColumns: string[] = ['id', 'title', 'genre', 'price', 'films'];
+  displayedColumns: string[] = ['title', 'films'];
+
+  // displayedColumns: string[] = ['id', 'title', 'genre', 'price', 'films'];
   @Select(state => state.user.jwtToken)
   token$: Observable<string>;
 
@@ -25,11 +28,16 @@ export class MovieListComponent implements OnInit {
   @Select(state => state.user.currentUser)
   currentUser$: Observable<UserDto>;
 
+  //dd
+  @Select(state => state.image.images)
+  images$: Observable<ImageDto[]>;
+
   constructor(public store: Store, public matDialog: MatDialog) {
   }
 
   ngOnInit() {
     this.store.dispatch(new LoadMovieAction(0, 5));
+
     this.token$.subscribe(r => {
       console.log(r);
 

@@ -26,6 +26,8 @@ import {FormlyMatDatepickerModule} from '@ngx-formly/material/datepicker';
 import {NgxMaterialTimepickerModule} from 'ngx-material-timepicker';
 import {AddMovieComponent} from './add-movie/add-movie.component';
 import {MovieState} from '../public/movie.state';
+import {ReservationState} from '../public/reservation.state';
+import {RepertoireState} from '../public/state/repertoire.state';
 
 const routes: Routes = [
   {
@@ -61,7 +63,7 @@ const routes: Routes = [
     FormsModule,
     ReactiveFormsModule,
     FormlyMaterialModule,
-    NgxsModule.forRoot([MovieState]),
+    NgxsModule.forRoot([MovieState, RepertoireState]),
     MatFormFieldModule,
     MatInputModule,
     MatListModule,

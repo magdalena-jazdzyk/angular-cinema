@@ -5,5 +5,6 @@ export { RepertoireControllerService } from './services/repertoire-controller.se
 export { ReviewControllerService } from './services/review-controller.service';
 export { SeatControllerService } from './services/seat-controller.service';
 export { SecurityControllerService } from './services/security-controller.service';
+export { TemplateControllerService } from './services/template-controller.service';
 export { UserControllerService } from './services/user-controller.service';
 export { VideoControllerService } from './services/video-controller.service';

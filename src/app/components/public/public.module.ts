@@ -25,6 +25,7 @@ import {RepertoireCreateComponent} from '../private/repertoire-create/repertoire
 import {FormlyMatDatepickerModule} from '@ngx-formly/material/datepicker';
 import {NgxMaterialTimepickerModule} from 'ngx-material-timepicker';
 import { EditMovieComponent } from './edit-movie/edit-movie.component';
+import { MovieDetailsReservationComponent } from './movie-details-reservation/movie-details-reservation.component';
 
 const routes: Routes = [
   {
@@ -46,7 +47,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  declarations: [LoginComponent, RegisterComponent, MovieListComponent, ReservationComponent, MovieDetailsComponent, EditMovieComponent],
+  declarations: [LoginComponent, RegisterComponent, MovieListComponent, ReservationComponent, MovieDetailsComponent, EditMovieComponent, MovieDetailsReservationComponent],
   imports: [
     CommonModule,
     RouterModule.forRoot(routes),

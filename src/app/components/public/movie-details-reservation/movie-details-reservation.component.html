@@ -1,0 +1,27 @@
+<div class="col-sm-12" *ngFor="let element of tab">
+  <button class="button-repertoire" (click)="loadRepertoire(element)">{{element}}</button>
+</div>
+<div class="space"></div>
+<div *ngIf="repertoireList$ | async as repertoireDtos"> <!--czy zmienna dostpena w state-->
+  <div *ngFor="let element of repertoireDtos">
+    <button class="button-repertoire" (click)="displaySeats(element)">
+      {{element.time}}
+    </button>
+  </div>
+</div>
+<div>
+  <div class="choice-seat"  *ngIf="seats$ | async as seatDtos">
+    <tr *ngFor="let i of [1,2,3,4,5]">
+      <td *ngFor="let j of [1,2,3,4,5]">
+        <button class ="button-seat" [disabled]="checkSeat(seatDtos,i,j)==='zajete'"
+                (click)="reserve(i,j)">{{i}} {{j}} {{checkSeat(seatDtos, i, j)}}</button>
+      </td>
+    </tr>
+  </div>
+</div>
+
+<div class="raw">
+  <div>
+    <button class="mat-badge-disabled" class="next">Next</button>
+  </div>
+</div>

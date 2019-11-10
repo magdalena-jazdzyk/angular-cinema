@@ -7,8 +7,8 @@ import { StrictHttpResponse as __StrictHttpResponse } from '../strict-http-respo
 import { Observable as __Observable } from 'rxjs';
 import { map as __map, filter as __filter } from 'rxjs/operators';
 
-import { PageImageDto } from '../models/page-image-dto';
 import { ImageDto } from '../models/image-dto';
+import { PageImageDto } from '../models/page-image-dto';
 
 /**
  * Image Controller
@@ -17,6 +17,7 @@ import { ImageDto } from '../models/image-dto';
   providedIn: 'root',
 })
 class ImageControllerService extends __BaseService {
+  static readonly findImagesByMovieIdInUsingGETPath = '/images';
   static readonly findAllUsingGETPath = '/images/all/{page}/{size}';
   static readonly findImageByMovieUsingGETPath = '/images/{movieId}';
 
@@ -25,6 +26,42 @@ class ImageControllerService extends __BaseService {
     http: HttpClient
   ) {
     super(config, http);
+  }
+
+  /**
+   * @param movieIds movieIds
+   * @return OK
+   */
+  findImagesByMovieIdInUsingGETResponse(movieIds: Array<number>): __Observable<__StrictHttpResponse<Array<ImageDto>>> {
+    let __params = this.newParams();
+    let __headers = new HttpHeaders();
+    let __body: any = null;
+    (movieIds || []).forEach(val => {if (val != null) __params = __params.append('movieIds', val.toString())});
+    let req = new HttpRequest<any>(
+      'GET',
+      this.rootUrl + `/images`,
+      __body,
+      {
+        headers: __headers,
+        params: __params,
+        responseType: 'json'
+      });
+
+    return this.http.request<any>(req).pipe(
+      __filter(_r => _r instanceof HttpResponse),
+      __map((_r) => {
+        return _r as __StrictHttpResponse<Array<ImageDto>>;
+      })
+    );
+  }
+  /**
+   * @param movieIds movieIds
+   * @return OK
+   */
+  findImagesByMovieIdInUsingGET(movieIds: Array<number>): __Observable<Array<ImageDto>> {
+    return this.findImagesByMovieIdInUsingGETResponse(movieIds).pipe(
+      __map(_r => _r.body as Array<ImageDto>)
+    );
   }
 
   /**

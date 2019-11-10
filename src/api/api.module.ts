@@ -10,6 +10,7 @@ import { RepertoireControllerService } from './services/repertoire-controller.se
 import { ReviewControllerService } from './services/review-controller.service';
 import { SeatControllerService } from './services/seat-controller.service';
 import { SecurityControllerService } from './services/security-controller.service';
+import { TemplateControllerService } from './services/template-controller.service';
 import { UserControllerService } from './services/user-controller.service';
 import { VideoControllerService } from './services/video-controller.service';
 
@@ -33,6 +34,7 @@ import { VideoControllerService } from './services/video-controller.service';
     ReviewControllerService,
     SeatControllerService,
     SecurityControllerService,
+    TemplateControllerService,
     UserControllerService,
     VideoControllerService
   ],

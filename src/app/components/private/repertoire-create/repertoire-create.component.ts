@@ -4,6 +4,9 @@ import {FormlyFieldConfig} from '@ngx-formly/core';
 import {connectableObservableDescriptor} from 'rxjs/internal/observable/ConnectableObservable';
 import {formatDate} from '@angular/common';
 import {ActivatedRoute} from '@angular/router';
+import {ReserveSeatActions} from '../../public/state/seats.state';
+import {AddRepertoireAction} from '../../public/state/repertoire.state';
+import {Store} from '@ngxs/store';
 
 @Component({
   selector: 'app-repertoire-create',
@@ -15,7 +18,7 @@ export class RepertoireCreateComponent implements OnInit {
 
   movieId: number;
 
-  constructor(public formBuilder: FormBuilder, public activatedRoute: ActivatedRoute) {
+  constructor(public formBuilder: FormBuilder, public activatedRoute: ActivatedRoute, public store: Store) {
   }
 
   ngOnInit() {
@@ -28,7 +31,15 @@ export class RepertoireCreateComponent implements OnInit {
   }
 
   add() {
+    console.log(this.repertoireForm.value.dateValue.toLocaleString());
     console.log(this.repertoireForm.value);
     console.log(this.movieId);
+
+    this.store.dispatch(new AddRepertoireAction({
+      movieId: this.movieId,
+      date: this.repertoireForm.value.dateValue.toLocaleString().split(',')[0].split('.').join('-'),
+      time: this.repertoireForm.value.time
+    }));
+
   }
 }

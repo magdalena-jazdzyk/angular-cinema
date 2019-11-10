@@ -12,6 +12,15 @@ export class LoadRepertoireByMovieIdAction {
   }
 }
 
+export class AddRepertoireAction {
+  static readonly type = '[repertoire] addRepertoireAction';
+
+  constructor(public repertoireDto: RepertoireDto) {
+
+  }
+}
+
+
 export class RepertoireStateModel {
   public repertoireList: RepertoireDto[];
 }
@@ -36,6 +45,15 @@ export class RepertoireState {
         ctx.patchState({
           repertoireList: value
         });
+      })
+    );
+  }
+
+  @Action(AddRepertoireAction)
+  addRepertoire(ctx: StateContext<RepertoireStateModel>, {repertoireDto}: AddRepertoireAction) {
+    // const dateForSend = date.split('.').join('-');
+    return this.repertoireControllerService.addRepertoireUsingPOST(repertoireDto).pipe(
+      tap(value => {
       })
     );
   }

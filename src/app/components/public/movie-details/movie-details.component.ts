@@ -1,13 +1,13 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
-import {LoadMovieAction, LoadMovieByIdAction} from '../movie.state';
+import {FindTheFirstPageAction, LoadMovieAction, LoadMovieByIdAction} from '../movie.state';
 import {LoadVideoAction} from '../state/movie-video.state';
 import {Select, Store} from '@ngxs/store';
 import {Observable} from 'rxjs';
 import {DomSanitizer, SafeResourceUrl} from '@angular/platform-browser';
 import {ImageDto} from '../../../../api/models/image-dto';
-import {LoadImageAction} from '../state/image.state';
-import {MovieDto} from '../../../../api/models';
+import {LoadImageAction, LoadImageInMovieIdsAction} from '../state/image.state';
+import {MovieDto, PageMovieDto} from '../../../../api/models';
 
 
 @Component({
@@ -15,9 +15,11 @@ import {MovieDto} from '../../../../api/models';
   templateUrl: './movie-details.component.html',
   styleUrls: ['./movie-details.component.css']
 })
-export class MovieDetailsComponent implements OnInit {
+export class MovieDetailsComponent implements OnInit, OnDestroy {
+
 
   movieId: number;
+  subscription;
 
   @Select(state => state.movieVideo.videos)
   videos$: Observable<SafeResourceUrl[]>;
@@ -28,6 +30,13 @@ export class MovieDetailsComponent implements OnInit {
   @Select(state => state.movie.movie)
   movie$: Observable<MovieDto>;
 
+  @Select(state => state.movie.moviePageDto)
+  moviesPage$: Observable<PageMovieDto>;
+
+  @Select(state => state.image.imagesByMovieIds)
+  imagesByMovieIds$: Observable<ImageDto[]>;
+
+
   constructor(public store: Store, public activatedRoute: ActivatedRoute) {
   }
 
@@ -36,6 +45,20 @@ export class MovieDetailsComponent implements OnInit {
     this.store.dispatch(new LoadVideoAction(this.movieId));
     this.store.dispatch(new LoadImageAction(this.movieId));
     this.store.dispatch(new LoadMovieByIdAction(this.movieId));
+    this.store.dispatch(new FindTheFirstPageAction());
+
+    this.subscription = this.moviesPage$.subscribe(p => {
+      console.log('wartosc p ' + p.content);
+      if (p.content !== undefined) {
+        const numbers = p.content.map(s => s.id);
+        console.log('number' + numbers);
+        this.store.dispatch(new LoadImageInMovieIdsAction(numbers));
+      }
+    });
+  }
+
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
   }
 
 }
