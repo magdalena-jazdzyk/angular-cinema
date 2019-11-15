@@ -20,6 +20,7 @@ export class MovieDetailsComponent implements OnInit, OnDestroy {
 
   movieId: number;
   subscription;
+  subscriptionUrl;
 
   @Select(state => state.movieVideo.videos)
   videos$: Observable<SafeResourceUrl[]>;
@@ -41,24 +42,32 @@ export class MovieDetailsComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.activatedRoute.params.subscribe(p => this.movieId = p.id).unsubscribe(); // pobireania filmu z linku
-    this.store.dispatch(new LoadVideoAction(this.movieId));
-    this.store.dispatch(new LoadImageAction(this.movieId));
-    this.store.dispatch(new LoadMovieByIdAction(this.movieId));
-    this.store.dispatch(new FindTheFirstPageAction());
+    // this.activatedRoute.params.subscribe(p => this.movieId = p.id).unsubscribe(); // pobireania filmu z linku
+    this.subscriptionUrl = this.activatedRoute.params.subscribe(p => {
+      this.movieId = p.id;
 
-    this.subscription = this.moviesPage$.subscribe(p => {
-      console.log('wartosc p ' + p.content);
-      if (p.content !== undefined) {
-        const numbers = p.content.map(s => s.id);
-        console.log('number' + numbers);
-        this.store.dispatch(new LoadImageInMovieIdsAction(numbers));
-      }
+
+      this.store.dispatch(new LoadVideoAction(this.movieId));
+      this.store.dispatch(new LoadImageAction(this.movieId));
+      this.store.dispatch(new LoadMovieByIdAction(this.movieId));
+      this.store.dispatch(new FindTheFirstPageAction());
+
+      this.subscription = this.moviesPage$.subscribe(p => {
+        console.log('wartosc p ' + p.content);
+        if (p.content !== undefined) {
+          const numbers = p.content.map(s => s.id);
+          console.log('number' + numbers);
+          this.store.dispatch(new LoadImageInMovieIdsAction(numbers));
+        }
+      });
+      console.log('jestem w onInit');
     });
   }
 
   ngOnDestroy(): void {
     this.subscription.unsubscribe();
+    console.log('DESTRY');
+    this.subscriptionUrl.unsubscribe();
   }
 
 }

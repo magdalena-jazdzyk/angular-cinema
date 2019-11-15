@@ -3,6 +3,7 @@ import {RepertoireControllerService} from '../../../../api/services';
 import {tap} from 'rxjs/operators';
 import {RepertoireDto} from '../../../../api/models/repertoire-dto';
 import {replaceNgsp} from '@angular/compiler/src/ml_parser/html_whitespaces';
+import {ClearSeatsActions, SeatsStateModel} from './seats.state';
 
 export class LoadRepertoireByMovieIdAction {
   static readonly type = '[repertoire] loadpage';
@@ -20,6 +21,21 @@ export class AddRepertoireAction {
   }
 }
 
+export class LoadRepertoiresAction {
+  static readonly type = '[repertoire] loadRepertoires';
+
+  constructor(public date: string, public movieIds: number[]) {
+
+  }
+}
+
+export class CleanRepertoireAction {
+  static readonly type = '[repertoire] cleanRepertoire';
+
+  constructor() {
+
+  }
+}
 
 export class RepertoireStateModel {
   public repertoireList: RepertoireDto[];
@@ -49,6 +65,18 @@ export class RepertoireState {
     );
   }
 
+  @Action(LoadRepertoiresAction)
+  loadRepertoires(ctx: StateContext<RepertoireStateModel>, {date, movieIds}: LoadRepertoiresAction) {
+    const dateForSend = date.split('.').join('-');
+    return this.repertoireControllerService.findByMovieIdsAndDateUsingGET({movieIds, date: dateForSend}).pipe(
+      tap(value => {
+        ctx.patchState({
+          repertoireList: value
+        });
+      })
+    );
+  }
+
   @Action(AddRepertoireAction)
   addRepertoire(ctx: StateContext<RepertoireStateModel>, {repertoireDto}: AddRepertoireAction) {
     // const dateForSend = date.split('.').join('-');
@@ -56,6 +84,13 @@ export class RepertoireState {
       tap(value => {
       })
     );
+  }
+
+  @Action(CleanRepertoireAction)
+  cleanRepertoire(ctx: StateContext<RepertoireStateModel>, {}: CleanRepertoireAction) {
+    ctx.patchState({
+      repertoireList: []
+    });
   }
 }
 

@@ -1,22 +1,24 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Store, Select} from '@ngxs/store';
 import {Observable} from 'rxjs';
-import {ImageDto, PageMovieDto, UserDto} from 'src/api/models';
-import {LoadMovieAction, RemoveMovieAction} from '../movie.state';
+import {ImageDto, PageMovieDto, RepertoireDto, UserDto} from 'src/api/models';
+import {FindTheFirstPageAction, LoadMovieAction, RemoveMovieAction} from '../movie.state';
 import {MatDialog} from '@angular/material';
 import {ReservationComponent} from '../reservation/reservation.component';
 import {RepertoireCreateComponent} from '../../private/repertoire-create/repertoire-create.component';
 import {EditMovieComponent} from '../edit-movie/edit-movie.component';
-import {LoadImageAction} from '../state/image.state';
+import {LoadImageAction, LoadImageInMovieIdsAction} from '../state/image.state';
+import {CleanRepertoireAction, LoadRepertoiresAction} from '../state/repertoire.state';
 
 @Component({
   selector: 'app-movie-list',
   templateUrl: './movie-list.component.html',
   styleUrls: ['./movie-list.component.css']
 })
-export class MovieListComponent implements OnInit {
+export class MovieListComponent implements OnInit, OnDestroy {
 
-  displayedColumns: string[] = ['title', 'films'];
+  displayedColumns: string[] = ['title', 'hours', 'films'];
+  subscription;
 
   // displayedColumns: string[] = ['id', 'title', 'genre', 'price', 'films'];
   @Select(state => state.user.jwtToken)
@@ -28,9 +30,15 @@ export class MovieListComponent implements OnInit {
   @Select(state => state.user.currentUser)
   currentUser$: Observable<UserDto>;
 
-  //dd
-  @Select(state => state.image.images)
-  images$: Observable<ImageDto[]>;
+  // @Select(state => state.image.images)
+  // images$: Observable<ImageDto[]>;
+
+  @Select(state => state.image.imagesByMovieIds)
+  imagesByMovieIds$: Observable<ImageDto[]>;
+
+  // DODANE
+  @Select(state => state.repertoire.repertoireList)
+  repertoireList$: Observable<RepertoireDto[]>;
 
   constructor(public store: Store, public matDialog: MatDialog) {
   }
@@ -57,6 +65,24 @@ export class MovieListComponent implements OnInit {
         }
       }
     }).unsubscribe();
+    this.store.dispatch(new FindTheFirstPageAction());
+
+
+    this.subscription = this.moviesPage$.subscribe(p => {
+      console.log('wartosc p ' + p.content);
+      if (p.content !== undefined) {
+        const numbers = p.content.map(s => s.id);
+        console.log('number' + numbers);
+        this.store.dispatch(new LoadImageInMovieIdsAction(numbers));
+        this.store.dispatch(new LoadRepertoiresAction(new Date().toLocaleDateString(), numbers));
+      }
+    });
+  }
+
+
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
+    this.store.dispatch(new CleanRepertoireAction());
   }
 
   changePage(event) {
@@ -88,4 +114,14 @@ export class MovieListComponent implements OnInit {
       width: '80%', data: element, height: '100%'
     });
   }
+
+  // dodane
+
+
+  // loadRepertoire(element: string) {
+  //   console.log(element);
+  //   this.store.dispatch(new LoadRepertoireByMovieIdAction(element, this.data.id));
+  //   console.log('laduje repertuar');
+  //   this.store.dispatch(new ClearSeatsActions());
+  // }
 }

@@ -11,7 +11,7 @@ import {Store} from '@ngxs/store';
 @Component({
   selector: 'app-repertoire-create',
   templateUrl: './repertoire-create.component.html',
-  styleUrls: ['./repertoire-create.component.sass']
+  styleUrls: ['./repertoire-create.component.css']
 })
 export class RepertoireCreateComponent implements OnInit {
   repertoireForm = new FormGroup({});

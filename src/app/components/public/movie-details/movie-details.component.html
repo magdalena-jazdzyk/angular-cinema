@@ -5,8 +5,6 @@
     </div>
   </div>
 </div>
-
-
 <div class="col-6 movie-details rounded float-right">
   <div *ngIf="images$ | async as imageDtos">
     <div *ngFor="let element of imageDtos">
@@ -35,16 +33,24 @@
   <div *ngIf="imagesByMovieIds$ | async as imageDtos">
     <div class="row col-10 pp">
       <div *ngFor="let element of imageDtos">
-        <img class="poster" src="{{element.poster}}">
-              <div class ="container col-12">
-        <h6 class="movie-title">{{element.movieDto.title}}</h6>
-              </div>
-        <!--      <span class="type ng-binding">Obyczajowy</span>-->
-        <!--      <span class="duration ng-binding">103 min.</span>-->
+        <a [routerLink]="['/movie',element.movieDto.id]">
+          <img class="poster" src="{{element.poster}}">
+        </a>
+        <!--        <img class="poster" src="{{element.poster}}">-->
+        <div class="container col-12">
+          <h5 class="movie-title">{{element.movieDto.title}}</h5>
+        </div>
       </div>
     </div>
   </div>
 </section>
+
+
+<!--<td mat-cell *matCellDef="let element">-->
+<!--  <a routerLink="/repertoire/{{element.id}}">-->
+<!--    dodaj-->
+<!--  </a>-->
+<!--</td>-->
 
 <!--<div class="col-6 movie-details rounded float-left space">-->
 <!--  <app-movie-details-reservation class = "space" [movieId]="movieId"></app-movie-details-reservation>-->

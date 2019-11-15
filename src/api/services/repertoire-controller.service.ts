@@ -16,6 +16,7 @@ import { RepertoireDto } from '../models/repertoire-dto';
   providedIn: 'root',
 })
 class RepertoireControllerService extends __BaseService {
+  static readonly findByMovieIdsAndDateUsingGETPath = '/repertoire';
   static readonly addRepertoireUsingPOSTPath = '/repertoire';
   static readonly updateUsingPUT1Path = '/repertoire/{id}';
   static readonly findByMovieIdUsingGETPath = '/repertoire/{movieId}';
@@ -26,6 +27,53 @@ class RepertoireControllerService extends __BaseService {
     http: HttpClient
   ) {
     super(config, http);
+  }
+
+  /**
+   * @param params The `RepertoireControllerService.FindByMovieIdsAndDateUsingGETParams` containing the following parameters:
+   *
+   * - `movieIds`: movieIds
+   *
+   * - `date`: date
+   *
+   * @return OK
+   */
+  findByMovieIdsAndDateUsingGETResponse(params: RepertoireControllerService.FindByMovieIdsAndDateUsingGETParams): __Observable<__StrictHttpResponse<Array<RepertoireDto>>> {
+    let __params = this.newParams();
+    let __headers = new HttpHeaders();
+    let __body: any = null;
+    (params.movieIds || []).forEach(val => {if (val != null) __params = __params.append('movieIds', val.toString())});
+    if (params.date != null) __params = __params.set('date', params.date.toString());
+    let req = new HttpRequest<any>(
+      'GET',
+      this.rootUrl + `/repertoire`,
+      __body,
+      {
+        headers: __headers,
+        params: __params,
+        responseType: 'json'
+      });
+
+    return this.http.request<any>(req).pipe(
+      __filter(_r => _r instanceof HttpResponse),
+      __map((_r) => {
+        return _r as __StrictHttpResponse<Array<RepertoireDto>>;
+      })
+    );
+  }
+  /**
+   * @param params The `RepertoireControllerService.FindByMovieIdsAndDateUsingGETParams` containing the following parameters:
+   *
+   * - `movieIds`: movieIds
+   *
+   * - `date`: date
+   *
+   * @return OK
+   */
+  findByMovieIdsAndDateUsingGET(params: RepertoireControllerService.FindByMovieIdsAndDateUsingGETParams): __Observable<Array<RepertoireDto>> {
+    return this.findByMovieIdsAndDateUsingGETResponse(params).pipe(
+      __map(_r => _r.body as Array<RepertoireDto>)
+    );
   }
 
   /**
@@ -196,6 +244,22 @@ class RepertoireControllerService extends __BaseService {
 }
 
 module RepertoireControllerService {
+
+  /**
+   * Parameters for findByMovieIdsAndDateUsingGET
+   */
+  export interface FindByMovieIdsAndDateUsingGETParams {
+
+    /**
+     * movieIds
+     */
+    movieIds: Array<number>;
+
+    /**
+     * date
+     */
+    date: string;
+  }
 
   /**
    * Parameters for updateUsingPUT1

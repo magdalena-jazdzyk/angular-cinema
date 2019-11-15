@@ -1,4 +1,8 @@
-<div class="container" *ngIf="moviesPage$ | async as moviesPage">
+<div class="container font container-space">
+  <h1>Repertuar</h1>
+</div>
+<div class="col-9 space" *ngIf="moviesPage$ | async  as moviesPage">
+  <div *ngIf="repertoireList$ | async as repertoireList">
   <table mat-table [dataSource]="moviesPage.content">
     <!--      <ng-container matColumnDef="id">-->
     <!--        <th mat-header-cell *matHeaderCellDef>-->
@@ -10,12 +14,28 @@
     <!--      </ng-container>-->
     <ng-container matColumnDef="title">
       <th mat-header-cell *matHeaderCellDef>
-        title
+        <!--        <h6>title</h6>-->
       </th>
       <td class='title' mat-cell *matCellDef="let element">
         {{element.title}}
       </td>
     </ng-container>
+
+    <!--    DODAN-->
+
+    <ng-container matColumnDef="hours">
+      <th mat-header-cell *matHeaderCellDef>
+        godziny
+      </th>
+      <td class='title' mat-cell *matCellDef="let element">
+       <div *ngFor = "let repertoire of repertoireList">
+         <div *ngIf = "repertoire.movieId== element.id">
+           {{repertoire.time}}
+         </div>
+       </div>
+      </td>
+    </ng-container>
+
     <!--      <ng-container matColumnDef="genre">-->
     <!--        <th mat-header-cell *matHeaderCellDef>-->
     <!--          genre-->
@@ -80,7 +100,7 @@
     <ng-container matColumnDef="films">
       <!-- matColumnDef - mowi jaka kolumna ma byc wyswetlana powizazna z tablcia strigow w kompoencie-->
       <th mat-header-cell *matHeaderCellDef>
-        zwiastun
+        <!--        zwiastun-->
       </th>
       <td mat-cell *matCellDef="let element">
         <button routerLink="/movie/{{element.id}}">
@@ -98,26 +118,39 @@
 
   </mat-paginator>
 </div>
-<section class="container">
-  <h1>Teraz gramy</h1>
+</div>
 
 
-  <div  *ngIf="moviesPage$ | async as moviesPage">
-
-        <div *ngFor="let element of moviesPage.content">
-            {{element.title}}
+<section class="col-10 space">
+  <h1 class="space-title">Teraz gramy</h1>
+  <div *ngIf="imagesByMovieIds$ | async as imageDtos">
+    <div class="row ">
+      <div *ngFor="let element of imageDtos">
+        <img class="poster" src="{{element.poster}}">
+        <div class=" col-12">
+          <h5 class="movieDto-title">{{element.movieDto.title}}</h5>
         </div>
-
-<!--      </ng-container>-->
-<!--    </table>-->
-  </div>
-
-
-  <div *ngIf="images$ | async as imageDtos">
-    <div *ngFor="let element of imageDtos">
-      <img class="image rounded float-left" src="{{element.poster}}">
+      </div>
     </div>
   </div>
+
+
+  <!--  <div  *ngIf="moviesPage$ | async as moviesPage">-->
+
+  <!--        <div *ngFor="let element of moviesPage.content">-->
+  <!--            {{element.title}}-->
+  <!--        </div>-->
+
+  <!--&lt;!&ndash;      </ng-container>&ndash;&gt;-->
+  <!--&lt;!&ndash;    </table>&ndash;&gt;-->
+  <!--  </div>-->
+
+
+  <!--  <div *ngIf="images$ | async as imageDtos">-->
+  <!--    <div *ngFor="let element of imageDtos">-->
+  <!--      <img class="image rounded float-left" src="{{element.poster}}">-->
+  <!--    </div>-->
+  <!--  </div>-->
 
 
 </section>

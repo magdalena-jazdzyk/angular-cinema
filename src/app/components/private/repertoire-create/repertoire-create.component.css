@@ -1,0 +1,50 @@
+#repertoire {
+  margin-top: 200px;
+}
+
+form {
+  padding: 20px 20px;
+  width: 150%;
+}
+
+button {
+  border-right: 3px solid #c8006d;
+  border-left: 3px solid #c8006d;
+  border-top: 3px solid #c8006d;
+  border-bottom: 3px solid #c8006d;
+  position: relative;
+  text-transform: uppercase;
+  color: #fff;
+}
+
+
+.input{
+  padding: 10px 10px;
+  /*width: 200%;*/
+
+}
+
+.example-card {
+  display: flex;
+  flex-direction: column;
+}
+
+.example-card > * {
+  width: 100%;
+}
+
+.mat-form-field-infix {
+  display: block;
+  position: relative;
+  flex: auto;
+  min-width: 0;
+  width: 1000px;
+  padding: 3%;
+}
+
+.time-input{
+  width: 937px;
+  padding: 7px;
+  margin-left: 26px;
+  margin-bottom: 15px
+}

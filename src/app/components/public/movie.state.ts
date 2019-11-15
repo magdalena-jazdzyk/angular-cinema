@@ -131,7 +131,7 @@ export class MovieState {
 
   @Action(FindTheFirstPageAction)
   findTheFirstPage(ctx: StateContext<MovieStateModel>, {}: FindTheFirstPageAction) {
-    return this.movieService.findAllMovieUsingGET({page: 0, size: 10}).pipe(
+    return this.movieService.findAllMovieUsingGET({page: 0, size: 12}).pipe(
       tap(value => {
         ctx.patchState({
           moviePageDto: value,
