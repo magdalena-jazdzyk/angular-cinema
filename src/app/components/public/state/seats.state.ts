@@ -11,6 +11,14 @@ export class LoadSeatsActions {
   }
 }
 
+export class LoadSeatsByRepertoireIdActions {
+  static readonly type = '[seats] LoadSeatsByRepertoireId';
+
+  constructor(public repertoireId: number) {
+
+  }
+}
+
 export class ReserveSeatActions {
   static readonly type = '[seats] reserveSeatActions';
 
@@ -46,6 +54,18 @@ export class SeatsState {
   @Action(LoadSeatsActions)
   loadSeats(ctx: StateContext<SeatsStateModel>, {movieId, date, time}: LoadSeatsActions) {
     return this.seatControllerService.findAllSeatsUsingGET({movieId, date, time}).pipe(
+      tap(value => {
+        ctx.patchState({
+          seats: value
+        });
+      })
+    );
+
+  }
+
+  @Action(LoadSeatsByRepertoireIdActions)
+  loadSeatsByRepertoireId(ctx: StateContext<SeatsStateModel>, {repertoireId}: LoadSeatsByRepertoireIdActions) {
+    return this.seatControllerService.findAllSeatsByRepertoireIdUsingGET(repertoireId).pipe(
       tap(value => {
         ctx.patchState({
           seats: value

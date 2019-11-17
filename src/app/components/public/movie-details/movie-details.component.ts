@@ -8,6 +8,8 @@ import {DomSanitizer, SafeResourceUrl} from '@angular/platform-browser';
 import {ImageDto} from '../../../../api/models/image-dto';
 import {LoadImageAction, LoadImageInMovieIdsAction} from '../state/image.state';
 import {MovieDto, PageMovieDto} from '../../../../api/models';
+import {CleanRepertoireAction} from '../state/repertoire.state';
+import {ClearSeatsActions, LoadSeatsByRepertoireIdActions} from '../state/seats.state';
 
 
 @Component({
@@ -19,6 +21,7 @@ export class MovieDetailsComponent implements OnInit, OnDestroy {
 
 
   movieId: number;
+  repertoireId: number;
   subscription;
   subscriptionUrl;
 
@@ -45,6 +48,7 @@ export class MovieDetailsComponent implements OnInit, OnDestroy {
     // this.activatedRoute.params.subscribe(p => this.movieId = p.id).unsubscribe(); // pobireania filmu z linku
     this.subscriptionUrl = this.activatedRoute.params.subscribe(p => {
       this.movieId = p.id;
+      this.repertoireId = p.repertoireId;
 
 
       this.store.dispatch(new LoadVideoAction(this.movieId));
@@ -61,6 +65,9 @@ export class MovieDetailsComponent implements OnInit, OnDestroy {
         }
       });
       console.log('jestem w onInit');
+      if (this.repertoireId) {
+        this.store.dispatch(new LoadSeatsByRepertoireIdActions(this.repertoireId));
+      }
     });
   }
 
@@ -68,6 +75,8 @@ export class MovieDetailsComponent implements OnInit, OnDestroy {
     this.subscription.unsubscribe();
     console.log('DESTRY');
     this.subscriptionUrl.unsubscribe();
+    this.store.dispatch(new ClearSeatsActions());
+    this.store.dispatch(new CleanRepertoireAction());
   }
 
 }

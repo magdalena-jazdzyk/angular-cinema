@@ -39,12 +39,16 @@ export class CleanRepertoireAction {
 
 export class RepertoireStateModel {
   public repertoireList: RepertoireDto[];
+  public repertoiresList: RepertoireDto[];
+
 }
 
 @State<RepertoireStateModel>({
   name: 'repertoire', // nazwa state
   defaults: {
-    repertoireList: []
+    repertoireList: [],
+    repertoiresList: []
+
   }
 })
 
@@ -71,7 +75,7 @@ export class RepertoireState {
     return this.repertoireControllerService.findByMovieIdsAndDateUsingGET({movieIds, date: dateForSend}).pipe(
       tap(value => {
         ctx.patchState({
-          repertoireList: value
+          repertoiresList: value
         });
       })
     );

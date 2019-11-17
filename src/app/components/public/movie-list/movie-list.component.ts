@@ -9,6 +9,7 @@ import {RepertoireCreateComponent} from '../../private/repertoire-create/reperto
 import {EditMovieComponent} from '../edit-movie/edit-movie.component';
 import {LoadImageAction, LoadImageInMovieIdsAction} from '../state/image.state';
 import {CleanRepertoireAction, LoadRepertoiresAction} from '../state/repertoire.state';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-movie-list',
@@ -37,10 +38,10 @@ export class MovieListComponent implements OnInit, OnDestroy {
   imagesByMovieIds$: Observable<ImageDto[]>;
 
   // DODANE
-  @Select(state => state.repertoire.repertoireList)
-  repertoireList$: Observable<RepertoireDto[]>;
+  @Select(state => state.repertoire.repertoiresList)
+  repertoiresList$: Observable<RepertoireDto[]>;
 
-  constructor(public store: Store, public matDialog: MatDialog) {
+  constructor(public store: Store, public matDialog: MatDialog, public router: Router) {
   }
 
   ngOnInit() {

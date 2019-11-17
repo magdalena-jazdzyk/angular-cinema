@@ -21,7 +21,7 @@ export class MovieDetailsReservationComponent implements OnInit {
   @Select(state => state.seats.seats)
   seats$: Observable<SeatDto[]>;
 
-  repertoireId: number = null;
+  @Input()repertoireId: number = null;
 
   @Input()
   movieId: number;

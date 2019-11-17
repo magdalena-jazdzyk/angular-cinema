@@ -1,11 +1,11 @@
-import {Component, Inject, OnInit} from '@angular/core';
+import {Component, Inject, OnDestroy, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
 import {Select, Store} from '@ngxs/store';
 import {Observable} from 'rxjs';
 import {RepertoireDto} from '../../../../api/models/repertoire-dto';
 import {dispatch} from 'rxjs/internal-compatibility';
 import {LogoutAction} from '../user.state';
-import {LoadRepertoireByMovieIdAction} from '../state/repertoire.state';
+import {CleanRepertoireAction, LoadRepertoireByMovieIdAction} from '../state/repertoire.state';
 import {ClearSeatsActions, LoadSeatsActions, ReserveSeatActions} from '../state/seats.state';
 import {SeatDto} from '../../../../api/models/seat-dto';
 import {CreateReservationAction} from '../reservation.state';
@@ -15,7 +15,8 @@ import {CreateReservationAction} from '../reservation.state';
   templateUrl: './reservation.component.html',
   styleUrls: ['./reservation.component.css']
 })
-export class ReservationComponent implements OnInit {
+
+export class ReservationComponent implements OnInit, OnDestroy {
 
   @Select(state => state.repertoire.repertoireList)
   repertoireList$: Observable<RepertoireDto[]>;
@@ -69,4 +70,10 @@ export class ReservationComponent implements OnInit {
 
     //  this.store.dispatch(new CreateReservationAction({movieId: this.data.id, seat: {columnNumber: j, rowNumber: i}}));
   }
+
+  ngOnDestroy(): void {
+    // this.store.dispatch(new CleanRepertoireAction());
+    this.store.dispatch(new ClearSeatsActions());
+  }
 }
+

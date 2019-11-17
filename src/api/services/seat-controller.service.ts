@@ -18,6 +18,7 @@ import { SeatDto } from '../models/seat-dto';
 class SeatControllerService extends __BaseService {
   static readonly reserveSeatUsingPOSTPath = '/seats';
   static readonly findAllSeatsUsingGETPath = '/seats/{movieId}/{date}/{time}';
+  static readonly findAllSeatsByRepertoireIdUsingGETPath = '/seats/{repertoireId}';
 
   constructor(
     config: __Configuration,
@@ -110,6 +111,42 @@ class SeatControllerService extends __BaseService {
    */
   findAllSeatsUsingGET(params: SeatControllerService.FindAllSeatsUsingGETParams): __Observable<Array<SeatDto>> {
     return this.findAllSeatsUsingGETResponse(params).pipe(
+      __map(_r => _r.body as Array<SeatDto>)
+    );
+  }
+
+  /**
+   * @param repertoireId repertoireId
+   * @return OK
+   */
+  findAllSeatsByRepertoireIdUsingGETResponse(repertoireId: number): __Observable<__StrictHttpResponse<Array<SeatDto>>> {
+    let __params = this.newParams();
+    let __headers = new HttpHeaders();
+    let __body: any = null;
+
+    let req = new HttpRequest<any>(
+      'GET',
+      this.rootUrl + `/seats/${repertoireId}`,
+      __body,
+      {
+        headers: __headers,
+        params: __params,
+        responseType: 'json'
+      });
+
+    return this.http.request<any>(req).pipe(
+      __filter(_r => _r instanceof HttpResponse),
+      __map((_r) => {
+        return _r as __StrictHttpResponse<Array<SeatDto>>;
+      })
+    );
+  }
+  /**
+   * @param repertoireId repertoireId
+   * @return OK
+   */
+  findAllSeatsByRepertoireIdUsingGET(repertoireId: number): __Observable<Array<SeatDto>> {
+    return this.findAllSeatsByRepertoireIdUsingGETResponse(repertoireId).pipe(
       __map(_r => _r.body as Array<SeatDto>)
     );
   }

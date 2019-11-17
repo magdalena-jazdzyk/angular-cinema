@@ -43,6 +43,10 @@ const routes: Routes = [
   {
     path: 'movie/:id',
     component: MovieDetailsComponent
+  },
+  {
+    path: 'movie/:id/:repertoireId',
+    component: MovieDetailsComponent
   }
 ];
 
