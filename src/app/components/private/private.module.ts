@@ -28,6 +28,7 @@ import {AddMovieComponent} from './add-movie/add-movie.component';
 import {MovieState} from '../public/movie.state';
 import {ReservationState} from '../public/reservation.state';
 import {RepertoireState} from '../public/state/repertoire.state';
+import {TicketState} from './state/ticket.state';
 
 const routes: Routes = [
   {
@@ -63,7 +64,7 @@ const routes: Routes = [
     FormsModule,
     ReactiveFormsModule,
     FormlyMaterialModule,
-    NgxsModule.forRoot([MovieState, RepertoireState]),
+    NgxsModule.forRoot([MovieState, RepertoireState, TicketState]),
     MatFormFieldModule,
     MatInputModule,
     MatListModule,

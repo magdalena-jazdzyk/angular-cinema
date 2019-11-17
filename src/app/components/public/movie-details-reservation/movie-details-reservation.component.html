@@ -9,11 +9,22 @@
     </button>
   </div>
 </div>
+<!--<div *ngIf="repertoiresList$ | async as repertoiresDtos"> &lt;!&ndash;czy zmienna dostpena w state&ndash;&gt;-->
+<!--  <div *ngIf="repertoireId">-->
+<!--    <div *ngFor="let element of repertoiresDtos">-->
+<!--          <div *ngIf="element.movieId==movieId">-->
+<!--      <button class="button-repertoire" (click)="displaySeats(element)">-->
+<!--        {{element.time}}-->
+<!--      </button>-->
+<!--          </div>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--</div>-->
 <div>
-  <div class="choice-seat"  *ngIf="seats$ | async as seatDtos">
+  <div class="choice-seat" *ngIf="seats$ | async as seatDtos">
     <tr *ngFor="let i of [1,2,3,4,5]">
       <td *ngFor="let j of [1,2,3,4,5]">
-        <button class ="button-seat" [disabled]="checkSeat(seatDtos,i,j)==='zajete'"
+        <button class="button-seat" [disabled]="checkSeat(seatDtos,i,j)==='zajete'"
                 (click)="reserve(i,j)">{{i}} {{j}} {{checkSeat(seatDtos, i, j)}}</button>
       </td>
     </tr>

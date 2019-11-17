@@ -9,6 +9,7 @@ import {CleanRepertoireAction, LoadRepertoireByMovieIdAction} from '../state/rep
 import {ClearSeatsActions, LoadSeatsActions, ReserveSeatActions} from '../state/seats.state';
 import {SeatDto} from '../../../../api/models/seat-dto';
 import {CreateReservationAction} from '../reservation.state';
+import {DownloadTicketAction} from '../../private/state/ticket.state';
 
 @Component({
   selector: 'app-reservation',
@@ -66,14 +67,16 @@ export class ReservationComponent implements OnInit, OnDestroy {
 
   reserve(i: number, j: number) {
     this.store.dispatch(new ReserveSeatActions(this.data.id, i, j, this.repertoireId));
-
-
     //  this.store.dispatch(new CreateReservationAction({movieId: this.data.id, seat: {columnNumber: j, rowNumber: i}}));
   }
 
   ngOnDestroy(): void {
     // this.store.dispatch(new CleanRepertoireAction());
     this.store.dispatch(new ClearSeatsActions());
+  }
+
+  downloadTicket() {
+    this.store.dispatch(new DownloadTicketAction(this.repertoireId));
   }
 }
 

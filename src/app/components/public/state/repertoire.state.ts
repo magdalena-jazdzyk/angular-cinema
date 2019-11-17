@@ -93,7 +93,8 @@ export class RepertoireState {
   @Action(CleanRepertoireAction)
   cleanRepertoire(ctx: StateContext<RepertoireStateModel>, {}: CleanRepertoireAction) {
     ctx.patchState({
-      repertoireList: []
+      repertoireList: [],
+      // repertoiresList: []
     });
   }
 }

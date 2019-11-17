@@ -18,10 +18,13 @@ export class MovieDetailsReservationComponent implements OnInit {
   repertoireList$: Observable<RepertoireDto[]>;
   tab: string[] = [];
 
+  @Select(state => state.repertoire.repertoiresList)
+  repertoiresList$: Observable<RepertoireDto[]>;
+
   @Select(state => state.seats.seats)
   seats$: Observable<SeatDto[]>;
 
-  @Input()repertoireId: number = null;
+  @Input() repertoireId: number = null;
 
   @Input()
   movieId: number;
@@ -39,7 +42,10 @@ export class MovieDetailsReservationComponent implements OnInit {
     for (let i = 0; i < 7; i++) {
       this.tab.push(new Date(new Date().getTime() + 1000 * 60 * 60 * 24 * i).toLocaleDateString());
     }
-
+    console.log('repertoireId' + this.repertoireId);
+    if (this.repertoireId) {
+      this.loadRepertoire(new Date().toLocaleDateString());
+    }
 
   }
 
