@@ -10,6 +10,7 @@ import {ClearSeatsActions, LoadSeatsActions, ReserveSeatActions} from '../state/
 import {SeatDto} from '../../../../api/models/seat-dto';
 import {CreateReservationAction} from '../reservation.state';
 import {DownloadTicketAction} from '../../private/state/ticket.state';
+import {subscribe} from 'graphql';
 
 @Component({
   selector: 'app-reservation',
@@ -26,8 +27,11 @@ export class ReservationComponent implements OnInit, OnDestroy {
   @Select(state => state.seats.seats)
   seats$: Observable<SeatDto[]>;
 
-  repertoireId: number = null;
+  @Select(state => state.ticket.pdfFile)
+  pdfFile$: Observable<string>;
 
+  repertoireId: number = null;
+  subscription;
 
   constructor(public  matDialogRef: MatDialogRef<ReservationComponent>, @Inject(MAT_DIALOG_DATA) public data: any, public store: Store) {
   }
@@ -42,8 +46,26 @@ export class ReservationComponent implements OnInit, OnDestroy {
       this.tab.push(new Date(new Date().getTime() + 1000 * 60 * 60 * 24 * i).toLocaleDateString());
     }
 
+    this.subscription = this.pdfFile$.subscribe(p => {
+      console.log('download');
+      if (p) {
+        // const pdfFile = 'data:application/pdf;base64,' + p; // stwrazmy link
+        // const link = document.createElement('a');
+        // link.href = pdfFile;
+        // link.download = 'ticket.pdf';
+        // link.click();
+        console.log(p);
+        const linkSource = 'data:application/pdf;base64,' + p;
+        const downloadLink = document.createElement('a');
+        const fileName = 'sample.pdf';
 
+        downloadLink.href = linkSource;
+        downloadLink.download = fileName;
+        downloadLink.click();
+      }
+    });
   }
+
 
   loadRepertoire(element: string) {
     console.log(element);
@@ -76,6 +98,7 @@ export class ReservationComponent implements OnInit, OnDestroy {
   }
 
   downloadTicket() {
+    // window.location.href = 'http://localhost:8080/templates/download/47836';
     this.store.dispatch(new DownloadTicketAction(this.repertoireId));
   }
 }

@@ -1,27 +1,30 @@
-.video{
+.video {
   margin-top: 100px;
   padding: 5%
 }
 
-.image{
+.image {
   padding: 5% 5% 5% 5%;
 
 }
 
-.movie-details{
+.movie-details {
   margin-bottom: 180px;
   padding: 5% 5% 5% 5%;
 }
-.description{
+
+.description {
   float: left;
   position: marker;
   margin-top: 220px;
 }
-.description-movie{
+
+.description-movie {
   margin-top: 50px;
-  font-size: 18px ;
+  font-size: 18px;
 }
-.details{
+
+.details {
 
   display: block;
   float: left;
@@ -30,7 +33,7 @@
   position: relative;
 }
 
-.movie-title{
+.movie-title {
   /*margin-left: 15%;*/
   /*text-align: center;*/
   /*font-family: isonormregular;*/
@@ -38,6 +41,7 @@
   padding-right: 8%;
   text-align: center;
 }
+
 .ytp-cued-thumbnail-overlay-image {
   background-size: cover;
   -moz-background-size: cover;
@@ -49,27 +53,40 @@
   position: absolute;
 }
 
-.space{
+.space {
   margin-top: 29%;
 }
 
-.another-movie{
+.another-movie {
   clear: both;
 }
 
-.poster{
+.poster {
   margin-bottom: 50px;
   padding-right: 55px;
   padding-left: 55px;
   /*width: 120%;*/
-width: 390px;
+  width: 390px;
   padding-top: 25px;
 }
-.pp{
+
+.poster:hover {
+  margin-bottom: 50px;
+  padding-right: 55px;
+  padding-left: 55px;
+  width: 390px;
+  padding-top: 25px;
+  padding-top: 25px;
+  opacity: 0.65;
+  transition: box-shadow .15s ease-in-out;
+}
+
+.pp {
   margin-left: 10%;
 
 }
-.movie-header{
+
+.movie-header {
 
   text-align: center;
   margin-bottom: 100px;

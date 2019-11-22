@@ -19,8 +19,8 @@
           <div class="card-body">
             <form [formGroup]="registerForm" (ngSubmit)="register()">
               <formly-form [fields]="registerFields" [form]="registerForm">
-                <button [disabled]="!registerForm.valid" mat-raised-button color="primary" type="submit">
-                  Zaloguj
+                <button [disabled]="!registerForm.valid" mat-raised-button type="submit">
+                  Zarejestruj się
                 </button>
               </formly-form>
 
