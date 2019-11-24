@@ -25,6 +25,16 @@ export class RegisterComponent implements OnInit {
       }
     },
     {
+      key: 'email',
+      type: 'input',
+      templateOptions: {
+        label: 'Email',
+        placeholder: 'Wpisz email',
+        required: true,
+        minLength: 5
+      }
+    },
+    {
       key: 'password',
       type: 'input',
       templateOptions: {
@@ -52,7 +62,9 @@ export class RegisterComponent implements OnInit {
   }
 
   register() {
-    this.store.dispatch(new RegisterAction({ username: this.registerForm.value.userName, password: this.registerForm.value.password, passwordConfirmation: this.registerForm.value.confirmPassword }))
+    this.store.dispatch(new RegisterAction({ username: this.registerForm.value.userName,
+      email : this.registerForm.value.email,
+      password: this.registerForm.value.password, passwordConfirmation: this.registerForm.value.confirmPassword }))
   }
 
 }

@@ -7,6 +7,8 @@ import {MatDialog} from '@angular/material';
 import {LoadMovieAction, RemoveMovieAction} from '../../public/movie.state';
 import {RepertoireCreateComponent} from '../repertoire-create/repertoire-create.component';
 import {EditMovieComponent} from '../../public/edit-movie/edit-movie.component';
+import {UpdateUserAction} from '../../public/user.state';
+import {UpdateUserComponent} from '../update-user/update-user.component';
 
 @Component({
   selector: 'app-admin-panel',
@@ -15,13 +17,16 @@ import {EditMovieComponent} from '../../public/edit-movie/edit-movie.component';
 })
 export class AdminPanelComponent implements OnInit {
 
-  displayedColumns: string[] = ['title', 'edytuj', 'usuń', 'dodaj'];
+  displayedColumns: string[] = ['title', 'edytuj', /*'updateUser',*/ 'usuń', 'dodaj'];
 
   @Select(state => state.movie.moviePageDto)
   moviesPage$: Observable<PageMovieDto>;
 
   @Select(state => state.user.jwtToken)
   token$: Observable<string>;
+
+  @Select(state => state.user.currentUser)
+  user$: Observable<UserDto>;
 
   constructor(public store: Store, public matDialog: MatDialog) {
   }
@@ -52,5 +57,11 @@ export class AdminPanelComponent implements OnInit {
       width: '80%', data: element, height: '100%'
     });
   }
+
+  // updateUser(element: any) {
+  //   this.matDialog.open(UpdateUserComponent, {
+  //     width: '80%', data: element, height: '100%'
+  //   });
+  // }
 
 }

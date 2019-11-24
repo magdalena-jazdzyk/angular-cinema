@@ -29,6 +29,12 @@ import {MovieState} from '../public/movie.state';
 import {ReservationState} from '../public/reservation.state';
 import {RepertoireState} from '../public/state/repertoire.state';
 import {TicketState} from './state/ticket.state';
+import {UpdateUserComponent} from './update-user/update-user.component';
+import {UserState} from '../public/user.state';
+import {ReservationComponent} from '../public/reservation/reservation.component';
+import {EditMovieComponent} from '../public/edit-movie/edit-movie.component';
+import {UserListComponent} from './user-list/user-list.component';
+import {MovieListComponent} from '../public/movie-list/movie-list.component';
 
 const routes: Routes = [
   {
@@ -49,10 +55,16 @@ const routes: Routes = [
     canActivate: [AuthGuardService],
     data: {role: 'ROLE_ADMIN'}
   },
+  {
+    path: 'users',
+    component: UserListComponent,
+    canActivate: [AuthGuardService],
+    data: {role: 'ROLE_ADMIN'}
+  },
 ];
 
 @NgModule({
-  declarations: [AdminPanelComponent, RepertoireCreateComponent, AddMovieComponent, AddMovieComponent],
+  declarations: [AdminPanelComponent, RepertoireCreateComponent, AddMovieComponent, AddMovieComponent, UpdateUserComponent, UserListComponent],
   imports: [
     CommonModule,
     RouterModule.forRoot(routes),
@@ -64,7 +76,7 @@ const routes: Routes = [
     FormsModule,
     ReactiveFormsModule,
     FormlyMaterialModule,
-    NgxsModule.forRoot([MovieState, RepertoireState, TicketState]),
+    NgxsModule.forRoot([MovieState, RepertoireState, TicketState, UserState]),
     MatFormFieldModule,
     MatInputModule,
     MatListModule,
@@ -82,6 +94,9 @@ const routes: Routes = [
       multi: true
     },
     AuthGuardService
+  ],
+  entryComponents: [
+    UpdateUserComponent
   ]
 })
 export class PrivateModule {

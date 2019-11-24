@@ -41,22 +41,6 @@
         </td>
       </ng-container>
 
-      <!--      <ng-container matColumnDef="genre">-->
-      <!--        <th mat-header-cell *matHeaderCellDef>-->
-      <!--          genre-->
-      <!--        </th>-->
-      <!--        <td mat-cell *matCellDef="let element">-->
-      <!--          {{element.genre}}-->
-      <!--        </td>-->
-      <!--      </ng-container>-->
-      <!--      <ng-container matColumnDef="price">-->
-      <!--        <th mat-header-cell *matHeaderCellDef>-->
-      <!--          price-->
-      <!--        </th>-->
-      <!--        <td mat-cell *matCellDef="let element">-->
-      <!--          {{element.price}}-->
-      <!--        </td>-->
-      <!--      </ng-container>-->
       <ng-container *ngIf="token$ | async" matColumnDef="reservation">
         <th class="reservation-size" mat-header-cell *matHeaderCellDef>
           reservation
@@ -68,39 +52,39 @@
         </td>
       </ng-container>
 
-      <ng-container *ngIf="currentUser$ | async" matColumnDef="remove">
-        <th mat-header-cell *matHeaderCellDef>
-          remove
-        </th>
-        <td mat-cell *matCellDef="let element">
-          <button (click)="remove(element)">
-            usun
-          </button>
-        </td>
-      </ng-container>
+<!--      <ng-container *ngIf="currentUser$ | async" matColumnDef="remove">-->
+<!--        <th mat-header-cell *matHeaderCellDef>-->
+<!--          remove-->
+<!--        </th>-->
+<!--        <td mat-cell *matCellDef="let element">-->
+<!--          <button (click)="remove(element)">-->
+<!--            usun-->
+<!--          </button>-->
+<!--        </td>-->
+<!--      </ng-container>-->
 
-      <ng-container *ngIf="currentUser$ | async" matColumnDef="dodaj">
-        <th mat-header-cell *matHeaderCellDef>
-          dodaj
-        </th>
-        <td mat-cell *matCellDef="let element">
-          <a routerLink="/repertoire/{{element.id}}">
-            dodaj
-          </a>
-        </td>
-      </ng-container>
+<!--      <ng-container *ngIf="currentUser$ | async" matColumnDef="dodaj">-->
+<!--        <th mat-header-cell *matHeaderCellDef>-->
+<!--          dodaj-->
+<!--        </th>-->
+<!--        <td mat-cell *matCellDef="let element">-->
+<!--          <a routerLink="/repertoire/{{element.id}}">-->
+<!--            dodaj-->
+<!--          </a>-->
+<!--        </td>-->
+<!--      </ng-container>-->
 
 
-      <ng-container *ngIf="currentUser$ | async" matColumnDef="edytuj">
-        <th mat-header-cell *matHeaderCellDef>
-          edytuj
-        </th>
-        <td mat-cell *matCellDef="let element">
-          <button (click)="edit(element)">
-            edytuj
-          </button>
-        </td>
-      </ng-container>
+<!--      <ng-container *ngIf="currentUser$ | async" matColumnDef="edytuj">-->
+<!--        <th mat-header-cell *matHeaderCellDef>-->
+<!--          edytuj-->
+<!--        </th>-->
+<!--        <td mat-cell *matCellDef="let element">-->
+<!--          <button (click)="edit(element)">-->
+<!--            edytuj-->
+<!--          </button>-->
+<!--        </td>-->
+<!--      </ng-container>-->
 
       <ng-container matColumnDef="films">
         <!-- matColumnDef - mowi jaka kolumna ma byc wyswetlana powizazna z tablcia strigow w kompoencie-->
@@ -128,9 +112,9 @@
 
 <section class="col-10 space">
   <h1 class="space-title">Teraz gramy</h1>
-  <div *ngIf="imagesByMovieIds$ | async as imageDtos">
+  <div *ngIf="imagePageAction$ | async as imageDtos">
     <div class="row ">
-      <div *ngFor="let element of imageDtos">
+      <div *ngFor="let element of imageDtos.content">
         <a [routerLink]="['/movie',element.movieDto.id]">
           <img class="poster" src="{{element.poster}}">
         </a>

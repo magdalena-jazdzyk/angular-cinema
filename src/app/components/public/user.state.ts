@@ -4,7 +4,8 @@ import {HttpClient} from '@angular/common/http';
 import {tap} from 'rxjs/operators';
 // import { User } from 'src/api/models';
 import {Router} from '@angular/router';
-import {UserDto} from 'src/api/models';
+import {MovieDto, PageMovieDto, PageUserDto, UserDto} from 'src/api/models';
+import {EditMovieAction, LoadMovieAction, MovieStateModel} from './movie.state';
 
 const name = '[User]';
 
@@ -12,6 +13,13 @@ export class LoginAction {
   static readonly type = '${name} Login';
 
   constructor(public userName: string, public password: string) {
+  }
+}
+
+export class UpdateUserAction {
+  static readonly type = '[User] updateUser';
+
+  constructor(public id: number, public userDto: UserDto) {
   }
 }
 
@@ -27,6 +35,15 @@ export class LogoutAction {
 
   constructor() {
   }
+}
+
+export class LoadUsersAction {
+  static readonly type = '[User] loadUsers';
+
+  constructor(public page: number, public size: number) {
+
+  }
+
 }
 
 export class GetCurrentUserAction {
@@ -54,6 +71,10 @@ export class UserStateModel {
   public jwtToken: string;
   public currentUser: UserDto;
   public users: Array<any>;
+
+  public userPageDto: PageUserDto;
+  public page: number;
+  public size: number;
 }
 
 @State<UserStateModel>({
@@ -61,9 +82,13 @@ export class UserStateModel {
   defaults: {
     jwtToken: null,
     currentUser: {},
-    users: []
+    users: [],
+    userPageDto: {},
+    page: 0,
+    size: 5
   }
 })
+
 export class UserState {
   constructor(public httpClient: HttpClient, public userService: UserControllerService, public router: Router, public securityControllerService: SecurityControllerService) {
 
@@ -83,7 +108,7 @@ export class UserState {
   login(ctx: StateContext<UserStateModel>, {userName, password}: LoginAction) {
     return this.httpClient.post<{ accessToken, refreshToken }>('http://localhost:8080/login', {
       username: userName,
-      password: password
+      password
     }).pipe(
       tap(({accessToken, refreshToken}) => {
         ctx.patchState({
@@ -96,7 +121,7 @@ export class UserState {
   }
 
   @Action(GetCurrentUserAction)
-  getCurrentUser(ctx: StateContext<UserStateModel>, GetCurrentUserAction) {
+  getCurrentUser(ctx: StateContext<UserStateModel>, {}: GetCurrentUserAction) {
     return this.userService.getUserDataUsingGET().pipe(tap(value => {
         ctx.patchState({
           currentUser: value
@@ -119,8 +144,30 @@ export class UserState {
   }
 
   @Action(LogoutAction)
-  logout(ctx: StateContext<UserStateModel>, LogoutAction) {
+  logout(ctx: StateContext<UserStateModel>, {}: LogoutAction) {
     ctx.patchState({jwtToken: null, currentUser: {}});
+  }
+
+  @Action(UpdateUserAction)
+  editUser(ctx: StateContext<UserStateModel>, {id, userDto}: UpdateUserAction) {
+    return this.userService.updateUserUsingPUT({id, userDto}).pipe(
+      tap(value => {
+        ctx.dispatch(new LoadUsersAction(ctx.getState().page, ctx.getState().size)); // przelaowanie strony
+      })
+    );
+  }
+
+  @Action(LoadUsersAction)
+  loadUser(ctx: StateContext<UserStateModel>, {page, size}: LoadUsersAction) {
+    return this.userService.findAllUsersUsingGET({page, size}).pipe(
+      tap(value => {
+        ctx.patchState({
+          userPageDto: value,
+          page,
+          size
+        });
+      })
+    );
   }
 
 }

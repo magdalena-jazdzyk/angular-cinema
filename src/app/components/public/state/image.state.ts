@@ -1,5 +1,5 @@
 import {State, Action, StateContext} from '@ngxs/store';
-import {ImageDto} from '../../../../api/models';
+import {ImageDto, PageImageDto} from '../../../../api/models';
 import {ImageControllerService} from '../../../../api/services';
 import {tap} from 'rxjs/operators';
 
@@ -19,9 +19,18 @@ export class LoadImageInMovieIdsAction {
   }
 }
 
+export class LoadImagePageAction {
+  static readonly type = '[image] loadImagePageAction';
+
+  constructor(public page: number, public size: number) {
+
+  }
+}
+
 export class ImageStateModel {
   public images: ImageDto[];
   public imagesByMovieIds: ImageDto[];
+  public imagePageAction: PageImageDto;
 }
 
 @State<ImageStateModel>({
@@ -29,6 +38,7 @@ export class ImageStateModel {
   defaults: {
     images: [],
     imagesByMovieIds: [],
+    imagePageAction: null
   }
 })
 
@@ -50,7 +60,7 @@ export class ImageState {
   }
 
   @Action(LoadImageInMovieIdsAction)
-  LoadImageInMovieIdsAction(ctx: StateContext<ImageStateModel>, {movieIds}: LoadImageInMovieIdsAction) {
+  loadImageInMovieIdsAction(ctx: StateContext<ImageStateModel>, {movieIds}: LoadImageInMovieIdsAction) {
     console.log('MovieIds' + movieIds);
     return this.imageControllerService.findImagesByMovieIdInUsingGET(movieIds).pipe(
       tap(value => {
@@ -60,4 +70,17 @@ export class ImageState {
       })
     );
   }
+
+  @Action(LoadImagePageAction)
+  loadImagePageAction(ctx: StateContext<ImageStateModel>, {page, size}: LoadImagePageAction) {
+    return this.imageControllerService.findAllUsingGET({size, page}).pipe(
+      tap(value => {
+        ctx.patchState({
+          imagePageAction: value
+        });
+      })
+    );
+  }
+
+
 }

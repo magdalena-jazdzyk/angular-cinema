@@ -10,6 +10,7 @@ export { PageImageDto } from './models/page-image-dto';
 export { PageMovieDto } from './models/page-movie-dto';
 export { PageReviewDto } from './models/page-review-dto';
 export { PageTemplateDto } from './models/page-template-dto';
+export { PageUserDto } from './models/page-user-dto';
 export { PageVideoDto } from './models/page-video-dto';
 export { RefreshTokenData } from './models/refresh-token-data';
 export { RepertoireDto } from './models/repertoire-dto';

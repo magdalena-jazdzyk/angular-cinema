@@ -8,6 +8,7 @@ import { Observable as __Observable } from 'rxjs';
 import { map as __map, filter as __filter } from 'rxjs/operators';
 
 import { UserDto } from '../models/user-dto';
+import { PageUserDto } from '../models/page-user-dto';
 
 /**
  * User Controller
@@ -18,6 +19,10 @@ import { UserDto } from '../models/user-dto';
 class UserControllerService extends __BaseService {
   static readonly getUserDataUsingGETPath = '/users';
   static readonly addUsingPOSTPath = '/users';
+  static readonly findAllUsersUsingGETPath = '/users/all/{page}/{size}';
+  static readonly updateUserUsingPUTPath = '/users/{id}';
+  static readonly deleteTemplateUsingDELETE1Path = '/users/{id}';
+  static readonly updateCurrentUserUsingPATCHPath = '/users/{username}{email}';
 
   constructor(
     config: __Configuration,
@@ -205,6 +210,177 @@ class UserControllerService extends __BaseService {
       __map(_r => _r.body as UserDto)
     );
   }
+
+  /**
+   * @param params The `UserControllerService.FindAllUsersUsingGETParams` containing the following parameters:
+   *
+   * - `size`: size
+   *
+   * - `page`: page
+   *
+   * @return OK
+   */
+  findAllUsersUsingGETResponse(params: UserControllerService.FindAllUsersUsingGETParams): __Observable<__StrictHttpResponse<PageUserDto>> {
+    let __params = this.newParams();
+    let __headers = new HttpHeaders();
+    let __body: any = null;
+
+
+    let req = new HttpRequest<any>(
+      'GET',
+      this.rootUrl + `/users/all/${params.page}/${params.size}`,
+      __body,
+      {
+        headers: __headers,
+        params: __params,
+        responseType: 'json'
+      });
+
+    return this.http.request<any>(req).pipe(
+      __filter(_r => _r instanceof HttpResponse),
+      __map((_r) => {
+        return _r as __StrictHttpResponse<PageUserDto>;
+      })
+    );
+  }
+  /**
+   * @param params The `UserControllerService.FindAllUsersUsingGETParams` containing the following parameters:
+   *
+   * - `size`: size
+   *
+   * - `page`: page
+   *
+   * @return OK
+   */
+  findAllUsersUsingGET(params: UserControllerService.FindAllUsersUsingGETParams): __Observable<PageUserDto> {
+    return this.findAllUsersUsingGETResponse(params).pipe(
+      __map(_r => _r.body as PageUserDto)
+    );
+  }
+
+  /**
+   * @param params The `UserControllerService.UpdateUserUsingPUTParams` containing the following parameters:
+   *
+   * - `userDto`: userDto
+   *
+   * - `id`: id
+   *
+   * @return OK
+   */
+  updateUserUsingPUTResponse(params: UserControllerService.UpdateUserUsingPUTParams): __Observable<__StrictHttpResponse<UserDto>> {
+    let __params = this.newParams();
+    let __headers = new HttpHeaders();
+    let __body: any = null;
+    __body = params.userDto;
+
+    let req = new HttpRequest<any>(
+      'PUT',
+      this.rootUrl + `/users/${params.id}`,
+      __body,
+      {
+        headers: __headers,
+        params: __params,
+        responseType: 'json'
+      });
+
+    return this.http.request<any>(req).pipe(
+      __filter(_r => _r instanceof HttpResponse),
+      __map((_r) => {
+        return _r as __StrictHttpResponse<UserDto>;
+      })
+    );
+  }
+  /**
+   * @param params The `UserControllerService.UpdateUserUsingPUTParams` containing the following parameters:
+   *
+   * - `userDto`: userDto
+   *
+   * - `id`: id
+   *
+   * @return OK
+   */
+  updateUserUsingPUT(params: UserControllerService.UpdateUserUsingPUTParams): __Observable<UserDto> {
+    return this.updateUserUsingPUTResponse(params).pipe(
+      __map(_r => _r.body as UserDto)
+    );
+  }
+
+  /**
+   * @param id id
+   */
+  deleteTemplateUsingDELETE1Response(id: number): __Observable<__StrictHttpResponse<null>> {
+    let __params = this.newParams();
+    let __headers = new HttpHeaders();
+    let __body: any = null;
+
+    let req = new HttpRequest<any>(
+      'DELETE',
+      this.rootUrl + `/users/${id}`,
+      __body,
+      {
+        headers: __headers,
+        params: __params,
+        responseType: 'json'
+      });
+
+    return this.http.request<any>(req).pipe(
+      __filter(_r => _r instanceof HttpResponse),
+      __map((_r) => {
+        return _r as __StrictHttpResponse<null>;
+      })
+    );
+  }
+  /**
+   * @param id id
+   */
+  deleteTemplateUsingDELETE1(id: number): __Observable<null> {
+    return this.deleteTemplateUsingDELETE1Response(id).pipe(
+      __map(_r => _r.body as null)
+    );
+  }
+
+  /**
+   * @param params The `UserControllerService.UpdateCurrentUserUsingPATCHParams` containing the following parameters:
+   *
+   * - `username`: username
+   *
+   * - `email`: email
+   */
+  updateCurrentUserUsingPATCHResponse(params: UserControllerService.UpdateCurrentUserUsingPATCHParams): __Observable<__StrictHttpResponse<null>> {
+    let __params = this.newParams();
+    let __headers = new HttpHeaders();
+    let __body: any = null;
+
+
+    let req = new HttpRequest<any>(
+      'PATCH',
+      this.rootUrl + `/users/${params.username}${params.email}`,
+      __body,
+      {
+        headers: __headers,
+        params: __params,
+        responseType: 'json'
+      });
+
+    return this.http.request<any>(req).pipe(
+      __filter(_r => _r instanceof HttpResponse),
+      __map((_r) => {
+        return _r as __StrictHttpResponse<null>;
+      })
+    );
+  }
+  /**
+   * @param params The `UserControllerService.UpdateCurrentUserUsingPATCHParams` containing the following parameters:
+   *
+   * - `username`: username
+   *
+   * - `email`: email
+   */
+  updateCurrentUserUsingPATCH(params: UserControllerService.UpdateCurrentUserUsingPATCHParams): __Observable<null> {
+    return this.updateCurrentUserUsingPATCHResponse(params).pipe(
+      __map(_r => _r.body as null)
+    );
+  }
 }
 
 module UserControllerService {
@@ -235,6 +411,54 @@ module UserControllerService {
     id?: number;
     email?: string;
     age?: number;
+  }
+
+  /**
+   * Parameters for findAllUsersUsingGET
+   */
+  export interface FindAllUsersUsingGETParams {
+
+    /**
+     * size
+     */
+    size: number;
+
+    /**
+     * page
+     */
+    page: number;
+  }
+
+  /**
+   * Parameters for updateUserUsingPUT
+   */
+  export interface UpdateUserUsingPUTParams {
+
+    /**
+     * userDto
+     */
+    userDto: UserDto;
+
+    /**
+     * id
+     */
+    id: number;
+  }
+
+  /**
+   * Parameters for updateCurrentUserUsingPATCH
+   */
+  export interface UpdateCurrentUserUsingPATCHParams {
+
+    /**
+     * username
+     */
+    username: string;
+
+    /**
+     * email
+     */
+    email: string;
   }
 }
 

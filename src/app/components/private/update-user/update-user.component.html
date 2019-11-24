@@ -1,0 +1,23 @@
+<section id="register">
+  <div class="container">
+    <div class="row">
+      <div class=" col-8 mx-auto">
+        <div class="card">
+          <div class="card-header">
+            <h4>Edit User </h4>
+          </div>
+          <div class="card-body">
+            <form [formGroup]="updateUserForm" (ngSubmit)="updateUser()">
+              <formly-form [fields]="updateFields" [form]="updateUserForm">
+                <button [disabled]="!updateUserForm.valid" mat-raised-button type="submit">
+                  Edit
+                </button>
+              </formly-form>
+
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

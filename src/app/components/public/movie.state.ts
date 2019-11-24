@@ -124,7 +124,7 @@ export class MovieState {
   editMovie(ctx: StateContext<MovieStateModel>, {id, movieDto}: EditMovieAction) {
     return this.movieService.updateUsingPUT({id, movieDto}).pipe(
       tap(value => {
-        console.log(value);
+        ctx.dispatch(new LoadMovieAction(ctx.getState().page, ctx.getState().size)); // przelaowanie strony
       })
     );
   }

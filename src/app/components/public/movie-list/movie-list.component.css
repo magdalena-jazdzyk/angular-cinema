@@ -163,6 +163,12 @@ margin-right: 200px}
 .video{
 padding-left: 2px;
 }
-.video-title{
+/*.video-title{*/
+/*  width: auto;*/
+/*  margin-right: 300px;*/
+/*  padding: 0 20% 0 0%*/
+/*}*/
+
+.mat-header-cell {
   width: auto;
 }
