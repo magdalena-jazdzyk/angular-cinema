@@ -1,0 +1,23 @@
+<section id="register">
+  <div class="container">
+    <div class="row">
+      <div class=" col-8 mx-auto">
+        <div class="card">
+          <div class="card-header">
+            <h4>Zarejestruj się </h4>
+          </div>
+          <div class="card-body">
+            <form [formGroup]="registerForm" (ngSubmit)="register()">
+              <formly-form [fields]="registerFields" [form]="registerForm">
+                <button [disabled]="!registerForm.valid" mat-raised-button type="submit">
+                  Zarejestruj się
+                </button>
+              </formly-form>
+
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

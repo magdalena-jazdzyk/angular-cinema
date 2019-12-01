@@ -35,6 +35,8 @@ import {ReservationComponent} from '../public/reservation/reservation.component'
 import {EditMovieComponent} from '../public/edit-movie/edit-movie.component';
 import {UserListComponent} from './user-list/user-list.component';
 import {MovieListComponent} from '../public/movie-list/movie-list.component';
+import {RegisterComponent} from '../public/user/register/register.component';
+import {AddUserComponent} from './add-user/add-user.component';
 
 const routes: Routes = [
   {
@@ -61,10 +63,16 @@ const routes: Routes = [
     canActivate: [AuthGuardService],
     data: {role: 'ROLE_ADMIN'}
   },
+  {
+    path: 'add/user',
+    component: AddUserComponent,
+    canActivate: [AuthGuardService],
+    data: {role: 'ROLE_ADMIN'}
+  },
 ];
 
 @NgModule({
-  declarations: [AdminPanelComponent, RepertoireCreateComponent, AddMovieComponent, AddMovieComponent, UpdateUserComponent, UserListComponent],
+  declarations: [AdminPanelComponent, RepertoireCreateComponent, AddMovieComponent, AddMovieComponent, UpdateUserComponent, UserListComponent, AddUserComponent],
   imports: [
     CommonModule,
     RouterModule.forRoot(routes),
@@ -96,7 +104,8 @@ const routes: Routes = [
     AuthGuardService
   ],
   entryComponents: [
-    UpdateUserComponent
+    UpdateUserComponent,
+    AddMovieComponent
   ]
 })
 export class PrivateModule {

@@ -6,6 +6,7 @@ import {SeatDto} from '../../../../api/models/seat-dto';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
 import {LoadRepertoireByMovieIdAction} from '../state/repertoire.state';
 import {ClearSeatsActions, LoadSeatsActions, ReserveSeatActions} from '../state/seats.state';
+import {DownloadTicketAction} from '../../private/state/ticket.state';
 
 @Component({
   selector: 'app-movie-details-reservation',
@@ -17,6 +18,9 @@ export class MovieDetailsReservationComponent implements OnInit {
   @Select(state => state.repertoire.repertoireList)
   repertoireList$: Observable<RepertoireDto[]>;
   tab: string[] = [];
+
+  @Select(state => state.user.jwtToken)
+  jwt$: Observable<string>;
 
   @Select(state => state.repertoire.repertoiresList)
   repertoiresList$: Observable<RepertoireDto[]>;
@@ -69,5 +73,10 @@ export class MovieDetailsReservationComponent implements OnInit {
 
   reserve(i: number, j: number) {
     this.store.dispatch(new ReserveSeatActions(this.movieId, i, j, this.repertoireId));
+  }
+
+  downloadTicket() {
+    // window.location.href = 'http://localhost:8080/templates/download/47836';
+    this.store.dispatch(new DownloadTicketAction(this.repertoireId));
   }
 }

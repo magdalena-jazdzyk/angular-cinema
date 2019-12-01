@@ -15,10 +15,10 @@
         <h1>{{movieDto.title}}</h1>
         <div class="details">
           <span>{{movieDto.releaseDate}}</span>
-<!--          <span> {{movieDto.duration}} minut</span>-->
-        <div *ngFor="let element of movieDto.genres">
-        <span>{{element}}</span>
-      </div>
+          <br>
+          <div class = "float-left" *ngFor="let element of movieDto.genres">
+            <span>{{element}}&nbsp;</span>
+          </div>
         </div>
         <p class="description-movie">
           {{movieDto.description}}

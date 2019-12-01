@@ -26,8 +26,8 @@
 
 .details {
 
-  display: block;
-  float: left;
+  /*display: block;*/
+  /*float: left;*/
   margin-right: 10px;
   padding-left: 15px;
   position: relative;
@@ -99,3 +99,9 @@
   margin-top: 15px;
   margin-bottom: 5px;
 }
+
+/*.releaseDate{*/
+/*  float: left;*/
+/*}*/
+/*.genre{*/
+/*display: block}*/

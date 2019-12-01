@@ -18,7 +18,7 @@ import { PageTemplateDto } from '../models/page-template-dto';
 })
 class TemplateControllerService extends __BaseService {
   static readonly addTemplateUsingPOSTPath = '/templates';
-  static readonly downloadFileUsingPOSTPath = '/templates/download/{repertoireId}';
+  static readonly downloadFile1UsingGETPath = '/templates/download/{repertoireId}';
   static readonly findOneTemplateByIdUsingGETPath = '/templates/{id}';
   static readonly updateTemplateUsingPUTPath = '/templates/{id}';
   static readonly deleteTemplateUsingDELETEPath = '/templates/{id}';
@@ -71,13 +71,13 @@ class TemplateControllerService extends __BaseService {
    * @param repertoireId repertoireId
    * @return OK
    */
-  downloadFileUsingPOSTResponse(repertoireId: number): __Observable<__StrictHttpResponse<string>> {
+  downloadFile1UsingGETResponse(repertoireId: number): __Observable<__StrictHttpResponse<string>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
 
     let req = new HttpRequest<any>(
-      'POST',
+      'GET',
       this.rootUrl + `/templates/download/${repertoireId}`,
       __body,
       {
@@ -97,8 +97,8 @@ class TemplateControllerService extends __BaseService {
    * @param repertoireId repertoireId
    * @return OK
    */
-  downloadFileUsingPOST(repertoireId: number): __Observable<string> {
-    return this.downloadFileUsingPOSTResponse(repertoireId).pipe(
+  downloadFile1UsingGET(repertoireId: number): __Observable<string> {
+    return this.downloadFile1UsingGETResponse(repertoireId).pipe(
       __map(_r => _r.body as string)
     );
   }

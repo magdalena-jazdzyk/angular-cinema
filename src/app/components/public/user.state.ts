@@ -5,7 +5,7 @@ import {tap} from 'rxjs/operators';
 // import { User } from 'src/api/models';
 import {Router} from '@angular/router';
 import {MovieDto, PageMovieDto, PageUserDto, UserDto} from 'src/api/models';
-import {EditMovieAction, LoadMovieAction, MovieStateModel} from './movie.state';
+import {EditMovieAction, LoadMovieAction, MovieStateModel, RemoveMovieAction} from './movie.state';
 
 const name = '[User]';
 
@@ -23,12 +23,27 @@ export class UpdateUserAction {
   }
 }
 
+export class RemoveUserAction {
+  static readonly type = '[User] removeUserAction';
+
+  constructor(public userId: number) {
+  }
+}
+
 export class RegisterAction {
   static readonly type = '${name} Register';
 
   constructor(public user: UserDto) {
   }
 }
+
+export class AddUserAction {
+  static readonly type = '${name} addUser';
+
+  constructor(public user: UserDto) {
+  }
+}
+
 
 export class LogoutAction {
   static readonly type = '${name} Logout';
@@ -143,6 +158,15 @@ export class UserState {
     );
   }
 
+  @Action(AddUserAction)
+  addUser(ctx: StateContext<UserStateModel>, user: AddUserAction) {
+    return this.securityControllerService.registerUsingPOST(user.user).pipe(
+      tap(value => {
+        this.router.navigate(['/users']);
+      })
+    );
+  }
+
   @Action(LogoutAction)
   logout(ctx: StateContext<UserStateModel>, {}: LogoutAction) {
     ctx.patchState({jwtToken: null, currentUser: {}});
@@ -153,6 +177,15 @@ export class UserState {
     return this.userService.updateUserUsingPUT({id, userDto}).pipe(
       tap(value => {
         ctx.dispatch(new LoadUsersAction(ctx.getState().page, ctx.getState().size)); // przelaowanie strony
+      })
+    );
+  }
+
+  @Action(RemoveUserAction)
+  removeUserAction(ctx: StateContext<UserStateModel>, {userId}: RemoveUserAction) {
+    return this.userService.deleteUserUsingDELETE(userId).pipe(
+      tap(value => {
+        ctx.dispatch(new LoadUsersAction(ctx.getState().page, ctx.getState().size));
       })
     );
   }

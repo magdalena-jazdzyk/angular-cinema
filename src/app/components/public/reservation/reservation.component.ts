@@ -99,7 +99,6 @@ export class ReservationComponent implements OnInit, OnDestroy {
   downloadTicket() {
     // window.location.href = 'http://localhost:8080/templates/download/47836';
    this.store.dispatch(new DownloadTicketAction(this.repertoireId));
-
   }
 }
 

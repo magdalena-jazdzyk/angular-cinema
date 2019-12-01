@@ -26,6 +26,7 @@ import {FormlyMatDatepickerModule} from '@ngx-formly/material/datepicker';
 import {NgxMaterialTimepickerModule} from 'ngx-material-timepicker';
 import { EditMovieComponent } from './edit-movie/edit-movie.component';
 import { MovieDetailsReservationComponent } from './movie-details-reservation/movie-details-reservation.component';
+import { UserInformationComponent } from './user-information/user-information.component';
 
 const routes: Routes = [
   {
@@ -51,7 +52,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  declarations: [LoginComponent, RegisterComponent, MovieListComponent, ReservationComponent, MovieDetailsComponent, EditMovieComponent, MovieDetailsReservationComponent],
+  declarations: [LoginComponent, RegisterComponent, MovieListComponent, ReservationComponent, MovieDetailsComponent, EditMovieComponent, MovieDetailsReservationComponent, UserInformationComponent],
   imports: [
     CommonModule,
     RouterModule.forRoot(routes),
@@ -73,7 +74,8 @@ const routes: Routes = [
   ],
   entryComponents: [
     ReservationComponent, // naszkomponent bedzie wywołany z poziomu kodu annie z linku
-    EditMovieComponent
+    EditMovieComponent,
+    UserInformationComponent
   ]
 })
 export class PublicModule {

@@ -1,7 +1,11 @@
 import {State, Action, StateContext} from '@ngxs/store';
-import {tap} from 'rxjs/operators';
+import {catchError, tap} from 'rxjs/operators';
 import {SeatControllerService} from '../../../../api/services';
 import {SeatDto} from '../../../../api/models/seat-dto';
+import {of} from 'rxjs';
+import {ReservationComponent} from '../reservation/reservation.component';
+import {MatDialog, MatDialogRef} from '@angular/material';
+import {UserInformationComponent} from '../user-information/user-information.component';
 
 export class LoadSeatsActions {
   static readonly type = '[seats] loadpage';
@@ -47,7 +51,7 @@ export class SeatsStateModel {
 })
 export class SeatsState {
 
-  constructor(public seatControllerService: SeatControllerService) {
+  constructor(public seatControllerService: SeatControllerService, public  matDialog: MatDialog) {
   }
 
 
@@ -91,7 +95,13 @@ export class SeatsState {
             seats: seats
           });
         }
-      })
+      }),
+      catchError(((err, caught) => {
+        this.matDialog.open(UserInformationComponent, {
+          width: '80%', height: '100%'
+        });
+        return of();
+      }))
     );
 
   }

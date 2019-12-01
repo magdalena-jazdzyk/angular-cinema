@@ -21,7 +21,7 @@ class UserControllerService extends __BaseService {
   static readonly addUsingPOSTPath = '/users';
   static readonly findAllUsersUsingGETPath = '/users/all/{page}/{size}';
   static readonly updateUserUsingPUTPath = '/users/{id}';
-  static readonly deleteTemplateUsingDELETE1Path = '/users/{id}';
+  static readonly deleteUserUsingDELETEPath = '/users/{id}';
   static readonly updateCurrentUserUsingPATCHPath = '/users/{username}{email}';
 
   constructor(
@@ -308,7 +308,7 @@ class UserControllerService extends __BaseService {
   /**
    * @param id id
    */
-  deleteTemplateUsingDELETE1Response(id: number): __Observable<__StrictHttpResponse<null>> {
+  deleteUserUsingDELETEResponse(id: number): __Observable<__StrictHttpResponse<null>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
@@ -333,8 +333,8 @@ class UserControllerService extends __BaseService {
   /**
    * @param id id
    */
-  deleteTemplateUsingDELETE1(id: number): __Observable<null> {
-    return this.deleteTemplateUsingDELETE1Response(id).pipe(
+  deleteUserUsingDELETE(id: number): __Observable<null> {
+    return this.deleteUserUsingDELETEResponse(id).pipe(
       __map(_r => _r.body as null)
     );
   }

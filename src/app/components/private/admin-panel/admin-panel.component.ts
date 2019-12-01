@@ -9,6 +9,7 @@ import {RepertoireCreateComponent} from '../repertoire-create/repertoire-create.
 import {EditMovieComponent} from '../../public/edit-movie/edit-movie.component';
 import {UpdateUserAction} from '../../public/user.state';
 import {UpdateUserComponent} from '../update-user/update-user.component';
+import {AddMovieComponent} from '../add-movie/add-movie.component';
 
 @Component({
   selector: 'app-admin-panel',
@@ -55,6 +56,12 @@ export class AdminPanelComponent implements OnInit {
   edit(element: any) {
     this.matDialog.open(EditMovieComponent, {
       width: '80%', data: element, height: '100%'
+    });
+  }
+
+  addMovie() {
+    this.matDialog.open(AddMovieComponent, {
+      width: '80%', height: '100%'
     });
   }
 
