@@ -69,7 +69,7 @@ export class MovieListComponent implements OnInit, OnDestroy {
     //     }
     //   }
     // }).unsubscribe();
-    this.store.dispatch(new FindTheFirstPageAction());
+    //this.store.dispatch(new FindTheFirstPageAction());
 
 
     this.subscription = this.moviesPage$.subscribe(p => {

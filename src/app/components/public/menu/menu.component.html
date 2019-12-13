@@ -26,11 +26,14 @@
         <li class="nav-item">
           <a routerLink="/movies" class="navbar-brand navbar-hover">Movies</a>
         </li>
+        <li class="nav-item">
+          <a routerLink="/price" class="navbar-brand navbar-hover">Cennik</a>
+        </li>
 <!--        <li class="nav-item">-->
 <!--          <a routerLink="/add/movie" class="navbar-brand">Dodaj film</a>-->
 <!--        </li>-->
         <li class="nav-item" *ngIf="jwt$ | async">
-          <a (click)="logout()" class="nav-link" >Wyloguj</a>
+          <a (click)="logout()"  routerLink= "" class="navbar-brand navbar-hover" >Wyloguj</a>
         </li>
       </ul>
     </div>

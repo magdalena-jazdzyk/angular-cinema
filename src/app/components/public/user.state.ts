@@ -1,11 +1,12 @@
 import {State, Action, StateContext, Selector} from '@ngxs/store';
 import {UserControllerService, SecurityControllerService} from 'src/api/services';
 import {HttpClient} from '@angular/common/http';
-import {tap} from 'rxjs/operators';
+import {catchError, tap} from 'rxjs/operators';
 // import { User } from 'src/api/models';
 import {Router} from '@angular/router';
 import {MovieDto, PageMovieDto, PageUserDto, UserDto} from 'src/api/models';
 import {EditMovieAction, LoadMovieAction, MovieStateModel, RemoveMovieAction} from './movie.state';
+import {of} from 'rxjs';
 
 const name = '[User]';
 
@@ -90,6 +91,7 @@ export class UserStateModel {
   public userPageDto: PageUserDto;
   public page: number;
   public size: number;
+  public errorLogin: boolean;
 }
 
 @State<UserStateModel>({
@@ -100,7 +102,8 @@ export class UserStateModel {
     users: [],
     userPageDto: {},
     page: 0,
-    size: 5
+    size: 5,
+    errorLogin: false
   }
 })
 
@@ -127,10 +130,17 @@ export class UserState {
     }).pipe(
       tap(({accessToken, refreshToken}) => {
         ctx.patchState({
-          jwtToken: accessToken
+          jwtToken: accessToken,
+          errorLogin: false,
         });
         ctx.dispatch(new GetCurrentUserAction());
         //   ctx.dispatch(new GetCurrentUserAction())
+      }),
+      catchError((err, caught) => {
+        ctx.patchState({
+          errorLogin: true
+        });
+        return of();
       })
     );
   }

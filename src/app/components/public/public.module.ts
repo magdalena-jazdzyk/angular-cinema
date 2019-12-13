@@ -3,7 +3,15 @@ import {CommonModule} from '@angular/common';
 import {LoginComponent} from './user/login/login.component';
 import {RegisterComponent} from './user/register/register.component';
 import {Routes, RouterModule} from '@angular/router';
-import {MatCardModule, MatButtonModule, MatTableModule, MatPaginatorModule, MatIconModule, MatNativeDateModule} from '@angular/material';
+import {
+  MatCardModule,
+  MatButtonModule,
+  MatTableModule,
+  MatPaginatorModule,
+  MatIconModule,
+  MatNativeDateModule,
+  MatDialogModule
+} from '@angular/material';
 import {FormlyModule} from '@ngx-formly/core';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {FormlyMaterialModule} from '@ngx-formly/material';
@@ -24,9 +32,11 @@ import {ImageState} from './state/image.state';
 import {RepertoireCreateComponent} from '../private/repertoire-create/repertoire-create.component';
 import {FormlyMatDatepickerModule} from '@ngx-formly/material/datepicker';
 import {NgxMaterialTimepickerModule} from 'ngx-material-timepicker';
-import { EditMovieComponent } from './edit-movie/edit-movie.component';
-import { MovieDetailsReservationComponent } from './movie-details-reservation/movie-details-reservation.component';
-import { UserInformationComponent } from './user-information/user-information.component';
+import {EditMovieComponent} from './edit-movie/edit-movie.component';
+import {MovieDetailsReservationComponent} from './movie-details-reservation/movie-details-reservation.component';
+import {UserInformationComponent} from './user-information/user-information.component';
+import {PriceListComponent} from './price-list/price-list.component';
+import { TimePipe } from './time.pipe';
 
 const routes: Routes = [
   {
@@ -48,11 +58,15 @@ const routes: Routes = [
   {
     path: 'movie/:id/:repertoireId',
     component: MovieDetailsComponent
+  },
+  {
+    path: 'price',
+    component: PriceListComponent
   }
 ];
 
 @NgModule({
-  declarations: [LoginComponent, RegisterComponent, MovieListComponent, ReservationComponent, MovieDetailsComponent, EditMovieComponent, MovieDetailsReservationComponent, UserInformationComponent],
+  declarations: [LoginComponent, RegisterComponent, MovieListComponent, ReservationComponent, MovieDetailsComponent, EditMovieComponent, MovieDetailsReservationComponent, UserInformationComponent, PriceListComponent, TimePipe],
   imports: [
     CommonModule,
     RouterModule.forRoot(routes),
@@ -70,6 +84,7 @@ const routes: Routes = [
     MatPaginatorModule,
     MatIconModule,
     MatButtonModule,
+    MatDialogModule,
 
   ],
   entryComponents: [

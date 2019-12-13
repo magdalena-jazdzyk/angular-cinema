@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { FormlyFieldConfig } from '@ngx-formly/core';
-import { Store } from '@ngxs/store';
+import {Select, Store} from '@ngxs/store';
 import { LoginAction } from '../../user.state';
+import {Observable} from 'rxjs';
+import {UserDto} from '../../../../../api/models/user-dto';
 
 @Component({
   selector: 'app-login',
@@ -35,6 +37,9 @@ export class LoginComponent implements OnInit {
       }
     }
   ];
+
+  @Select(state => state.user.errorLogin)
+  errorLogin$: Observable<boolean>;
 
   constructor(public store: Store) { }
 

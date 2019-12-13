@@ -34,7 +34,7 @@
               <!--           {{repertoire.time}}-->
               <div class="raw button-row">
                 <button (click)="router.navigate(['movie',element.id, repertoire.id])"
-                        class="button-time float-left">{{repertoire.time}}</button>
+                        class="button-time float-left">{{repertoire.time | time}}</button>
               </div>
             </div>
           </div>
@@ -46,7 +46,7 @@
           reservation
         </th>
         <td mat-cell *matCellDef="let element">
-          <button (click)="reserve(element)">
+          <button mat-button (click)="reserve(element)">
             <mat-icon>add_shopping_cart</mat-icon>
           </button>
         </td>

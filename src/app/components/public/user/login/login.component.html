@@ -22,6 +22,7 @@
                 <button [disabled]="!loginForm.valid" mat-raised-button class="btn-text" type="submit">
                   Zaloguj
                 </button>
+                <span *ngIf="errorLogin$ | async">Bledy login lub haslo</span>
               </formly-form>
             </form>
           </div>

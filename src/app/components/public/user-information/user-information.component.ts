@@ -10,10 +10,15 @@ import {ReservationComponent} from '../reservation/reservation.component';
 })
 export class UserInformationComponent implements OnInit {
 
-  constructor(public  matDialogRef: MatDialogRef<UserInformationComponent>) {
+  constructor(public  matDialogRef: MatDialogRef<UserInformationComponent>, @Inject(MAT_DIALOG_DATA) public data: any) {
   }
 
   ngOnInit() {
   }
 
+  close() {
+    console.log('ala');
+    this.matDialogRef.close();
+    console.log('ma kota');
+  }
 }

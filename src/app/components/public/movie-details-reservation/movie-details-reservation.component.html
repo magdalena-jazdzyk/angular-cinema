@@ -1,6 +1,7 @@
 <div class="col-sm-12" *ngFor="let element of tab">
   <button class="button-repertoire" (click)="loadRepertoire(element)">{{element}}</button>
 </div>
+<br>
 <div class="space"></div>
 <div *ngIf="repertoireList$ | async as repertoireDtos"> <!--czy zmienna dostpena w state-->
   <div *ngFor="let element of repertoireDtos">
@@ -31,7 +32,7 @@
   </div>
 </div>
 
-<div class="raw" *ngIf ="repertoireId && (jwt$ | async)" >
+<div class="raw" *ngIf="repertoireId && (jwt$ | async)">
   <div>
     <button (click)="downloadTicket()" class="mat-badge-disabled" class="next">Next</button>
   </div>
