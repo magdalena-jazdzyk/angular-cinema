@@ -92,6 +92,7 @@ export class UserStateModel {
   public page: number;
   public size: number;
   public errorLogin: boolean;
+  public errorRegister: boolean;
 }
 
 @State<UserStateModel>({
@@ -103,7 +104,8 @@ export class UserStateModel {
     userPageDto: {},
     page: 0,
     size: 5,
-    errorLogin: false
+    errorLogin: false,
+    errorRegister: false
   }
 })
 
@@ -153,17 +155,31 @@ export class UserState {
         });
         this.router.navigate(['/movies']);
       }
-      )
-    )
-      ;
+    ));
 
   }
+
+  // @Action(RegisterAction)
+  // register(ctx: StateContext<UserStateModel>, user: RegisterAction) {
+  //   return this.securityControllerService.registerUsingPOST(user.user).pipe(
+  //     tap(value => {
+  //       this.router.navigate(['/login']);
+  //     })
+  //   );
+  // }
+
 
   @Action(RegisterAction)
   register(ctx: StateContext<UserStateModel>, user: RegisterAction) {
     return this.securityControllerService.registerUsingPOST(user.user).pipe(
-      tap(value => {
+      tap((value) => {
         this.router.navigate(['/login']);
+      }),
+      catchError((err, caught) => {
+        ctx.patchState({
+          errorRegister: true
+        });
+        return of();
       })
     );
   }

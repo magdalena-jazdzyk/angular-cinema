@@ -1,8 +1,10 @@
 <div class="6 mx-auto video rounded float-left">
   <div *ngIf="videos$ | async as videoDtos">
-    <div *ngFor="let element of videoDtos">
-      <iframe allowfullscreen class="ytp-cued-thumbnail-overlay-image" [src]="element"></iframe>
-    </div>
+<!--    <div *ngFor="let element of videoDtos">-->
+      <iframe allowfullscreen class="ytp-cued-thumbnail-overlay-image" [src]="videoDtos[0]"></iframe>
+
+      <!--      <iframe allowfullscreen class="ytp-cued-thumbnail-overlay-image" [src]="element"></iframe>-->
+<!--    </div>-->
   </div>
 </div>
 <div class="col-6 movie-details rounded float-right">

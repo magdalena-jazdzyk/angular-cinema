@@ -2,17 +2,17 @@
   color: #c8006d;
 }
 
-carousel-item {
-  height: 450px;
-}
+/*carousel-item {*/
+/*  height: 450px;*/
+/*}*/
 
-.carousel-image-1 {
-  /*background: url('./assets/img/image1.jpg');*/
-  background-size: cover;
-}
-.navbar {
-  min-height: 86px;
-}
+/*.carousel-image-1 {*/
+/*  !*background: url('./assets/img/image1.jpg');*!*/
+/*  background-size: cover;*/
+/*}*/
+/*.navbar {*/
+/*  min-height: 86px;*/
+/*}*/
 
 /*.carousel-image-2 {*/
 /*  background: url('../img/image2.jpg');*/
@@ -24,3 +24,19 @@ carousel-item {
 /*  background-size: cover;*/
 /*}*/
 /*C:\Users\Karol\WebstormProjects\cinema-angular\angular-cinema\src\app\components\public\img*/
+.menu-spacer{
+  flex: 1 1 auto;
+}
+
+/deep/  .mat-sidenav-container mat-sidenav-content {
+  overflow: hidden;
+  background-color: white;
+}
+
+/deep/ .mat-toolbar mat-icon{
+  color: white;
+}
+
+/*.mat-drawer-content {*/
+/*  overflow: hidden;*/
+/*}*/

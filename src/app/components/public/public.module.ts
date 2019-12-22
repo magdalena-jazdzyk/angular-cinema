@@ -10,9 +10,9 @@ import {
   MatPaginatorModule,
   MatIconModule,
   MatNativeDateModule,
-  MatDialogModule
+  MatDialogModule, MatToolbarModule
 } from '@angular/material';
-import {FormlyModule} from '@ngx-formly/core';
+import {FormlyFieldConfig, FormlyModule} from '@ngx-formly/core';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {FormlyMaterialModule} from '@ngx-formly/material';
 import {NgxsModule} from '@ngxs/store';
@@ -36,7 +36,8 @@ import {EditMovieComponent} from './edit-movie/edit-movie.component';
 import {MovieDetailsReservationComponent} from './movie-details-reservation/movie-details-reservation.component';
 import {UserInformationComponent} from './user-information/user-information.component';
 import {PriceListComponent} from './price-list/price-list.component';
-import { TimePipe } from './time.pipe';
+import {TimePipe} from './time.pipe';
+import {MovieSearchComponent} from './movie-search/movie-search.component';
 
 const routes: Routes = [
   {
@@ -65,13 +66,24 @@ const routes: Routes = [
   }
 ];
 
+export function PasswordMessage(err, field: FormlyFieldConfig) {
+  return `"${field.formControl.value}" is not a valid password`;
+}
+
 @NgModule({
-  declarations: [LoginComponent, RegisterComponent, MovieListComponent, ReservationComponent, MovieDetailsComponent, EditMovieComponent, MovieDetailsReservationComponent, UserInformationComponent, PriceListComponent, TimePipe],
+  declarations: [LoginComponent, RegisterComponent, MovieListComponent, ReservationComponent, MovieDetailsComponent, EditMovieComponent, MovieDetailsReservationComponent, UserInformationComponent, PriceListComponent, TimePipe, MovieSearchComponent],
   imports: [
     CommonModule,
     RouterModule.forRoot(routes),
     MatCardModule,
-    FormlyModule.forRoot(),
+    FormlyModule.forRoot({
+      validationMessages: [
+        {
+          name: 'password',
+          message: PasswordMessage
+        }
+      ]
+    }),
     FormsModule,
     ReactiveFormsModule,
     FormlyMaterialModule,
@@ -85,6 +97,7 @@ const routes: Routes = [
     MatIconModule,
     MatButtonModule,
     MatDialogModule,
+    MatToolbarModule
 
   ],
   entryComponents: [

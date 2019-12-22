@@ -1,4 +1,3 @@
-export { CardDto } from './models/card-dto';
 export { DiscoverDto } from './models/discover-dto';
 export { ImageDto } from './models/image-dto';
 export { InfoString } from './models/info-string';
@@ -7,7 +6,6 @@ export { MovieDto } from './models/movie-dto';
 export { Pageable } from './models/pageable';
 export { PageImageDto } from './models/page-image-dto';
 export { PageMovieDto } from './models/page-movie-dto';
-export { PageReviewDto } from './models/page-review-dto';
 export { PageTemplateDto } from './models/page-template-dto';
 export { PageUserDto } from './models/page-user-dto';
 export { PageVideoDto } from './models/page-video-dto';

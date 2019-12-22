@@ -22,6 +22,8 @@
                 <button [disabled]="!registerForm.valid" mat-raised-button type="submit">
                   Zarejestruj się
                 </button>
+                <div class="alert alert-secondary" role="alert" style="margin-top: 12px;" *ngIf="errorRegister$  | async">
+                  Podana nazwa użytkownika jest zajęta  Proszę podać inną nazwę użytkownika.</div>
               </formly-form>
 
             </form>

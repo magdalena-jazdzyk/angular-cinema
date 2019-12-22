@@ -95,16 +95,6 @@ class UserControllerService extends __BaseService {
    *
    * - `name`:
    *
-   * - `loyaltyCardDto.price`:
-   *
-   * - `loyaltyCardDto.maxTicket`:
-   *
-   * - `loyaltyCardDto.id`:
-   *
-   * - `loyaltyCardDto.expirationDate`:
-   *
-   * - `loyaltyCardDto.discount`:
-   *
    * - `id`:
    *
    * - `email`:
@@ -131,11 +121,6 @@ class UserControllerService extends __BaseService {
     if (params.passwordConfirmation != null) __params = __params.set('passwordConfirmation', params.passwordConfirmation.toString());
     if (params.password != null) __params = __params.set('password', params.password.toString());
     if (params.name != null) __params = __params.set('name', params.name.toString());
-    if (params.loyaltyCardDtoPrice != null) __params = __params.set('loyaltyCardDto.price', params.loyaltyCardDtoPrice.toString());
-    if (params.loyaltyCardDtoMaxTicket != null) __params = __params.set('loyaltyCardDto.maxTicket', params.loyaltyCardDtoMaxTicket.toString());
-    if (params.loyaltyCardDtoId != null) __params = __params.set('loyaltyCardDto.id', params.loyaltyCardDtoId.toString());
-    if (params.loyaltyCardDtoExpirationDate != null) __params = __params.set('loyaltyCardDto.expirationDate', params.loyaltyCardDtoExpirationDate.toString());
-    if (params.loyaltyCardDtoDiscount != null) __params = __params.set('loyaltyCardDto.discount', params.loyaltyCardDtoDiscount.toString());
     if (params.id != null) __params = __params.set('id', params.id.toString());
     if (params.email != null) __params = __params.set('email', params.email.toString());
     if (params.age != null) __params = __params.set('age', params.age.toString());
@@ -186,16 +171,6 @@ class UserControllerService extends __BaseService {
    * - `password`:
    *
    * - `name`:
-   *
-   * - `loyaltyCardDto.price`:
-   *
-   * - `loyaltyCardDto.maxTicket`:
-   *
-   * - `loyaltyCardDto.id`:
-   *
-   * - `loyaltyCardDto.expirationDate`:
-   *
-   * - `loyaltyCardDto.discount`:
    *
    * - `id`:
    *
@@ -403,11 +378,6 @@ module UserControllerService {
     passwordConfirmation?: string;
     password?: string;
     name?: string;
-    loyaltyCardDtoPrice?: number;
-    loyaltyCardDtoMaxTicket?: number;
-    loyaltyCardDtoId?: number;
-    loyaltyCardDtoExpirationDate?: string;
-    loyaltyCardDtoDiscount?: number;
     id?: number;
     email?: string;
     age?: number;

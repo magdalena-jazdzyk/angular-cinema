@@ -10,7 +10,7 @@ import {
   MatInputModule,
   MatListModule,
   MatPaginatorModule,
-  MatProgressSpinnerModule, MatNativeDateModule, MatDatepickerModule
+  MatProgressSpinnerModule, MatNativeDateModule, MatDatepickerModule, MatToolbarModule
 } from '@angular/material';
 import {NgxsModule} from '@ngxs/store';
 import {DeviceState} from './device.state';
@@ -93,7 +93,8 @@ const routes: Routes = [
     FormlyMatDatepickerModule,
     MatNativeDateModule,
     NgxMaterialTimepickerModule,
-    MatDatepickerModule
+    MatDatepickerModule,
+    MatToolbarModule
   ],
   providers: [
     {

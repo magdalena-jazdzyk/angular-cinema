@@ -46,6 +46,15 @@ export class EditMovieAction {
   }
 }
 
+export class SearchMovieAction {
+  static readonly type = '[movie] searchMovie';
+
+  constructor(public title: string) {
+
+  }
+}
+
+
 export class FindTheFirstPageAction {
   static readonly type = '[movie] findTheFirstPage';
 
@@ -135,6 +144,18 @@ export class MovieState {
       tap(value => {
         ctx.patchState({
           moviePageDto: value,
+        });
+      })
+    );
+  }
+
+
+  @Action(SearchMovieAction)
+  searchMovieAction(ctx: StateContext<MovieStateModel>, {title}: SearchMovieAction) {
+    return this.movieService.findMovieByTitleUsingGET(title).pipe(
+      tap(value => {
+        ctx.patchState({
+          movie: value
         });
       })
     );

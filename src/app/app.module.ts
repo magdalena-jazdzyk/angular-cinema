@@ -8,7 +8,7 @@ import {
   MatToolbarModule,
   MatSidenavModule,
   MatIconModule,
-  MatListModule
+  MatListModule, MatAutocompleteModule, MatFormFieldModule, MatButtonModule
 } from '@angular/material';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {PublicModule} from './components/public/public.module';
@@ -17,12 +17,15 @@ import {NgxsReduxDevtoolsPluginModule} from '@ngxs/devtools-plugin';
 import {ServiceWorkerModule} from '@angular/service-worker';
 import {environment} from '../environments/environment';
 import { IndexComponent } from './index/index.component';
+import {FooterComponent} from './components/public/footer/footer.component';
+import {FlexLayoutModule} from '@angular/flex-layout';
 
 @NgModule({
   declarations: [
     AppComponent,
     MenuComponent,
-    IndexComponent
+    IndexComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
@@ -35,7 +38,12 @@ import { IndexComponent } from './index/index.component';
     MatListModule,
     PrivateModule,
     NgxsReduxDevtoolsPluginModule.forRoot(),
-    ServiceWorkerModule.register('ngsw-worker.js', {enabled: environment.production})
+    ServiceWorkerModule.register('ngsw-worker.js', {enabled: environment.production}),
+    MatAutocompleteModule,
+    MatFormFieldModule,
+
+    MatButtonModule,
+    FlexLayoutModule
   ],
   providers: [],
   bootstrap: [AppComponent]

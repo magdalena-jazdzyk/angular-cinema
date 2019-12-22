@@ -98,7 +98,7 @@ export class SeatsState {
       }),
       catchError(((err, caught) => {
         this.matDialog.open(UserInformationComponent, {
-          width: '80%', height: '100%'
+          width: '50%', height: '50%'
         });
         return of();
       }))

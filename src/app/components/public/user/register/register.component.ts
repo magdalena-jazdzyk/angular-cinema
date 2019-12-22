@@ -1,8 +1,13 @@
-import { Component, OnInit } from '@angular/core';
-import { FormGroup } from '@angular/forms';
-import { FormlyFieldConfig } from '@ngx-formly/core';
-import { Store } from '@ngxs/store';
-import { RegisterAction } from '../../user.state';
+import {Component, OnInit} from '@angular/core';
+import {FormControl, FormGroup, ValidationErrors} from '@angular/forms';
+import {FormlyFieldConfig} from '@ngx-formly/core';
+import {Select, Store} from '@ngxs/store';
+import {RegisterAction} from '../../user.state';
+import {Observable} from 'rxjs';
+
+export function PasswordValidator(control: FormControl): ValidationErrors {
+  return !control.value || /(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$/.test(control.value) ? null : {password: true};
+}
 
 @Component({
   selector: 'app-register',
@@ -21,7 +26,6 @@ export class RegisterComponent implements OnInit {
         label: 'Nazwa użytkownika',
         placeholder: 'Wpisz nazwe użytkownika',
         required: true,
-        minLength: 5
       }
     },
     {
@@ -31,7 +35,6 @@ export class RegisterComponent implements OnInit {
         label: 'Email',
         placeholder: 'Wpisz email',
         required: true,
-        minLength: 5
       }
     },
     {
@@ -41,8 +44,15 @@ export class RegisterComponent implements OnInit {
         type: 'password',
         label: 'Hasło',
         placeholder: 'Wpisz hasło',
-        required: true
-      }
+        required: true,
+      },
+      validators: {
+        // validation: [PasswordValidator],
+        password: {
+          expression: (c) => !c.value || /(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$/.test(c.value),
+          message: (error, field: FormlyFieldConfig) => `is not a valid password`,
+        }
+      },
     },
     {
       key: 'confirmPassword',
@@ -51,20 +61,28 @@ export class RegisterComponent implements OnInit {
         type: 'password',
         label: 'confirmPassword',
         placeholder: 'Wpisz hasło',
-        required: true
+        required: true,
+        minLength: 5
       }
     }
   ];
 
-  constructor(public store: Store) { }
+  constructor(public store: Store) {
+  }
+
+
+  @Select(state => state.user.errorRegister)
+  errorRegister$: Observable<boolean>;
 
   ngOnInit() {
   }
 
   register() {
-    this.store.dispatch(new RegisterAction({ username: this.registerForm.value.userName,
-      email : this.registerForm.value.email,
-      password: this.registerForm.value.password, passwordConfirmation: this.registerForm.value.confirmPassword }))
+    this.store.dispatch(new RegisterAction({
+      username: this.registerForm.value.userName,
+      email: this.registerForm.value.email,
+      password: this.registerForm.value.password, passwordConfirmation: this.registerForm.value.confirmPassword
+    }));
   }
 
 }

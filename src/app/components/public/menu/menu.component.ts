@@ -6,6 +6,8 @@ import {Store, Select} from '@ngxs/store';
 import {LogoutAction} from '../user.state';
 import {Router} from '@angular/router';
 import {UserDto} from '../../../../api/models/user-dto';
+import {MovieDto} from '../../../../api/models/movie-dto';
+import {SearchMovieAction} from '../movie.state';
 
 @Component({
   selector: 'app-menu',
@@ -21,6 +23,7 @@ export class MenuComponent implements OnInit, OnDestroy {
 
   @Select(state => state.user.currentUser) currentUser$: Observable<UserDto>;
 
+  @Select(state => state.movie.movie) movie$: Observable<MovieDto>;
 
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
     .pipe(map(result => result.matches));
@@ -49,6 +52,10 @@ export class MenuComponent implements OnInit, OnDestroy {
   logout() {
     this.store.dispatch(new LogoutAction());
     this.router.navigate(['/login']);
+  }
+
+  search(title) {
+    this.store.dispatch(new SearchMovieAction(title));
   }
 
 

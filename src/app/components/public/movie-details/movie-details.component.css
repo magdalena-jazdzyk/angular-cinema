@@ -1,6 +1,8 @@
 .video {
   margin-top: 100px;
-  padding: 5%
+  padding: 5%;
+  height: 30px
+
 }
 
 .image {
@@ -42,17 +44,27 @@
   text-align: center;
 }
 
+/*.ytp-cued-thumbnail-overlay-image {*/
+/*  background-size: cover;*/
+/*  -moz-background-size: cover;*/
+/*  -webkit-background-size: cover;*/
+/*  background-position: center;*/
+/*  background-repeat: no-repeat;*/
+/*  width: 40%;*/
+/*  height: 50%;*/
+/*  position: absolute;*/
+/*}*/
 .ytp-cued-thumbnail-overlay-image {
   background-size: cover;
   -moz-background-size: cover;
   -webkit-background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  width: 40%;
-  height: 50%;
+  width: 45%;
+  height: 15%;
+  height: 600px;
   position: absolute;
 }
-
 .space {
   margin-top: 29%;
 }

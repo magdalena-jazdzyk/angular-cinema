@@ -1,16 +1,11 @@
 <body>
-<section id="admin">
-  <!--  <div class="container">-->
-  <div class="row">
+<section id="admin" style="margin-left: 80px">
+  <div class = "row row-admin">
     <div class="col-9">
       <div class="card">
-        <!--          <div class="card-header">-->
-        <!--            <h4>Latest Posts</h4>-->
-        <!--          </div>-->
-<!--        table-striped-->
         <div class="test" *ngIf="moviesPage$ | async as moviesPage">
           <table mat-table [dataSource]="moviesPage.content"  class="table">
-            <ng-container matColumnDef="title">
+            <ng-container matColumnDef="title" style="margin-bottom: 3px">
               <th mat-header-cell *matHeaderCellDef>
                 title
               </th>
@@ -23,32 +18,20 @@
                 edytuj
               </th>
               <td mat-cell *matCellDef="let element">
-                <button text-white (click)="edit(element)" mat-raised-button>
+                <button class="button-admin" text-white (click)="edit(element)" mat-raised-button>
                   edytuj
                 </button>
               </td>
             </ng-container>
             <div class="test" *ngIf="user$ | async" matColumnDef="updateUser">
-
-<!--            <ng-container matColumnDef="updateUser">-->
-<!--              <th mat-header-cell *matHeaderCellDef>-->
-<!--                updateUser-->
-<!--              </th>-->
-<!--              <td mat-cell *matCellDef="let element">-->
-<!--                <button text-white (click)="updateUser(element)" mat-raised-button>-->
-<!--                  update-->
-<!--                </button>-->
-<!--              </td>-->
-<!--            </ng-container>-->
             </div>
-
             <ng-container matColumnDef="usuń">
               <th mat-header-cell *matHeaderCellDef>
-                Usuń
+                usuń
               </th>
               <td mat-cell *matCellDef="let element">
-                <button (click)="remove(element)" mat-raised-button>
-                  Usuń
+                <button class="button-admin" (click)="remove(element)" mat-raised-button>
+                  usuń
                 </button>
               </td>
             </ng-container>
@@ -58,7 +41,7 @@
                 dodaj
               </th>
               <td mat-cell *matCellDef="let element">
-                <button  mat-raised-button routerLink="/repertoire/{{element.id}}">
+                <button class="button-admin" mat-raised-button routerLink="/repertoire/{{element.id}}">
                   dodaj
                 </button>
               </td>
@@ -101,24 +84,24 @@
     <div class="col-md-2 block">
       <div class="card text-center bg-dark text-white mb-3">
         <div class="card-body">
-          <h3>Movie</h3>
+          <h3>Film</h3>
           <h4 class="display-4">
             <i class="fas fa-pencil-alt"></i>
           </h4>
-          <button text-white (click)="addMovie()" mat-raised-button>
+          <button (click)="addMovie()" class="btn btn-outline-light btn-sm" >
             Dodaj
           </button>
-          <a href="posts.html" class="btn btn-outline-light btn-sm">View</a>
+<!--          <a href="posts.html" class="btn btn-outline-light btn-sm">View</a>-->
         </div>
       </div>
 
       <div class="card text-center bg-dark text-white mb-4">
         <div class="card-body">
-          <h3>Users</h3>
+          <h3>Użytkownicy</h3>
           <h4 class="display-4">
             <i class="fas fa-users"></i>
           </h4>
-          <a routerLink="/users" class="btn btn-outline-light btn-sm">View</a>
+          <a routerLink="/users" class="btn btn-outline-light btn-sm">Zobacz</a>
         </div>
       </div>
     </div>

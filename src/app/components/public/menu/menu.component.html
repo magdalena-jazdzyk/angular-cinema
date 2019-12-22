@@ -1,55 +1,117 @@
-<!--<mat-sidenav-container class="sidenav-container">-->
-<!--  <mat-sidenav #drawer class="sidenav" fixedInViewport="true"-->
-<!--    [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'" [mode]="(isHandset$ | async) ? 'over' : 'side'"-->
-<!--    [opened]="!(isHandset$ | async)">-->
-<!--    <mat-nav-list>-->
-<!--      <a mat-list-item routerLink="/login" *ngIf="!(jwt$ | async)">Zaloguj</a>-->
-<!--      <a mat-list-item routerLink="/register" *ngIf="!(jwt$ | async)">Zarejestruj</a>-->
-<!--      <a mat-list-item (click)="logout()" *ngIf="jwt$ | async">Wyloguj</a>-->
-<!--      <a mat-list-item routerLink="/movies">Movies</a>-->
-<!--    </mat-nav-list>-->
-<!--  </mat-sidenav>-->
+<!--&lt;!&ndash;<mat-sidenav-container class="sidenav-container">&ndash;&gt;-->
+<!--&lt;!&ndash;  <mat-sidenav #drawer class="sidenav" fixedInViewport="true"&ndash;&gt;-->
+<!--&lt;!&ndash;    [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'" [mode]="(isHandset$ | async) ? 'over' : 'side'"&ndash;&gt;-->
+<!--&lt;!&ndash;    [opened]="!(isHandset$ | async)">&ndash;&gt;-->
+<!--&lt;!&ndash;    <mat-nav-list>&ndash;&gt;-->
+<!--&lt;!&ndash;      <a mat-list-item routerLink="/login" *ngIf="!(jwt$ | async)">Zaloguj</a>&ndash;&gt;-->
+<!--&lt;!&ndash;      <a mat-list-item routerLink="/register" *ngIf="!(jwt$ | async)">Zarejestruj</a>&ndash;&gt;-->
+<!--&lt;!&ndash;      <a mat-list-item (click)="logout()" *ngIf="jwt$ | async">Wyloguj</a>&ndash;&gt;-->
+<!--&lt;!&ndash;      <a mat-list-item routerLink="/movies">Movies</a>&ndash;&gt;-->
+<!--&lt;!&ndash;    </mat-nav-list>&ndash;&gt;-->
+<!--&lt;!&ndash;  </mat-sidenav>&ndash;&gt;-->
 
-<nav class="navbar navbar-expand-sm navbar-dark bg-dark">
-  <div class="container">
-    <div class="collapse navbar-collapse" id="navbarCollapse">
-      <ul class="navbar-nav ml-auto">
-        <li class="nav-item" *ngIf="!(jwt$ | async)">
-          <a routerLink="/register" class="navbar-brand navbar-hover">Zarejestruj</a>
-        </li>
-        <li class="nav-item" *ngIf="!(jwt$ | async)">
-          <a routerLink="/login" class="navbar-brand" navbar-hover>Zaloguj</a>
-        </li>
-        <li class="nav-item" *ngIf="showAdminPanel" >
-          <a routerLink="/admin" class="navbar-brand navbar-hover">Admin Panel</a>
-        </li>
-        <li class="nav-item">
-          <a routerLink="/movies" class="navbar-brand navbar-hover">Movies</a>
-        </li>
-        <li class="nav-item">
-          <a routerLink="/price" class="navbar-brand navbar-hover">Cennik</a>
-        </li>
-<!--        <li class="nav-item">-->
-<!--          <a routerLink="/add/movie" class="navbar-brand">Dodaj film</a>-->
+<!--<nav class="navbar navbar-expand-md navbar-dark bg-dark">-->
+<!--  <div class="container">-->
+<!--    <div class="collapse navbar-collapse" id="navbarCollapse">-->
+<!--      <ul class="navbar-nav ml-auto">-->
+<!--        <li class="nav-item" *ngIf="!(jwt$ | async)">-->
+<!--          <a routerLink="/register" class="navbar-brand navbar-hover">Zarejestruj</a>-->
 <!--        </li>-->
-        <li class="nav-item" *ngIf="jwt$ | async">
-          <a (click)="logout()"  routerLink= "" class="navbar-brand navbar-hover" >Wyloguj</a>
-        </li>
-      </ul>
-    </div>
-  </div>
-</nav>
-<router-outlet></router-outlet>
-<!--  <mat-sidenav-content>-->
-<!--    <mat-toolbar color="primary">-->
-<!--      <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="!drawer.toggle()">-->
-<!--        <mat-icon svgIcon="thumbs-up" aria-label="Side nav toggle icon"></mat-icon>-->
-<!--      </button>-->
-<!--      <span>Serwis</span>-->
-<!--    </mat-toolbar>-->
-<!--    <router-outlet></router-outlet>-->
-<!--  </mat-sidenav-content>-->
-<!--</mat-sidenav-container>-->
+<!--        <li class="nav-item" *ngIf="!(jwt$ | async)">-->
+<!--          <a routerLink="/login" class="navbar-brand" navbar-hover>Zaloguj</a>-->
+<!--        </li>-->
+<!--        <li class="nav-item" *ngIf="showAdminPanel">-->
+<!--          <a routerLink="/admin" class="navbar-brand navbar-hover">Admin Panel</a>-->
+<!--        </li>-->
+<!--        <li class="nav-item">-->
+<!--          <a routerLink="/movies" class="navbar-brand navbar-hover">Movies</a>-->
+<!--        </li>-->
+<!--        <li class="nav-item">-->
+<!--          <a routerLink="/price" class="navbar-brand navbar-hover">Cennik</a>-->
+<!--        </li>-->
+
+
+<!--&lt;!&ndash;        <li>&ndash;&gt;-->
+<!--&lt;!&ndash;          <mat-form-field class="example-full-width">&ndash;&gt;-->
+<!--&lt;!&ndash;            <input matInput placeholder="State" aria-label="State" [matAutocomplete]="auto" >&ndash;&gt;-->
+<!--&lt;!&ndash;            <mat-autocomplete #auto="matAutocomplete">&ndash;&gt;-->
+<!--&lt;!&ndash;              <mat-option *ngFor="let state of movie$ | async" [value]="state.title">&ndash;&gt;-->
+<!--&lt;!&ndash;&lt;!&ndash;                <img class="example-option-img" aria-hidden [src]="state.flag" height="25">&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;                <a (click)="search(state.title)" routerLink="">Wyloguj</a>&ndash;&gt;-->
+<!--&lt;!&ndash;&lt;!&ndash;                <span>{{state.title}}</span> |&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;&lt;!&ndash;                <small>Population: {{state.population}}</small>&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;              </mat-option>&ndash;&gt;-->
+<!--&lt;!&ndash;            </mat-autocomplete>&ndash;&gt;-->
+<!--&lt;!&ndash;          </mat-form-field>&ndash;&gt;-->
+<!--&lt;!&ndash;        </li>&ndash;&gt;-->
+
+<!--        &lt;!&ndash;        <li class="nav-item">&ndash;&gt;-->
+<!--        &lt;!&ndash;          <a routerLink="/add/movie" class="navbar-brand">Dodaj film</a>&ndash;&gt;-->
+<!--        &lt;!&ndash;        </li>&ndash;&gt;-->
+<!--        <li class="nav-item" *ngIf="jwt$ | async">-->
+<!--          <a (click)="logout()" routerLink="" class="navbar-brand navbar-hover">Wyloguj</a>-->
+<!--        </li>-->
+<!--      </ul>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--</nav>-->
+<!--<router-outlet></router-outlet>-->
+<!--&lt;!&ndash;  <mat-sidenav-content>&ndash;&gt;-->
+<!--&lt;!&ndash;    <mat-toolbar color="primary">&ndash;&gt;-->
+<!--&lt;!&ndash;      <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="!drawer.toggle()">&ndash;&gt;-->
+<!--&lt;!&ndash;        <mat-icon svgIcon="thumbs-up" aria-label="Side nav toggle icon"></mat-icon>&ndash;&gt;-->
+<!--&lt;!&ndash;      </button>&ndash;&gt;-->
+<!--&lt;!&ndash;      <span>Serwis</span>&ndash;&gt;-->
+<!--&lt;!&ndash;    </mat-toolbar>&ndash;&gt;-->
+<!--&lt;!&ndash;    <router-outlet></router-outlet>&ndash;&gt;-->
+<!--&lt;!&ndash;  </mat-sidenav-content>&ndash;&gt;-->
+<!--&lt;!&ndash;</mat-sidenav-container>&ndash;&gt;-->
+
+
+<div style="height: 80vh;">
+  <mat-toolbar class="navbar navbar-expand-md navbar-dark bg-dark">
+    <mat-toolbar-row>
+      <button mat-icon-button (click)="sidenav.toggle()" fxShow="true" fxHide.gt-sm>
+        <mat-icon>menu</mat-icon>
+      </button>
+      <!--      <span>Responsive Navigation</span>-->
+      <span class="menu-spacer"></span>
+      <div fxShow="true" fxHide.lt-md>
+        <!-- The following menu items will be hidden on both SM and XS screen sizes -->
+        <a routerLink="/movies" mat-button class="navbar-brand navbar-hover"> Repertuar</a>
+        <a routerLink="/price" mat-button class="navbar-brand navbar-hover"> Cennik</a>
+        <a *ngIf="!(jwt$ | async)" routerLink="/register" mat-button class="navbar-brand navbar-hover">Zarejestruj się</a>
+        <a class="nav-item" *ngIf="!(jwt$ | async)" routerLink="/login" mat-button class="navbar-brand navbar-hover">Zaloguj się</a>
+        <a class="nav-item" *ngIf="(jwt$ | async)" (click)="logout()" routerLink="" mat-button class="navbar-brand navbar-hover">Wyloguj się</a>
+        <a class="nav-item" *ngIf="showAdminPanel" routerLink="admin" mat-button class="navbar-brand navbar-hover">AdminPanel</a>
+
+      </div>
+    </mat-toolbar-row>
+  </mat-toolbar>
+  <!--  <mat-sidenav-container fxFlexFill>-->
+  <mat-sidenav-container>
+
+    <mat-sidenav #sidenav>
+      <mat-nav-list>
+        <a (click)="sidenav.toggle()" routerLink="/movies" mat-list-item>Repertuar</a>
+<!--        <a routerLink="/movies" mat-list-item > Repertuar</a>-->
+        <a routerLink="/price" mat-list-item> Cennik</a>
+        <a *ngIf="!(jwt$ | async)" routerLink="/register" mat-list-item>Zarejestruj się</a>
+        <a class="nav-item" *ngIf="!(jwt$ | async)" routerLink="/login" mat-list-item>Zaloguj się</a>
+        <a class="nav-item" *ngIf="(jwt$ | async)" (click)="logout()" routerLink="" mat-list-item>Wyloguj się</a>
+        <a class="nav-item" *ngIf="showAdminPanel" routerLink="admin" mat-list-item>AdminPanel</a>
+
+      </mat-nav-list>
+    </mat-sidenav>
+    <router-outlet></router-outlet>
+    <!--    <mat-sidenav-content fxFlexFill><router-outlet></router-outlet></mat-sidenav-content>-->
+  </mat-sidenav-container>
+  <app-footer></app-footer>
+
+</div>
+
+
+
 
 
 
