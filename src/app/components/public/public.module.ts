@@ -10,7 +10,7 @@ import {
   MatPaginatorModule,
   MatIconModule,
   MatNativeDateModule,
-  MatDialogModule, MatToolbarModule
+  MatDialogModule, MatToolbarModule, MatInputModule
 } from '@angular/material';
 import {FormlyFieldConfig, FormlyModule} from '@ngx-formly/core';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
@@ -38,6 +38,8 @@ import {UserInformationComponent} from './user-information/user-information.comp
 import {PriceListComponent} from './price-list/price-list.component';
 import {TimePipe} from './time.pipe';
 import {MovieSearchComponent} from './movie-search/movie-search.component';
+import {MatFormFieldModule} from '@angular/material/form-field';
+
 
 const routes: Routes = [
   {
@@ -76,6 +78,8 @@ export function PasswordMessage(err, field: FormlyFieldConfig) {
     CommonModule,
     RouterModule.forRoot(routes),
     MatCardModule,
+    MatFormFieldModule,
+    MatInputModule,
     FormlyModule.forRoot({
       validationMessages: [
         {

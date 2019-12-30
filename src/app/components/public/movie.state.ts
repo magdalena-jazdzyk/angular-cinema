@@ -7,7 +7,7 @@ import {MovieControllerService} from 'src/api/services';
 export class LoadMovieAction {
   static readonly type = '[movie] loadpage';
 
-  constructor(public page: number, public size: number) {
+  constructor(public page: number, public size: number, public title ?: string) {
 
   }
 
@@ -68,6 +68,7 @@ export class MovieStateModel {
   public movie: MovieDto;  // w steie che przetrzymac cały opis obiketu
   public page: number;
   public size: number;
+  public title: string;
 }
 
 
@@ -77,7 +78,8 @@ export class MovieStateModel {
     moviePageDto: {},
     movie: {},
     page: 0,
-    size: 5
+    size: 5,
+    title: null
   }
 })
 export class MovieState {
@@ -88,13 +90,22 @@ export class MovieState {
 
 
   @Action(LoadMovieAction)
-  loadMovie(ctx: StateContext<MovieStateModel>, {page, size}: LoadMovieAction) {
-    return this.movieService.findAllMovieUsingGET({page, size}).pipe(
+  loadMovie(ctx: StateContext<MovieStateModel>, {page, size, title}: LoadMovieAction) {
+
+    if (size == null) {
+      size = ctx.getState().size;
+    }
+
+    if (title == null) {
+      title = ctx.getState().title;
+    }
+    return this.movieService.findAllMovieUsingGET({page, size, movieTitle: title}).pipe(
       tap(value => {
         ctx.patchState({ // pagestate - zmiana state wartosc moviepagedto
           moviePageDto: value,
           page,
-          size
+          size,
+          title
         });
       })
     );
@@ -150,14 +161,14 @@ export class MovieState {
   }
 
 
-  @Action(SearchMovieAction)
-  searchMovieAction(ctx: StateContext<MovieStateModel>, {title}: SearchMovieAction) {
-    return this.movieService.findMovieByTitleUsingGET(title).pipe(
-      tap(value => {
-        ctx.patchState({
-          movie: value
-        });
-      })
-    );
-  }
+  // @Action(SearchMovieAction)
+  // searchMovieAction(ctx: StateContext<MovieStateModel>, {title}: SearchMovieAction) {
+  //   return this.movieService.findMovieByTitleUsingGET(title).pipe(
+  //     tap(value => {
+  //       ctx.patchState({
+  //         movie: value
+  //       });
+  //     })
+  //   );
+  // }
 }

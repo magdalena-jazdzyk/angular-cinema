@@ -50,7 +50,7 @@ export class RegisterComponent implements OnInit {
         // validation: [PasswordValidator],
         password: {
           expression: (c) => !c.value || /(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$/.test(c.value),
-          message: (error, field: FormlyFieldConfig) => `is not a valid password`,
+          message: (error, field: FormlyFieldConfig) => `Hasło musi zawierać małą i dużą literę oraz cyfrę`,
         }
       },
     },

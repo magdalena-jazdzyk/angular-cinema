@@ -84,7 +84,6 @@
         <a class="nav-item" *ngIf="!(jwt$ | async)" routerLink="/login" mat-button class="navbar-brand navbar-hover">Zaloguj się</a>
         <a class="nav-item" *ngIf="(jwt$ | async)" (click)="logout()" routerLink="" mat-button class="navbar-brand navbar-hover">Wyloguj się</a>
         <a class="nav-item" *ngIf="showAdminPanel" routerLink="admin" mat-button class="navbar-brand navbar-hover">AdminPanel</a>
-
       </div>
     </mat-toolbar-row>
   </mat-toolbar>

@@ -49,7 +49,7 @@ export class UserListComponent implements OnInit {
 
   updateUser(element: any) {
     this.matDialog.open(UpdateUserComponent, {
-      width: '80%', data: element, height: '100%'
+      width: '50%', data: element, height: '75%'
     });
   }
 

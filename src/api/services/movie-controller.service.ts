@@ -18,7 +18,6 @@ import { PageMovieDto } from '../models/page-movie-dto';
 })
 class MovieControllerService extends __BaseService {
   static readonly addMovieUsingPOSTPath = '/movies';
-  static readonly findMovieByTitleUsingGETPath = '/movies/title/{title}';
   static readonly findOneUsingGETPath = '/movies/{id}';
   static readonly updateUsingPUTPath = '/movies/{id}';
   static readonly deleteUsingDELETEPath = '/movies/{id}';
@@ -63,42 +62,6 @@ class MovieControllerService extends __BaseService {
    */
   addMovieUsingPOST(movieDto: MovieDto): __Observable<MovieDto> {
     return this.addMovieUsingPOSTResponse(movieDto).pipe(
-      __map(_r => _r.body as MovieDto)
-    );
-  }
-
-  /**
-   * @param title title
-   * @return OK
-   */
-  findMovieByTitleUsingGETResponse(title: string): __Observable<__StrictHttpResponse<MovieDto>> {
-    let __params = this.newParams();
-    let __headers = new HttpHeaders();
-    let __body: any = null;
-
-    let req = new HttpRequest<any>(
-      'GET',
-      this.rootUrl + `/movies/title/${title}`,
-      __body,
-      {
-        headers: __headers,
-        params: __params,
-        responseType: 'json'
-      });
-
-    return this.http.request<any>(req).pipe(
-      __filter(_r => _r instanceof HttpResponse),
-      __map((_r) => {
-        return _r as __StrictHttpResponse<MovieDto>;
-      })
-    );
-  }
-  /**
-   * @param title title
-   * @return OK
-   */
-  findMovieByTitleUsingGET(title: string): __Observable<MovieDto> {
-    return this.findMovieByTitleUsingGETResponse(title).pipe(
       __map(_r => _r.body as MovieDto)
     );
   }
@@ -227,6 +190,8 @@ class MovieControllerService extends __BaseService {
    *
    * - `page`: page
    *
+   * - `movieTitle`: movieTitle
+   *
    * @return OK
    */
   findAllMovieUsingGETResponse(params: MovieControllerService.FindAllMovieUsingGETParams): __Observable<__StrictHttpResponse<PageMovieDto>> {
@@ -235,6 +200,7 @@ class MovieControllerService extends __BaseService {
     let __body: any = null;
 
 
+    if (params.movieTitle != null) __params = __params.set('movieTitle', params.movieTitle.toString());
     let req = new HttpRequest<any>(
       'GET',
       this.rootUrl + `/movies/${params.page}/${params.size}`,
@@ -258,6 +224,8 @@ class MovieControllerService extends __BaseService {
    * - `size`: size
    *
    * - `page`: page
+   *
+   * - `movieTitle`: movieTitle
    *
    * @return OK
    */
@@ -300,6 +268,11 @@ module MovieControllerService {
      * page
      */
     page: number;
+
+    /**
+     * movieTitle
+     */
+    movieTitle?: string;
   }
 }
 

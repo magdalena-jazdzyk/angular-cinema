@@ -19,13 +19,10 @@ button {
   margin-left: 3%;
 }
 
-
 .input{
   padding: 10px 10px;
   /*width: 200%;*/
-
 }
-
 .example-card {
   display: flex;
   flex-direction: column;
@@ -49,4 +46,33 @@ button {
   padding: 7px;
   margin-left: 26px;
   margin-bottom: 15px
+}
+
+.repertoire-title{
+  color: white;
+  margin-left: 3%;
+}
+
+.card-header{
+  background: linear-gradient(#bb005d, #7f0045);
+}
+
+
+.mat-form-field-infix {
+  display: block;
+  position: relative;
+  flex: auto;
+  min-width: 0;
+  /*max-width: 750px;*/
+  max-width: 65%;
+  padding: 3%;
+}
+
+
+
+.time-input {
+  width: 60%;
+  padding: 7px;
+  margin-left: 26px;
+  margin-bottom: 15px;
 }

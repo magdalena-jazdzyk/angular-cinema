@@ -1,4 +1,4 @@
-.navbar-hover:hover{
+.navbar-hover:hover {
   color: #c8006d;
 }
 
@@ -24,19 +24,33 @@
 /*  background-size: cover;*/
 /*}*/
 /*C:\Users\Karol\WebstormProjects\cinema-angular\angular-cinema\src\app\components\public\img*/
-.menu-spacer{
+.menu-spacer {
   flex: 1 1 auto;
 }
 
-/deep/  .mat-sidenav-container mat-sidenav-content {
+/deep/ .mat-sidenav-container mat-sidenav-content {
   overflow: hidden;
   background-color: white;
 }
 
-/deep/ .mat-toolbar mat-icon{
+/deep/ .mat-toolbar mat-icon {
   color: white;
 }
 
-/*.mat-drawer-content {*/
-/*  overflow: hidden;*/
-/*}*/
+.mat-button, .mat-fab, .mat-flat-button, .mat-icon-button, .mat-mini-fab, .mat-raised-button, .mat-stroked-button {
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  font-size: 22px;
+  font-weight: 500;
+}
+
+
+.mat-list-base .mat-list-item .mat-list-item-content, .mat-list-base .mat-list-option .mat-list-item-content {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  box-sizing: border-box;
+  padding: 0 16px;
+  position: relative;
+  height: inherit;
+  font-size: 21px;
+}

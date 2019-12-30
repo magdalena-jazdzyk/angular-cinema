@@ -8,7 +8,7 @@ import {
   MatToolbarModule,
   MatSidenavModule,
   MatIconModule,
-  MatListModule, MatAutocompleteModule, MatFormFieldModule, MatButtonModule
+  MatListModule, MatAutocompleteModule, MatFormFieldModule, MatButtonModule, MatPaginatorIntl
 } from '@angular/material';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {PublicModule} from './components/public/public.module';
@@ -19,6 +19,7 @@ import {environment} from '../environments/environment';
 import { IndexComponent } from './index/index.component';
 import {FooterComponent} from './components/public/footer/footer.component';
 import {FlexLayoutModule} from '@angular/flex-layout';
+import {MatPaginatorIntlImpl} from './mat-paginator';
 
 @NgModule({
   declarations: [
@@ -45,7 +46,10 @@ import {FlexLayoutModule} from '@angular/flex-layout';
     MatButtonModule,
     FlexLayoutModule
   ],
-  providers: [],
+  providers: [{
+     provide: MatPaginatorIntl,
+     useClass: MatPaginatorIntlImpl
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule {

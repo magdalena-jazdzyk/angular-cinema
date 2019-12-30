@@ -31,8 +31,12 @@ export class AddMovieComponent implements OnInit {
       templateOptions: {
         multiple: true,
         options: [{value: 'Action', label: 'Action'},
-          {value: 'Adventure', label: 'Adventure'}],
-        // 'Animation' ,
+          {value: 'Adventure', label: 'Adventure'},
+          {value: 'Comedy', label: 'Comedy'},
+          {value: 'Drama', label: 'Drama'},
+          {value: 'Family', label: 'Family'}],
+
+  // 'Animation' ,
         // 'Comedy' ,
         // 'Crime' ,
         // 'Documentary' ,

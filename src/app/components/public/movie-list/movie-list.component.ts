@@ -1,9 +1,9 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {Store, Select} from '@ngxs/store';
 import {Observable} from 'rxjs';
 import {ImageDto, PageImageDto, PageMovieDto, RepertoireDto, UserDto} from 'src/api/models';
-import {FindTheFirstPageAction, LoadMovieAction, RemoveMovieAction} from '../movie.state';
-import {MatDialog} from '@angular/material';
+import {FindTheFirstPageAction, LoadMovieAction, RemoveMovieAction, SearchMovieAction} from '../movie.state';
+import {MatDialog, MatPaginator} from '@angular/material';
 import {ReservationComponent} from '../reservation/reservation.component';
 import {RepertoireCreateComponent} from '../../private/repertoire-create/repertoire-create.component';
 import {EditMovieComponent} from '../edit-movie/edit-movie.component';
@@ -44,11 +44,13 @@ export class MovieListComponent implements OnInit, OnDestroy {
   @Select(state => state.repertoire.repertoiresList)
   repertoiresList$: Observable<RepertoireDto[]>;
 
+  @ViewChild(MatPaginator, {static: false}) paginator: MatPaginator;
+
   constructor(public store: Store, public matDialog: MatDialog, public router: Router) {
   }
 
   ngOnInit() {
-    this.store.dispatch(new LoadMovieAction(0, 5));
+    this.store.dispatch(new LoadMovieAction(0, 5, ''));
 
     this.token$.subscribe(r => {
       console.log(r);
@@ -125,10 +127,9 @@ export class MovieListComponent implements OnInit, OnDestroy {
   // dodane
 
 
-  // loadRepertoire(element: string) {
-  //   console.log(element);
-  //   this.store.dispatch(new LoadRepertoireByMovieIdAction(element, this.data.id));
-  //   console.log('laduje repertuar');
-  //   this.store.dispatch(new ClearSeatsActions());
-  // }
+  search(value: string) {
+    this.store.dispatch(new LoadMovieAction(0, null, value));
+    this.paginator.pageIndex= 0;
+    console.log(value);
+  }
 }

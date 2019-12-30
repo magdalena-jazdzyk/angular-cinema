@@ -55,13 +55,13 @@ export class AdminPanelComponent implements OnInit {
 
   edit(element: any) {
     this.matDialog.open(EditMovieComponent, {
-      width: '80%', data: element, height: '100%'
+      width: '50%', data: element, height: '85%'
     });
   }
 
   addMovie() {
     this.matDialog.open(AddMovieComponent, {
-      width: '80%', height: '100%'
+      width: '50%', height: '75%'
     });
   }
 
