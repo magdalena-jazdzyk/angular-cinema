@@ -4,13 +4,13 @@
       <div class=" col-8 mx-auto">
         <div class="card">
           <div class="card-header">
-            <h4>Edit User </h4>
+            <h4>Edytuj użytkownika </h4>
           </div>
           <div class="card-body">
             <form [formGroup]="updateUserForm" (ngSubmit)="updateUser()">
               <formly-form [fields]="updateFields" [form]="updateUserForm">
                 <button [disabled]="!updateUserForm.valid" mat-raised-button type="submit">
-                  Edit
+                  Edytuj
                 </button>
               </formly-form>
 

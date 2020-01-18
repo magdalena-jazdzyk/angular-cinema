@@ -159,16 +159,4 @@ export class MovieState {
       })
     );
   }
-
-
-  // @Action(SearchMovieAction)
-  // searchMovieAction(ctx: StateContext<MovieStateModel>, {title}: SearchMovieAction) {
-  //   return this.movieService.findMovieByTitleUsingGET(title).pipe(
-  //     tap(value => {
-  //       ctx.patchState({
-  //         movie: value
-  //       });
-  //     })
-  //   );
-  // }
 }

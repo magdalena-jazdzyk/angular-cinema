@@ -11,7 +11,7 @@
 }
 
 .movie-details {
-  margin-bottom: 180px;
+  margin-top: 5%;
   padding: 5% 5% 5% 5%;
 }
 
@@ -27,33 +27,15 @@
 }
 
 .details {
-
-  /*display: block;*/
-  /*float: left;*/
   margin-right: 10px;
   padding-left: 15px;
   position: relative;
 }
 
 .movie-title {
-  /*margin-left: 15%;*/
-  /*text-align: center;*/
-  /*font-family: isonormregular;*/
-  /*font-size: 19px;*/
   padding-right: 8%;
   text-align: center;
 }
-
-/*.ytp-cued-thumbnail-overlay-image {*/
-/*  background-size: cover;*/
-/*  -moz-background-size: cover;*/
-/*  -webkit-background-size: cover;*/
-/*  background-position: center;*/
-/*  background-repeat: no-repeat;*/
-/*  width: 40%;*/
-/*  height: 50%;*/
-/*  position: absolute;*/
-/*}*/
 .ytp-cued-thumbnail-overlay-image {
   background-size: cover;
   -moz-background-size: cover;
@@ -62,7 +44,7 @@
   background-repeat: no-repeat;
   width: 45%;
   height: 15%;
-  height: 600px;
+  max-height: 500px;
   position: absolute;
 }
 .space {
@@ -77,7 +59,6 @@
   margin-bottom: 50px;
   padding-right: 55px;
   padding-left: 55px;
-  /*width: 120%;*/
   width: 390px;
   padding-top: 25px;
 }
@@ -86,7 +67,7 @@
   margin-bottom: 50px;
   padding-right: 55px;
   padding-left: 55px;
-  width: 390px;
+  width: 350px;
   padding-top: 25px;
   padding-top: 25px;
   opacity: 0.65;
@@ -95,7 +76,6 @@
 
 .pp {
   margin-left: 10%;
-
 }
 
 .movie-header {
@@ -112,8 +92,4 @@
   margin-bottom: 5px;
 }
 
-/*.releaseDate{*/
-/*  float: left;*/
-/*}*/
-/*.genre{*/
-/*display: block}*/
+

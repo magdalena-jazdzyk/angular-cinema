@@ -9,7 +9,12 @@ button {
   border-bottom: 3px solid #c8006d;
   position: relative;
   text-transform: uppercase;
-  color: #fff;
+  color: black;
+  background-color: white;
+}
+
+.button:hover{
+  color: black;
 }
 .btn-text {
   color: black;

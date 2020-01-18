@@ -63,7 +63,6 @@ button {
   position: relative;
   flex: auto;
   min-width: 0;
-  /*max-width: 750px;*/
   max-width: 65%;
   padding: 3%;
 }

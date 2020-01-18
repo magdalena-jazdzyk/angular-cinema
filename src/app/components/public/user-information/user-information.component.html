@@ -1,17 +1,23 @@
-<!--  <button (click)="close()">Zamknij</button>-->
+<section id="movie">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-9 mx-auto">
+        <!--        <form  [formGroup]="movieForm" (ngSubmit)="closeM()">-->
+        <div class="card">
+          <div class="card-header">
+            <h4>Uwaga!!</h4>
+          </div>
+          <div class="container card-body">
+            <p style="font-size: 17px; margin-top: 30px">
+              Proszę się zalogować aby zarezerwować miejsce w kinie.
+            </p>
+          </div>
+          <button mat-raised-button class="btn-text" (click)="matDialogRef.close()">
+            Zamknij
+          </button>
+        </div>
+      </div>
 
-<!--<mat-toolbar>-->
-<!--  <span>Uwaga!!!</span>-->
-<!--</mat-toolbar>-->
-<!--<mat-dialog-actions>-->
-<!--  <button mat-button matDialogClose>Close dialog</button>-->
-<!--</mat-dialog-actions>-->
-
-
-<mat-toolbar>
-  <mat-dialog-actions>
-    <button mat-button matDialogClose>Close dialog</button>
-  </mat-dialog-actions></mat-toolbar>
-
-
-
+    </div>
+  </div>
+</section>

@@ -1,9 +1,6 @@
 .icon-layout{
 color: white;
-  /*padding: 50px;*/
   display: flex;
   flex-wrap: wrap;
   padding: 30px;
-  /*padding: 50px;*/
-  /*margin-top: 27px;*/
 }

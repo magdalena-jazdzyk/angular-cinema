@@ -41,12 +41,6 @@ export class UserListComponent implements OnInit {
     this.store.dispatch(new LoadUsersAction(event.pageIndex, event.pageSize));
   }
 
-  // edit(element: any) {
-  //   this.matDialog.open(UpdateUserComponent, {
-  //     width: '80%', data: element, height: '100%'
-  //   });
-  // }
-
   updateUser(element: any) {
     this.matDialog.open(UpdateUserComponent, {
       width: '50%', data: element, height: '75%'

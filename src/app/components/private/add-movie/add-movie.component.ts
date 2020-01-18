@@ -36,23 +36,6 @@ export class AddMovieComponent implements OnInit {
           {value: 'Drama', label: 'Drama'},
           {value: 'Family', label: 'Family'}],
 
-  // 'Animation' ,
-        // 'Comedy' ,
-        // 'Crime' ,
-        // 'Documentary' ,
-        // 'Drama' ,
-        // 'Family' ,
-        // 'Fantasy' ,
-        // 'History' ,
-        // 'Horror' ,
-        // 'Music' ,
-        // 'Mystery' +
-        // 'Romance' +
-        // 'Science Fiction' +
-        // 'Thriller' +
-        // 'TV Movie' +
-        // 'War' +
-        // 'Western'
         label: 'Nazwa gatunku',
         placeholder: 'Podaj nazwe gatunku',
         required: true,
@@ -78,8 +61,6 @@ export class AddMovieComponent implements OnInit {
     }
   ];
 
-  // constructor(public store: Store) {
-  // }
 
   constructor(public  matDialogRef: MatDialogRef<AddMovieComponent>, @Inject(MAT_DIALOG_DATA) public data: any, public store: Store) {
   }

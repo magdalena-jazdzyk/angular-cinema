@@ -5,30 +5,26 @@
   background: linear-gradient(to right, #c8006d 0%, #7a0042 100%);
   border-left-color: #c8006d;
   border-right-color: #7a0042;
-  height: 70px;
-  width: 100px;
+  height: 55px;
+  width: 76px;
   text-align: center;
   border-radius: 17px;
   box-shadow: 0 9px #999;
-  font-size: 18px;
+  font-size: 13px;
   float: left;
   padding: 12px 7px;
   margin: 3px 3px;
-  /*margin-bottom: 130px;*/
   flex-wrap: wrap;
 }
 
 .button-time {
-  /*color: #fff;*/
-  /*border-color: transparent;*/
-  /*background: linear-gradient(to right, #c8006d 0%, #7a0042 100%);*/
   border-left-color: #c8006d;
   border-right-color: #c8006d;
   border-bottom-color: #c8006d;
   border-top-color: #c8006d;
   /*border-right-color: #7a0042;*/
-  /*height: 70px;*/
-  /*width: 100px;*/
+  height: 55px;
+  width: 76px;
   text-align: center;
   border-radius: 17px;
   /*box-shadow: 0 9px #999;*/
@@ -36,7 +32,7 @@
   float: left;
   padding: 12px 7px;
   margin: 3px 11px;
-  margin-bottom: 100px;
+  margin-bottom: 50px;
   flex-wrap: wrap;
   color: black;
   background-color: white;
@@ -48,17 +44,16 @@
 }
 
 .space {
-  margin-bottom: 100px
+  margin-bottom: 40px
 }
-
 
 .button-seat {
   border: 1px outset green;
   background-color: #358e72;
-  height: 70px;
-  width: 70px;
+  height: 50px;
+  width: 50px;
   cursor: pointer;
-  margin: 0px 5px 5px 0px;
+  margin: 0px 3px 3px 0px;
 }
 
 .button-seat:hover {
@@ -70,13 +65,14 @@
   clear: left;
   margin-bottom: 100px;
   position: relative;
-  margin-left: 130px;
+  margin-left: 7%
 }
 
 .next {
   cursor: pointer;
   text-align: center;
-  margin-left: 79%;
+  margin-left: 340px;
+  margin-top: 40px;
   padding: 11px 15px 11px 15px;
   position: relative;
   background-color: #ffffff;

@@ -30,6 +30,8 @@ export class MovieDetailsReservationComponent implements OnInit {
 
   @Input() repertoireId: number = null;
 
+  @Input() changed = false;
+
   @Input()
   movieId: number;
 

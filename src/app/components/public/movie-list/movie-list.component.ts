@@ -101,7 +101,7 @@ export class MovieListComponent implements OnInit, OnDestroy {
 
   reserve(element) {
     this.matDialog.open(ReservationComponent, {
-      width: '80%', data: element, height: '100%'
+      width: '90%', data: element, height: '90%'
     });
     //   this.store.dispatch(new CreateReservationAction({
     //   movieId: element.id

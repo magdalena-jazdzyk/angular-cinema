@@ -59,7 +59,7 @@ export class RegisterComponent implements OnInit {
       type: 'input',
       templateOptions: {
         type: 'password',
-        label: 'confirmPassword',
+        label: 'Powtórz hasło',
         placeholder: 'Wpisz hasło',
         required: true,
         minLength: 5

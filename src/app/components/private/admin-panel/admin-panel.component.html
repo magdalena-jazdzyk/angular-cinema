@@ -1,10 +1,10 @@
 <body>
 <section id="admin" style="margin-left: 80px">
-  <div class = "row row-admin">
+  <div class="row row-admin">
     <div class="col-9">
       <div class="card">
         <div class="test" *ngIf="moviesPage$ | async as moviesPage">
-          <table mat-table [dataSource]="moviesPage.content"  class="table">
+          <table mat-table [dataSource]="moviesPage.content" class="table">
             <ng-container matColumnDef="title" style="margin-bottom: 3px">
               <th mat-header-cell *matHeaderCellDef>
                 title
@@ -58,27 +58,6 @@
       </div>
     </div>
 
-<!--    <div class="card text-center bg-warning text-white mb-4">-->
-<!--      <div class="card-body">-->
-<!--        <h3>Users</h3>-->
-<!--        <h4 class="display-2">-->
-<!--          <i class="fas fa-users"></i>-->
-<!--        </h4>-->
-<!--        <a routerLink="/users" class="btn btn-outline-light btn-sm">View</a>-->
-<!--      </div>-->
-<!--    </div>-->
-
-<!--    <div class="card text-center bg-warning text-white mb-4">-->
-<!--      <div class="card-body">-->
-<!--        <h3>Users</h3>-->
-<!--        <h4 class="display-2">-->
-<!--          <i class="fas fa-users"></i>-->
-<!--        </h4>-->
-<!--        <a routerLink="/users" class="btn btn-outline-light btn-sm">View</a>-->
-<!--      </div>-->
-<!--    </div>-->
-
-
     <div class="col-md-2 block">
       <div class="card text-center bg-dark text-white mb-3">
         <div class="card-body">
@@ -86,13 +65,11 @@
           <h4 class="display-4">
             <i class="fas fa-pencil-alt"></i>
           </h4>
-          <button (click)="addMovie()" class="btn btn-outline-light btn-sm" >
+          <button (click)="addMovie()" class="btn btn-outline-light btn-sm">
             Dodaj
           </button>
-<!--          <a href="posts.html" class="btn btn-outline-light btn-sm">View</a>-->
         </div>
       </div>
-
       <div class="card text-center bg-dark text-white mb-4">
         <div class="card-body">
           <h3>Użytkownicy</h3>

@@ -9,15 +9,9 @@ import {UpdateUserAction} from '../../public/user.state';
 @Component({
   selector: 'app-update-user',
   templateUrl: './update-user.component.html',
-  styleUrls: ['./update-user.component.sass']
+  styleUrls: ['./update-user.component.css']
 })
 export class UpdateUserComponent implements OnInit {
-
-  // constructor(public store: Store) {
-  // }
-
-  // ngOnInit() {
-  // }
 
   updateUserForm = new FormGroup({});
 
@@ -59,7 +53,7 @@ export class UpdateUserComponent implements OnInit {
       type: 'input',
       templateOptions: {
         type: 'password',
-        label: 'confirmPassword',
+        label: 'Powtórz hasło',
         placeholder: 'Wpisz hasło',
         required: true
       }
@@ -81,6 +75,6 @@ export class UpdateUserComponent implements OnInit {
       password: this.updateUserForm.value.password, passwordConfirmation: this.updateUserForm.value.passwordConfirmation
     }));
 
-    this.matDialogRef.close(); // zamyka modal
+    this.matDialogRef.close();
   }
 }

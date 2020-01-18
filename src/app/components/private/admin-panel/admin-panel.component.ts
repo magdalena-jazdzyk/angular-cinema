@@ -65,10 +65,4 @@ export class AdminPanelComponent implements OnInit {
     });
   }
 
-  // updateUser(element: any) {
-  //   this.matDialog.open(UpdateUserComponent, {
-  //     width: '80%', data: element, height: '100%'
-  //   });
-  // }
-
 }

@@ -14,16 +14,12 @@ th {
   color: white;
   letter-spacing: .09em;
   background: linear-gradient(#bb005d, #7f0045);
-margin-bottom: 10%;
+  margin-bottom: 10%;
   text-transform: uppercase;
   font-family: Yu Gothic UI Semibold;
   font-size: 12px;
 
 }
-
-/*.table {*/
-/*  height: 125%;*/
-/*}*/
 
 .button-admin:hover {
   text-decoration: none;
@@ -45,7 +41,6 @@ margin-bottom: 10%;
 
 }
 
-
 tr:hover {
   background-color: #f5f5f5;
 }
@@ -61,13 +56,12 @@ td mat-cell {
   padding-left: 9px;
 }
 
-.row-admin{
+.row-admin {
   display: flex;
   flex-wrap: wrap;
   margin-right: -15px;
   margin-left: 15px;
 }
-
 
 td.mat-cell:first-of-type, td.mat-footer-cell:first-of-type, th.mat-header-cell:first-of-type {
   padding-left: 24px;

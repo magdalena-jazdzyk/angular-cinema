@@ -35,7 +35,6 @@ export class ReservationComponent implements OnInit, OnDestroy {
   constructor(public  matDialogRef: MatDialogRef<ReservationComponent>, @Inject(MAT_DIALOG_DATA) public data: any, public store: Store) {
   }
 
-
   ngOnInit() {
     console.log(this.data);
 
@@ -44,25 +43,6 @@ export class ReservationComponent implements OnInit, OnDestroy {
     for (let i = 0; i < 7; i++) {
       this.tab.push(new Date(new Date().getTime() + 1000 * 60 * 60 * 24 * i).toLocaleDateString());
     }
-
-    // this.subscription = this.pdfFile$.subscribe(p => {
-    //   console.log('download');
-    //   if (p) {
-    //     // const pdfFile = 'data:application/pdf;base64,' + p; // stwrazmy link
-    //     // const link = document.createElement('a');
-    //     // link.href = pdfFile;
-    //     // link.download = 'ticket.pdf';
-    //     // link.click();
-    //     console.log(p);
-    //     const linkSource = 'data:application/pdf;base64,' + p;
-    //     const downloadLink = document.createElement('a');
-    //     const fileName = 'sample.pdf';
-    //
-    //     downloadLink.href = linkSource;
-    //     downloadLink.download = fileName;
-    //     downloadLink.click();
-    //   }
-    // });
   }
 
 
@@ -82,22 +62,17 @@ export class ReservationComponent implements OnInit, OnDestroy {
 
   checkSeat(seatDtos: SeatDto[], i: number, j: number): string {
     return seatDtos.find(s => s.rowNumber === i && s.columnNumber === j) ? 'zajete' : 'wolne';
-    //  console.log(seatDtos, i, j);
-    //return 'zajete';
   }
 
   reserve(i: number, j: number) {
     this.store.dispatch(new ReserveSeatActions(this.data.id, i, j, this.repertoireId));
-    //  this.store.dispatch(new CreateReservationAction({movieId: this.data.id, seat: {columnNumber: j, rowNumber: i}}));
   }
 
   ngOnDestroy(): void {
-    // this.store.dispatch(new CleanRepertoireAction());
     this.store.dispatch(new ClearSeatsActions());
   }
 
   downloadTicket() {
-    // window.location.href = 'http://localhost:8080/templates/download/47836';
    this.store.dispatch(new DownloadTicketAction(this.repertoireId));
   }
 }

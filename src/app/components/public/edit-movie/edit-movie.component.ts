@@ -72,15 +72,13 @@ export class EditMovieComponent implements OnInit {
   }
 
   editMovie() {
-    // console.log(this.movieForm.value.releaseDate.getDay());
-    // console.log(this.movieForm.value.releaseDate.getMonth());
-    // console.log(this.movieForm.value.releaseDate.getFullYear());
     console.log(this.movieForm.value.releaseDate);
     this.store.dispatch(new EditMovieAction(this.data.id, {
-      title: this.movieForm.value.title, releaseDate: this.movieForm.value.releaseDate.toLocaleString().split(',')[0], //.split('.').join('-'),
+      title: this.movieForm.value.title,
+      releaseDate: this.movieForm.value.releaseDate.toLocaleString().split(',')[0],
       description: this.movieForm.value.description, duration: this.movieForm.value.duration
     }));
 
-    this.matDialogRef.close(); // zamyka modal
+    this.matDialogRef.close();
   }
 }

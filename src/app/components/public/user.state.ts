@@ -159,15 +159,6 @@ export class UserState {
 
   }
 
-  // @Action(RegisterAction)
-  // register(ctx: StateContext<UserStateModel>, user: RegisterAction) {
-  //   return this.securityControllerService.registerUsingPOST(user.user).pipe(
-  //     tap(value => {
-  //       this.router.navigate(['/login']);
-  //     })
-  //   );
-  // }
-
 
   @Action(RegisterAction)
   register(ctx: StateContext<UserStateModel>, user: RegisterAction) {

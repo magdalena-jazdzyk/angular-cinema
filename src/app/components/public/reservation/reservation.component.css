@@ -5,12 +5,12 @@
   background: linear-gradient(to right, #c8006d 0%, #7a0042 100%);
   border-left-color: #c8006d;
   border-right-color: #7a0042;
-  height: 70px;
-  width: 100px;
+  height: 50px;
+  width: 78px;
   text-align: center;
   border-radius: 17px;
   box-shadow: 0 9px #999;
-  font-size: 18px;
+  font-size: 14px;
   float: left;
   padding: 12px 7px;
   margin: 3px 3px;
@@ -21,10 +21,10 @@
 .next {
   cursor: pointer;
   text-align: center;
-  margin-bottom: 50px;
-  margin-top: 200px;
-  margin-left: 1200px;
-  padding: 1.29em 3.17em 1.30em 3.44em;
+  margin-bottom: 53px;
+  margin-top: 70px;
+  margin-left: 320px;
+  padding: 0.3em 1.00em 0.30em 1.00em;
   position: relative;
   background-color: #ffffff;
   font-size: 18px;
@@ -38,13 +38,13 @@
   float: left;
 }
 
-.button-seat{
+.button-seat {
   border: 1px outset green;
   background-color: #358e72;
-  height:70px;
-  width:70px;
-  cursor:pointer;
-  margin: 0px 5px 5px 0px;
+  height: 50px;
+  width: 50px;
+  cursor: pointer;
+  margin: 0px 3px 3px 0px;
 }
 
 .button-seat:hover {
@@ -56,7 +56,7 @@
   clear: left;
   margin-bottom: 140px;
   position: relative;
-  margin-left: 300px;
+  margin-left: 5px;
 
 }
 
@@ -66,19 +66,12 @@ button[disabled]{
   color: brown;
 }
 .button-time {
-  /*color: #fff;*/
-  /*border-color: transparent;*/
-  /*background: linear-gradient(to right, #c8006d 0%, #7a0042 100%);*/
   border-left-color: #c8006d;
   border-right-color: #c8006d;
   border-bottom-color: #c8006d;
   border-top-color: #c8006d;
-  /*border-right-color: #7a0042;*/
-  /*height: 70px;*/
-  /*width: 100px;*/
   text-align: center;
   border-radius: 17px;
-  /*box-shadow: 0 9px #999;*/
   font-size: 18px;
   float: left;
   padding: 12px 7px;

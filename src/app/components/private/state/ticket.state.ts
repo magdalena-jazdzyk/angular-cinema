@@ -40,7 +40,6 @@ export class TicketState {
           link.click();
           document.body.removeChild(link);
         } else {
-          //html5 download not supported
         }
       });
   }
