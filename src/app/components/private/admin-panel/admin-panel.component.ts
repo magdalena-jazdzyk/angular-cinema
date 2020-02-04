@@ -18,7 +18,7 @@ import {AddMovieComponent} from '../add-movie/add-movie.component';
 })
 export class AdminPanelComponent implements OnInit {
 
-  displayedColumns: string[] = ['title', 'edytuj', /*'updateUser',*/ 'usuń', 'dodaj'];
+  displayedColumns: string[] = ['title', 'edytuj', 'usuń', 'dodaj'];
 
   @Select(state => state.movie.moviePageDto)
   moviesPage$: Observable<PageMovieDto>;

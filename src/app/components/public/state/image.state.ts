@@ -34,7 +34,7 @@ export class ImageStateModel {
 }
 
 @State<ImageStateModel>({
-  name: 'image', // nzazwa state
+  name: 'image', // nazwa state
   defaults: {
     images: [],
     imagesByMovieIds: [],

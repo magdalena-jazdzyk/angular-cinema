@@ -136,7 +136,6 @@ export class UserState {
           errorLogin: false,
         });
         ctx.dispatch(new GetCurrentUserAction());
-        //   ctx.dispatch(new GetCurrentUserAction())
       }),
       catchError((err, caught) => {
         ctx.patchState({
@@ -158,7 +157,6 @@ export class UserState {
     ));
 
   }
-
 
   @Action(RegisterAction)
   register(ctx: StateContext<UserStateModel>, user: RegisterAction) {
@@ -193,7 +191,7 @@ export class UserState {
   editUser(ctx: StateContext<UserStateModel>, {id, userDto}: UpdateUserAction) {
     return this.userService.updateUserUsingPUT({id, userDto}).pipe(
       tap(value => {
-        ctx.dispatch(new LoadUsersAction(ctx.getState().page, ctx.getState().size)); // przelaowanie strony
+        ctx.dispatch(new LoadUsersAction(ctx.getState().page, ctx.getState().size));
       })
     );
   }

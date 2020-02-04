@@ -21,7 +21,6 @@ export class MovieListComponent implements OnInit, OnDestroy {
   displayedColumns: string[] = ['title', 'hours', 'films'];
   subscription;
 
-  // displayedColumns: string[] = ['id', 'title', 'genre', 'price', 'films'];
   @Select(state => state.user.jwtToken)
   token$: Observable<string>;
 
@@ -31,8 +30,6 @@ export class MovieListComponent implements OnInit, OnDestroy {
   @Select(state => state.user.currentUser)
   currentUser$: Observable<UserDto>;
 
-  // @Select(state => state.image.images)
-  // images$: Observable<ImageDto[]>;
 
   @Select(state => state.image.imagesByMovieIds)
   imagesByMovieIds$: Observable<ImageDto[]>;
@@ -40,7 +37,6 @@ export class MovieListComponent implements OnInit, OnDestroy {
   @Select(state => state.image.imagePageAction)
   imagePageAction$: Observable<PageImageDto>;
 
-  // DODANE
   @Select(state => state.repertoire.repertoiresList)
   repertoiresList$: Observable<RepertoireDto[]>;
 
@@ -59,20 +55,6 @@ export class MovieListComponent implements OnInit, OnDestroy {
         this.displayedColumns.push('reservation');
       }
     }).unsubscribe();
-    //
-    // this.currentUser$.subscribe(r => {
-    //   console.log(r);
-    //
-    //   if (r.roles) {
-    //     if (r.roles.includes('ROLE_ADMIN')) {
-    //       this.displayedColumns.push('remove');
-    //       this.displayedColumns.push('dodaj');
-    //       this.displayedColumns.push('edytuj');
-    //     }
-    //   }
-    // }).unsubscribe();
-    //this.store.dispatch(new FindTheFirstPageAction());
-
 
     this.subscription = this.moviesPage$.subscribe(p => {
       console.log('wartosc p ' + p.content);
@@ -80,7 +62,6 @@ export class MovieListComponent implements OnInit, OnDestroy {
         const numbers = p.content.map(s => s.id);
         console.log('number' + numbers);
         this.store.dispatch(new LoadImageInMovieIdsAction(numbers));
-        // this.store.dispatch(new LoadImageInMovieIdsAction(numbers.splice(0, 11)));
         this.store.dispatch(new LoadRepertoiresAction(new Date().toLocaleDateString(), numbers));
       }
     });
@@ -103,8 +84,7 @@ export class MovieListComponent implements OnInit, OnDestroy {
     this.matDialog.open(ReservationComponent, {
       width: '90%', data: element, height: '90%'
     });
-    //   this.store.dispatch(new CreateReservationAction({
-    //   movieId: element.id
+
   }
 
 
@@ -113,7 +93,7 @@ export class MovieListComponent implements OnInit, OnDestroy {
   }
 
   addRepertoire(element: any) {
-    this.matDialog.open(RepertoireCreateComponent, {  // do otwierania modalu
+    this.matDialog.open(RepertoireCreateComponent, {
       width: '80%', data: element, height: '100%'
     });
   }
@@ -124,12 +104,9 @@ export class MovieListComponent implements OnInit, OnDestroy {
     });
   }
 
-  // dodane
-
-
   search(value: string) {
     this.store.dispatch(new LoadMovieAction(0, null, value));
-    this.paginator.pageIndex= 0;
+    this.paginator.pageIndex = 0;
     console.log(value);
   }
 }

@@ -35,6 +35,7 @@ export class ReservationComponent implements OnInit, OnDestroy {
   constructor(public  matDialogRef: MatDialogRef<ReservationComponent>, @Inject(MAT_DIALOG_DATA) public data: any, public store: Store) {
   }
 
+
   ngOnInit() {
     console.log(this.data);
 
@@ -43,6 +44,7 @@ export class ReservationComponent implements OnInit, OnDestroy {
     for (let i = 0; i < 7; i++) {
       this.tab.push(new Date(new Date().getTime() + 1000 * 60 * 60 * 24 * i).toLocaleDateString());
     }
+
   }
 
 
@@ -73,7 +75,7 @@ export class ReservationComponent implements OnInit, OnDestroy {
   }
 
   downloadTicket() {
-   this.store.dispatch(new DownloadTicketAction(this.repertoireId));
+    this.store.dispatch(new DownloadTicketAction(this.repertoireId));
   }
 }
 

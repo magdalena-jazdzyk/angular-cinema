@@ -65,7 +65,7 @@ export class FindTheFirstPageAction {
 
 export class MovieStateModel {
   public moviePageDto: PageMovieDto;
-  public movie: MovieDto;  // w steie che przetrzymac cały opis obiketu
+  public movie: MovieDto;  // w state che przetrzymac cały opis obiektu
   public page: number;
   public size: number;
   public title: string;
@@ -144,7 +144,7 @@ export class MovieState {
   editMovie(ctx: StateContext<MovieStateModel>, {id, movieDto}: EditMovieAction) {
     return this.movieService.updateUsingPUT({id, movieDto}).pipe(
       tap(value => {
-        ctx.dispatch(new LoadMovieAction(ctx.getState().page, ctx.getState().size)); // przelaowanie strony
+        ctx.dispatch(new LoadMovieAction(ctx.getState().page, ctx.getState().size));
       })
     );
   }

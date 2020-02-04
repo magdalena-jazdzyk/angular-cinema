@@ -83,7 +83,6 @@ export class RepertoireState {
 
   @Action(AddRepertoireAction)
   addRepertoire(ctx: StateContext<RepertoireStateModel>, {repertoireDto}: AddRepertoireAction) {
-    // const dateForSend = date.split('.').join('-');
     return this.repertoireControllerService.addRepertoireUsingPOST(repertoireDto).pipe(
       tap(value => {
       })
@@ -94,7 +93,6 @@ export class RepertoireState {
   cleanRepertoire(ctx: StateContext<RepertoireStateModel>, {}: CleanRepertoireAction) {
     ctx.patchState({
       repertoireList: [],
-      // repertoiresList: []
     });
   }
 }

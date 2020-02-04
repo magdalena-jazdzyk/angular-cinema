@@ -105,7 +105,7 @@ export function PasswordMessage(err, field: FormlyFieldConfig) {
 
   ],
   entryComponents: [
-    ReservationComponent, // naszkomponent bedzie wywołany z poziomu kodu annie z linku
+    ReservationComponent, // naszkomponent bedzie wywołany z poziomu kodu a nie z linku
     EditMovieComponent,
     UserInformationComponent
   ]

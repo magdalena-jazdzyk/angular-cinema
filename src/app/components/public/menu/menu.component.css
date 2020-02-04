@@ -2,28 +2,6 @@
   color: #c8006d;
 }
 
-/*carousel-item {*/
-/*  height: 450px;*/
-/*}*/
-
-/*.carousel-image-1 {*/
-/*  !*background: url('./assets/img/image1.jpg');*!*/
-/*  background-size: cover;*/
-/*}*/
-/*.navbar {*/
-/*  min-height: 86px;*/
-/*}*/
-
-/*.carousel-image-2 {*/
-/*  background: url('../img/image2.jpg');*/
-/*  background-size: cover;*/
-/*}*/
-
-/*.carousel-image-3 {*/
-/*  background: url('../img/image3.jpg');*/
-/*  background-size: cover;*/
-/*}*/
-/*C:\Users\Karol\WebstormProjects\cinema-angular\angular-cinema\src\app\components\public\img*/
 .menu-spacer {
   flex: 1 1 auto;
 }

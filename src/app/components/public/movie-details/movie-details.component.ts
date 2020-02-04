@@ -45,7 +45,6 @@ export class MovieDetailsComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    // this.activatedRoute.params.subscribe(p => this.movieId = p.id).unsubscribe(); // pobireania filmu z linku
     this.subscriptionUrl = this.activatedRoute.params.subscribe(p => {
       this.movieId = p.id;
       this.repertoireId = p.repertoireId;

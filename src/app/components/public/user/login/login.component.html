@@ -1,13 +1,3 @@
-<!--<mat-card class="example-card">-->
-<!--  <form [formGroup]="loginForm" (ngSubmit)="login()">-->
-<!--    <formly-form [fields]="loginFields" [form]="loginForm">-->
-<!--      <button [disabled]="!loginForm.valid" mat-raised-button color="primary" type="submit">-->
-<!--        Zaloguj-->
-<!--      </button>-->
-<!--    </formly-form>-->
-<!--  </form>-->
-<!--</mat-card>-->
-
 <section id="login">
   <div class="container">
     <div class="row">
@@ -22,14 +12,9 @@
                 <button [disabled]="!loginForm.valid" mat-raised-button class="btn-text" type="submit">
                   Zaloguj
                 </button>
-<!--                <div *ngIf="errorLogin$" | async class="alert alert-secondary" role="alert" style="font-size:18px">-->
-<!--                  Bledy login lub haslo. Proszę podać prawidłowe dane logowania.-->
-<!--                </div>-->
                 <div class="alert alert-secondary" role="alert" style="margin-top: 12px;" *ngIf="errorLogin$  | async">
-                  Bledy login lub haslo. Proszę podać prawidłowe dane logowania.</div>
-
-
-                <!--                <span *ngIf="errorLogin$ | async">Bledy login lub haslo</span>-->
+                  Błędny login lub haslo. Proszę podać prawidłowe dane logowania.
+                </div>
               </formly-form>
             </form>
           </div>

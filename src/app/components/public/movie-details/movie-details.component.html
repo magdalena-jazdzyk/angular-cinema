@@ -1,35 +1,8 @@
-<!--<div class="6 mx-auto video rounded float-left">-->
-<!--  <div *ngIf="videos$ | async as videoDtos">-->
-<!--&lt;!&ndash;    <div *ngFor="let element of videoDtos">&ndash;&gt;-->
-<!--      <iframe allowfullscreen class="ytp-cued-thumbnail-overlay-image" [src]="videoDtos[0]"></iframe>-->
-<!--  </div>-->
-<!--</div>-->
-
-<!--//-->
-
 <div class="6 mx-auto video float-left">
   <div *ngIf="videos$ | async as videoDtos">
-    <!--    <div *ngFor="let element of videoDtos">-->
     <iframe allowfullscreen class="ytp-cued-thumbnail-overlay-image" [src]="videoDtos[0]"></iframe>
-
-    <!--      <iframe allowfullscreen class="ytp-cued-thumbnail-overlay-image" [src]="element"></iframe>-->
-    <!--    </div>-->
   </div>
-
-
-  <!--    <div class = "container" style="margin-top: 900px;">-->
-  <!--      <app-movie-details-reservation [movieId]="movieId" [repertoireId]="repertoireId"></app-movie-details-reservation>-->
-  <!--    </div>-->
-
 </div>
-
-<!--  <div class = "container rounded " style="margin-top: 600px;">-->
-<!--    <app-movie-details-reservation [movieId]="movieId" [repertoireId]="repertoireId"></app-movie-details-reservation>-->
-<!--  </div>-->
-
-<!--style="margin-top: -1500px;-->
-<!--<div class="col-6 movie-details rounded float-right">-->
-
 <div class="col-6 movie-details rounded float-right">
   <div *ngIf="images$ | async as imageDtos">
     <div *ngFor="let element of imageDtos">
@@ -52,7 +25,6 @@
     </div>
   </div>
 </div>
-
 
 <div class="container rounded " style="margin-top: 880px;margin-bottom: 180px;margin-right: 42%">
   <app-movie-details-reservation [movieId]="movieId" [repertoireId]="repertoireId"></app-movie-details-reservation>

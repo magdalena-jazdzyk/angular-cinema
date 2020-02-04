@@ -13,7 +13,6 @@ export class UserInformationComponent implements OnInit {
 
   movieForm = new FormGroup({});
 
-
   constructor(public  matDialogRef: MatDialogRef<UserInformationComponent>, @Inject(MAT_DIALOG_DATA) public data: any) {
   }
 
@@ -21,8 +20,6 @@ export class UserInformationComponent implements OnInit {
   }
 
   closeM() {
-    // console.log('ala');
     this.matDialogRef.close();
-    // console.log('ma kota');
   }
 }

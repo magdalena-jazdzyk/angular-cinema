@@ -1,166 +1,3 @@
-<!--<div class="container font container-space">-->
-<!--  <p class="title-movie-list">Repertuar</p>-->
-<!--</div>-->
-<!--<div class="container movie-search">-->
-<!--  <mat-form-field>-->
-<!--    <input #searchInput matInput placeholder="film">-->
-<!--  </mat-form-field>-->
-<!--  <button mat-flat-button class="bg-dark my-search-button" (click)="search(searchInput.value)">Szukaj filmu</button>-->
-<!--</div>-->
-<!--<div class="col-9 space" *ngIf="moviesPage$ | async  as moviesPage">-->
-<!--  <div *ngIf="repertoiresList$ | async as repertoiresList">-->
-<!--    <table class="myTable" mat-table [dataSource]="moviesPage.content">-->
-<!--      <ng-container matColumnDef="title">-->
-<!--        <th mat-header-cell *matHeaderCellDef>-->
-<!--          Co gramy?-->
-<!--        </th>-->
-<!--        <td class='title po' mat-cell *matCellDef="let element">-->
-<!--          {{element.title}}-->
-<!--        </td>-->
-<!--      </ng-container>-->
-
-<!--      &lt;!&ndash;    DODAN&ndash;&gt;-->
-<!--      <ng-container matColumnDef="hours">-->
-<!--        <th class="size" mat-header-cell *matHeaderCellDef>-->
-<!--          Godziny-->
-<!--        </th>-->
-<!--        <td class='title po' mat-cell *matCellDef="let element">-->
-<!--          <div *ngFor="let repertoire of repertoiresList">-->
-
-<!--            <div *ngIf="repertoire.movieId== element.id">-->
-<!--              &lt;!&ndash;           {{repertoire.time}}&ndash;&gt;-->
-<!--              <div class="raw button-row">-->
-<!--                <button (click)="router.navigate(['movie',element.id, repertoire.id])"-->
-<!--                        class="button-time float-left">{{repertoire.time | time}}</button>-->
-<!--              </div>-->
-<!--            </div>-->
-<!--          </div>-->
-<!--        </td>-->
-<!--      </ng-container>-->
-
-<!--      <ng-container *ngIf="token$ | async" matColumnDef="reservation">-->
-<!--        <th class="reservation-siz " mat-header-cell *matHeaderCellDef>-->
-<!--          Rezerwacja-->
-<!--        </th>-->
-<!--        <td mat-cell *matCellDef="let element">-->
-<!--          <button mat-button (click)="reserve(element)">-->
-<!--            <mat-icon>add_shopping_cart</mat-icon>-->
-<!--          </button>-->
-<!--        </td>-->
-<!--      </ng-container>-->
-<!--      <ng-container matColumnDef="films">-->
-<!--        &lt;!&ndash; matColumnDef - mowi jaka kolumna ma byc wyswetlana powizazna z tablcia strigow w kompoencie&ndash;&gt;-->
-<!--        <th class="video-title" mat-header-cell *matHeaderCellDef>-->
-<!--          Zwiastun-->
-<!--        </th>-->
-<!--        <td class="video" mat-cell *matCellDef="let element">-->
-<!--          <a routerLink="/movie/{{element.id}}">-->
-<!--            <mat-icon class="play">play_circle_outline</mat-icon>-->
-<!--          </a>-->
-<!--        </td>-->
-<!--      </ng-container>-->
-<!--      <tr mat-header-row *matHeaderRowDef="displayedColumns">-->
-<!--      </tr>-->
-<!--      <tr mat-row *matRowDef="let row; columns:displayedColumns;">-->
-<!--      </tr>-->
-<!--    </table>-->
-<!--    <mat-paginator [length]="moviesPage.totalElements" [pageSize]="moviesPage.size" [pageSizeOptions]="[5,10,25]"-->
-<!--                   (page)="changePage($event)">-->
-
-<!--    </mat-paginator>-->
-<!--  </div>-->
-<!--</div>-->
-<!--//////-->
-
-
-
-
-
-
-
-
-
-<!--<div class = container>-->
-<!--<div class="container movie-search">-->
-<!--  <mat-form-field>-->
-<!--    <input #searchInput matInput placeholder="film">-->
-<!--  </mat-form-field>-->
-<!--  <button mat-flat-button class="bg-dark my-search-button" (click)="search(searchInput.value)">Szukaj filmu</button>-->
-<!--</div>-->
-
-<!--<div class="col-9">-->
-<!--  <div class="card">-->
-<!--    <div class="test" *ngIf="moviesPage$ | async as moviesPage">-->
-<!--      <div *ngIf="repertoiresList$ | async as repertoiresList">-->
-<!--        <table mat-table [dataSource]="moviesPage.content"  class="table">-->
-<!--        <ng-container matColumnDef="title" style="margin-bottom: 3px">-->
-<!--          <th mat-header-cell *matHeaderCellDef>-->
-<!--            Co gramy?-->
-<!--          </th>-->
-<!--          <td mat-cell *matCellDef="let element">-->
-<!--            {{element.title.toUpperCase()}}-->
-<!--          </td>-->
-<!--        </ng-container>-->
-
-<!--          <ng-container matColumnDef="hours">-->
-<!--            <th class="size" mat-header-cell *matHeaderCellDef>-->
-<!--              Godziny-->
-<!--            </th>-->
-<!--            <td class='' mat-cell *matCellDef="let element">-->
-<!--              <div *ngFor="let repertoire of repertoiresList">-->
-
-<!--                <div *ngIf="repertoire.movieId== element.id">-->
-<!--                  <div class="raw button-row">-->
-<!--                    <button (click)="router.navigate(['movie',element.id, repertoire.id])"-->
-<!--                            class="button-time float-left">{{repertoire.time | time}}</button>-->
-<!--                  </div>-->
-<!--                </div>-->
-<!--              </div>-->
-<!--            </td>-->
-<!--          </ng-container>-->
-
-
-<!--          <ng-container matColumnDef="films">-->
-<!--            &lt;!&ndash; matColumnDef - mowi jaka kolumna ma byc wyswetlana powizazna z tablcia strigow w kompoencie&ndash;&gt;-->
-<!--            <th mat-header-cell *matHeaderCellDef>-->
-<!--              Zwiastun-->
-<!--            </th>-->
-<!--            <td  mat-cell *matCellDef="let element">-->
-<!--              <a routerLink="/movie/{{element.id}}">-->
-<!--                <mat-icon class="play">play_circle_outline</mat-icon>-->
-<!--              </a>-->
-<!--            </td>-->
-<!--          </ng-container>-->
-
-
-<!--          <ng-container *ngIf="token$ | async" matColumnDef="reservation">-->
-<!--            <th class="reservation-siz " mat-header-cell *matHeaderCellDef>-->
-<!--              Rezerwacja-->
-<!--            </th>-->
-<!--            <td mat-cell *matCellDef="let element">-->
-<!--              <button mat-button (click)="reserve(element)">-->
-<!--                <mat-icon>add_shopping_cart</mat-icon>-->
-<!--              </button>-->
-<!--            </td>-->
-<!--          </ng-container>-->
-
-
-
-<!--        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>-->
-<!--        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>-->
-<!--      </table>-->
-<!--      <mat-paginator [length]="moviesPage.totalElements" [pageSize]="moviesPage.size" [pageSizeOptions]="[5,10,25]"-->
-<!--                     (page)="changePage($event)">-->
-
-<!--      </mat-paginator>-->
-<!--    </div>-->
-<!--  </div>-->
-<!--</div>-->
-<!--</div>-->
-<!--  -->
-<!--  ////-->
-
-
 <div class="container font container-space">
   <p class="title-movie-list">Repertuar</p>
 </div>
@@ -173,12 +10,10 @@
 <div class="container">
 
   <div class="col-12">
-<!--    <div class="container">-->
-      <div class="test" *ngIf="moviesPage$ | async as moviesPage">
-        <div *ngIf="repertoiresList$ | async as repertoiresList">
+    <div class="test" *ngIf="moviesPage$ | async as moviesPage">
+      <div *ngIf="repertoiresList$ | async as repertoiresList">
 
         <table mat-table [dataSource]="moviesPage.content" class="table">
-
 
           <ng-container matColumnDef="title" style="margin-bottom: 3px">
             <th mat-header-cell *matHeaderCellDef>
@@ -213,7 +48,7 @@
             <th mat-header-cell *matHeaderCellDef>
               Zwiastun
             </th>
-            <td  mat-cell *matCellDef="let element">
+            <td mat-cell *matCellDef="let element">
               <a routerLink="/movie/{{element.id}}">
                 <mat-icon class="play">play_circle_outline</mat-icon>
               </a>
@@ -238,10 +73,10 @@
         <mat-paginator [length]="moviesPage.totalElements" [pageSize]="moviesPage.size" [pageSizeOptions]="[5,10,25]"
                        (page)="changePage($event)">
         </mat-paginator>
-        </div>
       </div>
     </div>
   </div>
+</div>
 
 
 <section class="another-movie">
@@ -256,43 +91,6 @@
           <h5 class="movie-title">{{element.movieDto.title}}</h5>
         </div>
       </div>
-<!--      -->
-<!--      <div *ngFor="let element of imageDtos">-->
-<!--        <a [routerLink]="['/movie',element.movieDto.id]">-->
-<!--          <img class="poster" src="{{element.poster}}">-->
-<!--        </a>-->
-<!--        &lt;!&ndash;        <img class="poster" src="{{element.poster}}">&ndash;&gt;-->
-<!--        <div class="container col-12">-->
-<!--          <h5 class="movie-title">{{element.movieDto.title}}</h5>-->
-<!--        </div>-->
-<!--      </div>-->
     </div>
   </div>
 </section>
-
-
-
-
-
-
-
-
-
-
-<!--<div class = "container">-->
-<!--<section class="col-10 ">-->
-<!--  <h1 class="space-title">Teraz gramy</h1>-->
-<!--  <div *ngIf="imagePageAction$ | async as imageDtos">-->
-<!--    <div class="row ">-->
-<!--      <div *ngFor="let element of imageDtos.content">-->
-<!--        <a [routerLink]="['/movie',element.movieDto.id]">-->
-<!--          <img class="poster" src="{{element.poster}}">-->
-<!--        </a>-->
-<!--        <div class=" col-12">-->
-<!--          <h5 class="movieDto-title">{{element.movieDto.title}}</h5>-->
-<!--        </div>-->
-<!--      </div>-->
-<!--    </div>-->
-<!--  </div>-->
-<!--</section>-->
-<!--</div>-->

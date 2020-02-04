@@ -34,7 +34,6 @@ export class MenuComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.subscription = this.currentUser$.subscribe(u => {
       console.log(u);
-      // this.showAdminPanel = u === null ? false : u.roles.includes('ROLE_ADMIN');
       if (u.roles) {
         console.log('ala');
         this.showAdminPanel = u.roles.includes('ROLE_ADMIN');
@@ -57,6 +56,5 @@ export class MenuComponent implements OnInit, OnDestroy {
   search(title) {
     this.store.dispatch(new SearchMovieAction(title));
   }
-
 
 }
